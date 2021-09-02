@@ -11,7 +11,7 @@ The license for this is in License file and the third party licenses are added i
 
 ### Python Modules
 
-Requirement: Applications WaveTool 3.5.10.
+Requirement: Applications WaveTool 5.0.0.
 Python: 3.7.1+
 
 #### Running MATLAB Example. 
