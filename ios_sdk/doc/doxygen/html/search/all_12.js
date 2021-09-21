@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['temp_5fambient_630',['temp_ambient',['../structtemperature__stream__cb__data__t.html#a7261611174acc55e08367fe875e81285',1,'temperature_stream_cb_data_t']]],
+  ['temp_5fskin_631',['temp_skin',['../structtemperature__stream__cb__data__t.html#a85ad6c11fdbce76e745e2306cea093c5',1,'temperature_stream_cb_data_t']]],
+  ['temperature_5fapp_632',['temperature_app',['../classwatch.html#a61515cbb4c7881300e123acd5791e5c3',1,'watch']]],
+  ['temperature_5fapplication_633',['temperature_application',['../classtemperature__application.html',1,'temperature_application'],['../classtemperature__application.html#accc8d16a658c4b629736cbf8310c37cc',1,'temperature_application::temperature_application()']]],
+  ['temperature_5fapplication_2ecpp_634',['temperature_application.cpp',['../temperature__application_8cpp.html',1,'']]],
+  ['temperature_5fapplication_2ehpp_635',['temperature_application.hpp',['../temperature__application_8hpp.html',1,'']]],
+  ['temperature_5fstream_636',['temperature_stream',['../classtemperature__application.html#a9d305a05deb0ec2c712ee51b1fb36ceb',1,'temperature_application']]],
+  ['temperature_5fstream_637',['TEMPERATURE_Stream',['../classfs__application.html#a59aa9d425a0fc3b50b6d30eb8922271fad098d02bce86042c293ea6ad3f69f243',1,'fs_application']]],
+  ['temperature_5fstream_5fcallback_638',['temperature_stream_callback',['../classtemperature__stream__callback.html',1,'']]],
+  ['temperature_5fstream_5fcb_5fdata_5ft_639',['temperature_stream_cb_data_t',['../structtemperature__stream__cb__data__t.html',1,'']]],
+  ['tia_5fch1_5fi_640',['TIA_ch1_i',['../structget__agc__info__t.html#a42f3c1c0837b1c34a55fb6f56be26b15',1,'get_agc_info_t']]],
+  ['tia_5fch1_5fint_641',['tia_ch1_int',['../structadpd4000__optional__stream__cb__data__t.html#a1593e965c144a9d0abd644616d7469dd',1,'adpd4000_optional_stream_cb_data_t']]],
+  ['tia_5fch2_5fi_642',['TIA_ch2_i',['../structget__agc__info__t.html#a5c12a47ecba2ea9386888d270aea233e',1,'get_agc_info_t']]],
+  ['tia_5fch2_5fint_643',['tia_ch2_int',['../structadpd4000__optional__stream__cb__data__t.html#a69b271bf02b2bc80a7c8e2c1a9de805b',1,'adpd4000_optional_stream_cb_data_t']]],
+  ['timestamp_644',['TimeStamp',['../structpedometer__stream__cb__data__t.html#a0fdff611074bd0d70c4cd2237dcfea8c',1,'pedometer_stream_cb_data_t']]],
+  ['timestamp_645',['timestamp',['../structadxl__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'adxl_stream_cb_data_t::timestamp()'],['../structeda__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'eda_stream_cb_data_t::timestamp()'],['../structecg__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'ecg_stream_cb_data_t::timestamp()'],['../structtemperature__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'temperature_stream_cb_data_t::timestamp()'],['../structppg__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'ppg_stream_cb_data_t::timestamp()'],['../structsyncppg__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'syncppg_stream_cb_data_t::timestamp()'],['../structadpd4000__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'adpd4000_stream_cb_data_t::timestamp()'],['../structadpd4000__optional__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'adpd4000_optional_stream_cb_data_t::timestamp()'],['../structbattery__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'battery_stream_cb_data_t::timestamp()'],['../structbcm__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'bcm_stream_cb_data_t::timestamp()'],['../structagc__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'agc_stream_cb_data_t::timestamp()'],['../structpm__sys__bat__info__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'pm_sys_bat_info_t::timestamp()']]],
+  ['tz_5fsec_646',['TZ_sec',['../structsys__date__time__t.html#aadc2f6a9a024e1607a24f4b81cdcf5a9',1,'sys_date_time_t']]]
+];

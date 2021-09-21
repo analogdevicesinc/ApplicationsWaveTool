@@ -1,0 +1,10 @@
+var searchData=
+[
+  ['lcfg_5fread_928',['lcfg_read',['../classbcm__application.html#a3492d82da35a8ca0f7b3c40b93881083',1,'bcm_application::lcfg_read()'],['../classecg__application.html#ab7fa2504c63f42086ead2263081751ab',1,'ecg_application::lcfg_read()'],['../classeda__application.html#a3492d82da35a8ca0f7b3c40b93881083',1,'eda_application::lcfg_read()'],['../classlow_touch__application.html#ab7fa2504c63f42086ead2263081751ab',1,'lowTouch_application::lcfg_read()'],['../classppg__application.html#a3492d82da35a8ca0f7b3c40b93881083',1,'ppg_application::lcfg_read()']]],
+  ['lcfg_5fwrite_929',['lcfg_write',['../classbcm__application.html#a82c1db3a65bf15ee18fde3f40a6cd9c5',1,'bcm_application::lcfg_write()'],['../classecg__application.html#ab432d3578a0f1e93f47d95f115f2ca8d',1,'ecg_application::lcfg_write()'],['../classeda__application.html#a82c1db3a65bf15ee18fde3f40a6cd9c5',1,'eda_application::lcfg_write()'],['../classlow_touch__application.html#ab432d3578a0f1e93f47d95f115f2ca8d',1,'lowTouch_application::lcfg_write()'],['../classppg__application.html#a82c1db3a65bf15ee18fde3f40a6cd9c5',1,'ppg_application::lcfg_write()']]],
+  ['ldo_5fcontrol_930',['ldo_control',['../classpm__application.html#ab45a2bf23865ef14e651b3235500fc3e',1,'pm_application']]],
+  ['load_5fcfg_931',['load_cfg',['../classad7156__application.html#a568a6fbe47f2235b1f579f3fc4a68879',1,'ad7156_application::load_cfg()'],['../classadpd4000__application.html#ab582d7cb0586b8bedbab4d2f170a305c',1,'adpd4000_application::load_cfg()']]],
+  ['load_5flcfg_932',['load_lcfg',['../classadxl__application.html#adcf8dc0f9d9043cb5b4e65e889c880a8',1,'adxl_application::load_lcfg()'],['../classppg__application.html#a585e88340765a9432a48fdd4126f06d9',1,'ppg_application::load_lcfg()']]],
+  ['loopback_5fthread_5ffn_933',['loopback_thread_fn',['../main_8cpp.html#a0d01e8f656688450117a88cd6b80c2d6',1,'main.cpp']]],
+  ['lowtouch_5fapplication_934',['lowTouch_application',['../classlow_touch__application.html#ab209b1b2b54bb1edf0c06c604027db52',1,'lowTouch_application']]]
+];

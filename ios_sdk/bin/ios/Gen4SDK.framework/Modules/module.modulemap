@@ -1,0 +1,6 @@
+framework module Gen4SDK {
+  umbrella header "Gen4SDK.h"
+
+  export *
+  module * { export * }
+}
