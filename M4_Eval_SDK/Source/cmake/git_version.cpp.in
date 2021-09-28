@@ -1,0 +1,6 @@
+#include "git_version.hpp"
+
+#define GIT_SHA1 "@GIT_SHA1@"
+#define GIT_DESCRIBE "@GIT_DESCRIBE@"
+std::string const g_GIT_HASH = GIT_SHA1;
+std::string const g_GIT_DESCRIBE = GIT_DESCRIBE;

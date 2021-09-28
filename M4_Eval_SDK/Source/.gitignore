@@ -6,7 +6,6 @@ install_manifest.txt
 bin/*
 .DS_Store
 *.stackdump
-gen3_sdk*
 *.zip
 *.a
 *.so
@@ -19,11 +18,9 @@ src/git_version.cpp
 
 build/windows/*
 build/linux/*
-test/cpp/*
+test/cpp/*gssws
 test/csharp*
 doc/doxygen
-*.cmake
-*.Doxyfile
 *.gch
 .gitattributes
 /samples/windows/C_dynamic

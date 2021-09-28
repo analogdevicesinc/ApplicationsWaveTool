@@ -1,0 +1,25 @@
+%module gen3_sdk_cs
+%{
+#include "watch.hpp"
+%}
+
+%include "watch.hpp"
+%include "led_application.hpp"
+%include "adxl_application.hpp"
+%include "ecg_application.hpp"
+%include "ad7689_application.hpp"
+%include "ad5940_application.hpp"
+%include "m2m2_data_stream.hpp"
+%include "eda_application.hpp"
+%include "temperature_application.hpp"
+%include "adpd_application.hpp"
+%include "ppg_application.hpp"
+%include "syncppg_application.hpp"
+%include "adpd4000_application.hpp"
+%include "pm_application.hpp"
+%include "ps_application.hpp"
+%include "m2m2_application.hpp"
+%include "pedometer_application.hpp"
+%include "fs_application.hpp"
+%include "temperature_application.hpp"
+%include "bcm_application.hpp"
