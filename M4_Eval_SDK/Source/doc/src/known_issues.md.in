@@ -1,0 +1,242 @@
+# Known Limitations
+## Core SDK
+  - If a command expects a response, and a response is not received, the SDK will alert the user in a TX callback with alert message "Packet timed out error"
+    - If a `stdout` is available, the SDK will print
+
+      "Waiting for a packet timed out!"
+  - No received data integrity checking
+  - No recovery mechanism if corrupt data is received
+    - The device and application should be restarted
+
+## Python bindings
+  - You must explicitly call `__disown__()` on all callback objects before passing
+  them into the SDK. This prevents Python from garbage collecting the objects while they're in use by the SDK library
+  - No type checking
+    - If accessing data inside a stream callback, you __must__ use the data object
+      names as defined in `callback.hpp`. Undefined references will cause crashes.
+  - Enum scope is a bit wonky
+    - Enums
+
+
+# Preview release functionality
+
+- LED application
+  - Get LED pattern
+  - Set LED pattern
+
+- AD7689 (ADC) application
+  - Start AD7689
+  - Stop AD7689
+
+- ADPD (Optical) application
+  - ADPD stream
+    - Subscribe
+    - Unsubscribe
+    - Start
+    - Stop
+    - Set Decimation
+    - Get Decimation
+  - Load CFG
+  - Clock calibration
+  - Set slot mode
+  - Register read
+  - Register write
+  - Get Version
+  - Get CFG
+
+### ADXL (Accelerometer) application
+  - ADXL stream
+    - Subscribe
+    - Unsubscribe
+    - Start
+    - Stop
+    - Set Decimation
+    - Get Decimation
+  - Load CFG
+  - Register read
+  - Register write
+  - Get Version
+  - Get CFG
+
+- ECG application
+  - ECG stream
+    - Subscribe
+    - Unsubscribe
+    - Start
+    - Stop
+    - Set Decimation
+    - Get Decimation
+  - Write Library Config (LCFG)
+  - Read Library Config (LCFG)
+
+- EDA application
+  - EDA stream
+    - Subscribe
+    - Unsubscribe
+    - Start
+    - Stop
+
+- Temperature application
+  - Temperature stream
+    - Subscribe
+    - Unsubscribe
+    - Start
+    - Stop
+
+- PPG (optically derived heart rate) application
+  - PPG stream
+    - Subscribe
+    - Unsubscribe
+    - Start
+    - Stop
+  - Write Library Config (LCFG)
+  - Read Library Config (LCFG)
+  - Set Library Config (LCFG)
+
+  
+### PM (motherboard system) application
+  - Battery stream
+    - Subscribe
+    - Unsubscribe
+    - Start
+    - Stop
+    - Set Decimation
+    - Get Decimation
+  - Get board info
+  - Set date/time
+  - Get date/time
+  - Get firmware version
+  - Get battery info
+  - Set battery low power threshold
+  - Set power state
+  - Ping
+  - Enable battery charger
+  - Disable battery charger
+  - Set USB power state
+  - Enable/Disable thermistor
+  - Get MCU info
+
+
+### ADPD4000 (Optical) application
+  - ADPD4000 stream
+    - Subscribe
+    - Unsubscribe
+    - Start
+    - Stop
+    - Set Decimation
+    - Get Decimation
+  - Load CFG
+  - Clock calibration
+  - Set slot mode
+  - Get slot mode
+  - Set slot active
+  - Get slot active
+  - Register read
+  - Register write
+  - Get Version
+  - Get CFG
+  
+  
+### PPG application
+  - PPG stream
+    - Subscribe
+    - Unsubscribe
+    - Start
+    - Stop
+  - SYNCPPG stream
+	- Subscribe
+    - Unsubscribe
+    - Start
+    - Stop
+    - Set Decimation
+    - Get Decimation
+  - Load lcfg
+  - Get lcfg
+  - lcfg Read/Write
+  - Get Algo version
+- PS (sensor board system) application
+  - Get firmware version
+  - Ping
+  - Set date/time
+  - Set power state(Set USB power state)
+
+- AD7689 (ADC) application
+  - AD7689 stream
+    - Subscribe
+    - Unsubscribe
+    - Set Decimation
+    - Get Decimation
+    - Get Status
+  - Get version
+  - Write Library Config (LCFG)
+  - Read Library Config (LCFG)
+  - Set LCFG
+
+- ADPD (Optical) application
+  - Get Version
+  - Get CFG
+
+- ADXL (accelerometer) application
+  - Get Version
+  - Get CFG
+
+- ECG application
+  - Get version
+  - Get algorithm vendor version
+
+- EDA application
+  - EDA stream
+    - Set Decimation
+    - Get Decimation
+  - Get Version
+  - Write Library Config (LCFG)
+  - Read Library Config (LCFG)
+
+- Pedometer application
+  - Pedometer Stream
+    - Start
+    - Stop
+    - Subscribe
+    - Unsubscribe
+    - Set Decimation
+    - Get Decimation
+    - Get Status
+  - Write Library Config (LCFG)
+  - Read Library Config (LCFG)
+  - Get algorithm vendor version
+
+- Temperature application
+  - Temperature Stream
+    - Get Decimation
+    - Set Decimation
+  - Get Version
+
+- PPG (optically derived heart rate) application
+  - PPG stream
+    - Get Decimation
+    - Set Decimation
+  - Get Version
+  - Get Library Config (LCFG)
+  - Get algorithm vendor version
+
+- SyncPPG (synchronized optical and accelerometer data) application
+  - SyncPPG stream
+    - Start
+    - Stop
+    - Subscribe
+    - Unsubscribe
+    - Set Decimation
+    - Get Decimation
+    - Get Status
+  - Get version
+
+- File System
+  - Mount FS
+  - Format FS
+  - Volume info
+  - FS `ls`
+  - FS get
+  - Subscribe FS to stream
+  - Unsubscribe FS from stream
+  - Start logging
+  - Stop logging

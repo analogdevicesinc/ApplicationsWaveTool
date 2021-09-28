@@ -1,0 +1,69 @@
+# clocks for p2 part 1 
+f  8000
+9  85
+b  2fa
+f  6     # 1MHz
+d  0D05  # 300Hz
+6  0007  # 1 packet interrupt
+14 8000  # fifoth interrupt
+1e 0039  # Enable Optional bytes
+
+20 0004  # all float except input 1 to vc1
+21 0000  # no pairs
+
+#use these two for greg's console
+#22 0402  # just 0 and 3 gpio to be outputs, 
+#23 0011  # sleep for gregs console
+
+# use these two for wavetool
+22 0403  # just 0 and 3 gpio to be outputs,  0 inv for wavetool
+23 0002  # int for wavetool
+
+24 0000  # 
+
+# TSA: input 1 ambient tiabufadc
+#100 0000 # 500ohm input
+#101 40e6 # tiabufadc
+#102 0001 # in1 as input
+#103 5042 # pre=tia_vref vc1=vdelta v2=tia_vref
+#104 8300 # 200K gain
+#105 0000 # led 1A,B off
+#106 0000 # led 3A off
+#10a 0803 # int as buf
+#10b 020a # tune int pulse
+#110 0004 # 32 bit signal
+
+100 0000 # 500 input
+101 41da # normal mode
+102 0001 # in1 as input
+103 5042 # pre=tia_vref vc1=vdelta vc2=tia_vref
+104 8200 # 200K gain
+105 0200 # led 1A off, 2A on
+106 0000 # led 3A off
+10a 0003 # normal int
+10b 020a # tune int pulse
+10e 2000 # adc offset
+110 0004 # 32 bits signal
+#115 0051 # Enable level0 & level1
+#116 043E # LEV0 threshold value = 0x003E shifted by 4 up to 0x03E0
+#117 043E # LEV1 threshold value = 0x003E shifted by 4 up to 0x03E0
+
+# TSB: normal signal measeure
+120 8000 # 500 input // Channel 2 Enabled
+121 40da # normal mode
+122 0005 # CH1 -> IN1 & CH2 -> IN2
+123 5042 # pre=tia_vref vc1=vdelta vc2=tia_vref
+124 8200 # 200K gain
+125 0200 # led 1A off, 2A on
+126 0000 # led 3A off
+12a 0003 # normal int
+12b 020a # tune int pulse
+12e 2000 # adc offset
+130 0004 # 32 bits signal
+132 0070 # subsample by 8 
+135 0011 # Enable level0 & level1
+136 043E # LEV0 threshold value = 0x003E shifted by 4 up to 0x03E0
+137 043E # LEV1 threshold value = 0x003E shifted by 4 up to 0x03E0
+10  0100 # a and b
+
+

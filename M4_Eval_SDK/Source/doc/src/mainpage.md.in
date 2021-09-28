@@ -1,0 +1,110 @@
+ADI VSM Watch Platform SDK
+=============================
+# Note
+> This is a preview release of the SDK. It is not feature complete, and has not yet
+> been thoroughly tested. You should expect to find bugs, quirks, and things that don't
+> make sense. It is very likely that things like folder structure, object names, and
+> documentation will change drastically between this preview and the formal release.
+
+# Overview
+
+The SDK provides an object-oriented interface for interacting with ADI's VSM watch platform.
+
+The hierarchy of objects within the SDK mirrors the applications present on the device. Device functionality
+is organized into _applications_. Each application owns a distinct subset of functionality. Some applications
+own sensors, some own system-level functionality (i.e. filesystem), and some own algorithms.
+
+Each application has its own object within the SDK hierarchy, which is used to
+interact with that application. Application functionality is exposed as member
+functions of an application's class.
+
+## Organization
+The SDK is architected as a pure data application that produces and consumes
+byte packets. To receive data from the device, complete packets of bytes are
+read from a physical interface (UART, BLE, etc) by a user application, and passed
+into the SDK for decoding. To send data to the device, the SDK calls a user-defined
+callback which writes the complete packets to a physical interface.
+
+This design allows application developers to use the native methods provided
+by their target platform to interact with physical interfaces.
+
+### Level 1 Commands
+Low-level commands are referred to as "Level 1" commands. These are low-level commands
+that act on a single application, for example adxl_application::reg_read. Because
+these commands provide such focused, low-level functionality, they may require
+sequences of commands to perform a more complex action.
+
+Think of Level 1 commands as operating on a very specific part of the device.
+
+Level 1 commands follow a pattern of `watch.application.action`, or `watch.application.stream.action`
+
+For example, this is the command sequence
+to start streaming ADXL data using a single Level 2 command:
+1. watch.adxl_app.adxl_stream.subscribe(callback)
+2. watch.adxl_app.adxl_stream.start()
+
+### Level 2 Commands
+Higher-level commands are referred to as "Level 2" commands. These are higher-level
+commands that perform a more abstract action by bundling together sequences of Level 1
+commands that may interact with multiple applications.
+
+Think of Level 2 commands as operating on the device as a whole.
+
+Level 2 commands follow a pattern of `watch.action`.
+
+For example, this is the sequence
+to start streaming ADXL data using a single Level 2 command:
+1. watch.start_adxl(callback)
+
+### Multithreading
+The SDK is architected as a multithreaded library, but does not implement
+any threads itself; it's up to the developer to implement the threading using
+their target platform's native threading mechanisms along with the functions
+provided by the SDK. This approach was chosen to allow users to chose the threading
+implementation that best fits into their application design.
+
+A basic application using the SDK __MUST__ implement at least two threads:
+
+1. Main application thread
+  - Handles the user application functionality
+  - Calls SDK functions to interact with a device, i.e. `watch.pm_app.get_version()`
+2. Interface receive management thread
+  - Asynchronously reads packets from a physical interface, and passes them to the SDK by calling watch::dispatch
+
+> __NOTE__ \n It is strongly recommended that application developers also implement a separate
+> interface transmit management thread. This prevents the main application thread
+> from blocking too long while a packet is being sent over the interface.
+
+
+## Streaming Data
+"Live" or asynchronous data (i.e. from a sensor running in real time) is encapsulated in a _stream_.
+
+> m2m2_data_stream::subscribe\n
+> m2m2_data_stream::unsubscribe\n
+> m2m2_data_stream::start\n
+> m2m2_data_stream::stop
+
+A _stream_ is used to encapsulate asynchronous data events. These events might be
+sensor data, system events, or sensor configuration information. You must _subscribe_
+to a stream before you will receive any data from it. When you subscribe to a stream,
+you must register a callback function. This callback function will be called whenever
+a message is received from the stream.
+
+> __NOTE__\n
+> It's strongly recommended that the callback function immediately dispatch
+> received data to another thread if you are performing any processing that may take some time to complete.
+
+# Supported Languages
+The SDK supports several platforms and languages, and provides several samples showing how it is
+used in the context of these platforms.
+
+### Tier 1
+These bindings are actively supported and tested during regular development:
+- [C++](@ref samples_cpp)
+- [Python](@ref samples_python)
+
+### Tier 2
+These bindings are supported, but are not the primary focus of development:
+- C#
+- [Android](@ref samples_android)
+- [iOS](@ref samples_ios)

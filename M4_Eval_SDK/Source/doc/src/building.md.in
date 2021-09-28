@@ -1,0 +1,138 @@
+Building From Source  {#compiling}
+=============================
+# Python and Windows
+## Overview
+The SDK build system has several configurations:
+- Native C++ static library
+- Python bindings (native dynamic library and importable .py)
+- C# bindings (dynamic library and wrapper code)
+- This documentation
+
+## Pre-requisites
+- CMake
+- Compiler and build system supported by CMake on your platform
+  - Linux/macOS
+    - make (preferred)
+    - GCC or Clang (Clang preferred)
+  - macOS
+    - Xcode
+  - Windows with Cygwin
+    - make
+    - GCC
+  - Windows without Cygwin
+    - Visual Studio 2017 (preferred)
+- SWIG (used to generate bindings for Python/C#)
+- PythonLibs 3.5+ (to build Python bindings)
+- Doxygen (to build this documentation)
+
+## Building in windows
+
+~~~~~~~~~~~~~~~~~~~~~{.sh}
+cd gen3_sdk/build/windows
+cmake ../..
+make(Windows with Cygwin) / Build gen3sdk.sln solution in Visual Studio(Windows without Cygwin)
+~~~~~~~~~~~~~~~~~~~~~
+
+## Building in linux/mac
+
+~~~~~~~~~~~~~~~~~~~~~{.sh}
+cd gen3_sdk/build/$platform
+cmake ../..
+make
+~~~~~~~~~~~~~~~~~~~~~
+
+-------------------------------------------------------------------------------------------------------------------------
+
+## Output in windows
+
+-------------------------------------------------------------------------------------------------------------------------
+
+### C++ Static Library
+`gen3_sdk/bin/windows/cpp/gen3_sdk.lib`
+
+### Python bindings
+`gen3_sdk/bin/windows/python/gen3_sdk.py`
+
+`gen3_sdk/bin/windows/python/_gen3_sdk.pyd`
+
+### C# bindings (Windows only)
+`gen3_sdk/bin/windows/csharp/gen3_sdk_cs.cs`
+
+`gen3_sdk/bin/windows/csharp/gen3_sdk_cs.dll`
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+## Output in linux/mac
+
+-------------------------------------------------------------------------------------------------------------------------
+
+### C++ Static Library
+`gen3_sdk/bin/linux/cpp/gen3_sdk.a`
+
+### Python bindings
+`gen3_sdk/bin/linux/python/gen3_sdk.py`
+
+`gen3_sdk/bin/linux/python/_gen3_sdk.so`
+
+### C# bindings (Windows only)
+`gen3_sdk/bin/windows/csharp/gen3_sdk_cs.cs`
+
+`gen3_sdk/bin/windows/csharp/gen3_sdk_cs.lib`
+
+
+
+# Android
+
+## Overview
+The SDK build system has several configurations:
+- Android Archive Libary
+- This documentation
+
+## Pre-requisites
+- Android Studio version :3.0
+- Gradle plugin version  :3.0.1
+- Gradle wrapper version :4.1
+- NDK version :15.1.4119039
+- Android SDK Plugins: Android NDK, cmake, LLDB
+
+## Building
+1.	Open the project in build/android/Gen3SDK in Android Studio for automatic setup and do gradle sync if needed.
+2.	Then execute gen3_sdk/build/android/Gen3SDK/build_gen3sdk.bat(to run this batch file, user need to add JDK and Gradlew in environment path. Refer gen3_sdk/build/android/Gen3SDK/MustReadMeForAndroid.txt)
+3.	Android Archive Library will be built in gen3_sdk /bin/android/libs/gen3sdk-release.aar
+
+## Output
+### Android Archive Library
+`gen3_sdk/bin/android/libs/gen3sdk-release.aar`
+
+--------------------------------------------------------------------------------
+
+# iOS
+
+## Overview
+The SDK build system has several configurations:
+- Framework
+- This documentation
+
+## Pre-requisites
+- Minimum iOS Version Required : iOS 8.0
+- Xcode Minimum Tool Version : 8.0
+
+## Building
+1. Open the 'Gen3SDK.xcodeproj' through Xcode IDE.
+
+2. Connect any iOS devices to the mac.
+
+3. Choose target as the selected iOS device and Run the project.
+
+4. Now again choose the target as any simulator device and Run the project.
+
+5. Finally GEN3SDK.framework will be generated in the path bin/ios
+
+Note : Inorder to build universal framework we need to run the project both in simulator and real time device
+
+## Output
+### ios Framework
+`gen3_sdk/bin/ios/GEN3SDK.framework`
+
+--------------------------------------------------------------------------------

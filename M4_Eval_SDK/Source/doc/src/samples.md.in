@@ -1,0 +1,129 @@
+Usage Samples  {#samples}
+=============================
+# Python 3 {#samples_python}
+
+--------------------------------------------------------------------------------
+
+## Simple Example
+### Overview
+The Python sample application demonstrates a minimally-functional application that
+connects to a watch, and live streams 10s of ADXL (accelerometer)
+data. The sample source code demonstrates how to stream ADXL data using both
+Level 1 commands (using the ADXL application directly), and Level 2 commands
+(using pre-defined commands like watch::start_adxl)
+
+### Pre-Requisites
+The sample requires that you have the following Python libraries installed. They
+can be installed using Python's `pip` package manager:
+
+- `colorama`: Cross-platform coloured text output
+- `pyserial`: Cross-platform serial library
+
+### Files
+`samples/python/simple_example.py`
+
+### Running the sample
+1. Install the pre-requisite Python packages using `pip`
+2. Modify the `simple_example.py`, setting `SERIAL_PORT_ADDR` to the serial port connected to your watch device (Typically COMX for Windows, /dev/ttyXXX for Unixes)
+3. Run the sample from its directory: `python3 ./simple_example.py`
+
+
+--------------------------------------------------------------------------------
+## Command Line Interface
+### Overview
+The CLI application is used for developing and testing the SDK. It represents a
+much more complex application with support for multiple connected devices and the
+ADI BLE dongle.
+
+### Pre-Requisites
+The sample requires that you have the following Python libraries installed. They
+can be installed using Python's `pip` package manager:
+- `colorama`: Cross-platform coloured text output
+- `pyserial`: Cross-platform serial library
+Make sure installation path doesn't have any spaces(best example "C:\Python36") and python is added in environment path.
+If any other previous versions of python installed in your PC, rename those python exe or temporarily remove those from system environment path or you can execute this using "py CLI.py"
+
+### Files
+`samples/python/CLI.py`
+
+### Running the application
+1. Install the pre-requisite Python packages using `pip`
+2. Run the CLI from its directory: `python3 ./CLI.py`
+3. Explore the built-in help text at the prompt: `#>help`
+
+
+--------------------------------------------------------------------------------
+# C++ {#samples_cpp}
+
+--------------------------------------------------------------------------------
+
+## Windows
+### Overview
+The Windows sample shows how to use the SDK with a Windows 7 or 10 platform to 
+access the ADI Watch hardware.
+
+### Pre-Requisites
+- Microsoft Visual Studio 2017
+- ADI Watch Release version 3.3.0 or greater
+- ADI Watch connected to the PC via usb cable
+
+### Folder
+`samples/windows/CPP`
+
+### Building and running the application
+1. Open samples/windows/CPP/CPPSample.sln
+2. Change `std::string port = "COM7"` to reflect your COM port.
+3. Build and run.
+
+--------------------------------------------------------------------------------
+# Android {#samples_android}
+
+--------------------------------------------------------------------------------
+
+### Overview
+The Android sample application demonstrates a minimally-functional application that
+connects to a watch through BLE, sets the LED colour, and live streams 10s of ADXL (accelerometer) and ECG
+data. The sample source code demonstrates how to stream ADXL data using pre-defined commands like watch::start_adxl commands
+
+### Pre-Requisites
+- Android Studio version :3.0
+- Gradle plugin version  :3.0.1
+- Gradle wrapper version :4.1
+- NDK version :15.1.4119039
+- Android SDK Plugins: Android NDK, cmake, LLDB
+
+### Folders
+- SDK library path: /bin/andriod
+- Sample Project path: /samples/android
+- android archieve library path: /build/android
+
+### Building and Running the Application
+1. Make sure the gen3sdk-release.aar is available on the path /bin/android.
+2. Open Gen3sdk_Android_sample project from the path /samples/android in Android studio
+3. Make sure set_platform(platform)command must be called after initializing the SDK.
+4. Clean and Rebuild the project, connect an android ADB device and run the application.
+
+
+--------------------------------------------------------------------------------
+# iOS {#samples_ios}
+
+--------------------------------------------------------------------------------
+### Overview
+The ios sample application demonstrates a minimally-functional application that
+connects to a watch through BLE, sets the LED colour, and live streams 10s of ADXL (accelerometer) and ECG
+data. The sample source code demonstrates how to stream ADXL data using pre-defined commands like watch::start_adxl commands
+
+### Pre-Requisites
+- Minimum iOS Version Required : iOS 8.0
+- Xcode Minimum Tool Version : 8.0
+
+### Folders
+- SDK framework path: /bin/ios
+- Sample Project path: /samples/ios
+- framework build path: /build/ios
+
+### Building and Running the Application
+1. Make sure the Gen3SDK.Framework (iOS SDK) is available in the path /bin/ios.
+2. Open Gen3SDK_iosSample.xcodeproj from the path /samples/ios through Xcode.
+3. Make sure set_platform(platform)command must be called after initializing the SDK.
+4. Connect any iOS device and then run the application.

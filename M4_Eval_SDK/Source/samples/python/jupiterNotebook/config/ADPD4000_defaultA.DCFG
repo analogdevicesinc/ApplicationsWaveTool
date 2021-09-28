@@ -1,0 +1,71 @@
+#ADPD4000 Single Integration with LED as stimulus
+
+## Registers grouped in functional groups based on ADPD4000 datasheet
+##
+00F 8000    # reset (this should be taken care of by Wavetool in future versions)
+
+## Global Configuration and Clock Setup Registers
+009 0097	# OSC32M
+00B 02F6	# OSC1M
+00C 0012	# OSC32K
+#00D 0140	# TS_FREQ (0x140 = 100Hz with 32k LFOSC)
+00D 2710	# TS_FREQ (0x140 = 100Hz with 1M LFOSC)
+00E 0000	# TS_FREQ_H
+00F 0006	# SYS_CTL (0x1 = 32k LFOSC, 0x6 = 1MHz)
+010 0000	# opmode [11:8]=1 = timeslot A
+020 2222	# INPUT_SLEEP
+021 0000	# INPUT_CFG
+#02E 0000	# DATA_HOLD_FLAG
+
+
+## Interrupt Status and Control Registers (these should be set by Wavetool in future versions)
+#006 0000	# FIFO_TH
+007 8FFF	# INT_ACLEAR
+014 8000	# INT_ENABLE_XD
+#015 0000	# INT_ENABLE_YD
+#016 0000	# INT_ENABLE_XL0
+#017 0000	# INT_ENABLE_XL1
+#01A 0000	# INT_ENABLE_YL0
+#01B 0000	# INT_ENABLE_YL1
+#01E 0000	# FIFO_STATUS_BYTES
+
+
+## GPIO Setup and Control Registers
+022 0003	#GPIO0 as output (inverted, required by wavetool)
+023 0302	#GPIO1 as INTY, GPIO0 as INTX (required by wavetool)
+
+## Timeslot A AFE Settings, default PPG mode
+100 0000	# Rs=500ohm
+#100 0800	# Rs=6250ohm
+101 41DA	# TIA-BPF-INT
+102 0001	# Input connections
+103 5001	# 0x5001: precon to TIA_VREF, VC1= Vref
+104 E2C1	# 0.9Vref, 100k gain
+10B 0E10	# INTEG_OFFSET (optimal +500ns)
+105 2525	# LED 1 and 2
+106 0025	# LED 3 and 4
+10E 2000	# CH1 ADC offset
+10F 0000	# CH2 ADC offset
+107 0110	# NUM_INT:NUM_REPEAT
+112 0010	# Decimate = 2
+
+## Timeslot B AFE Settings, Chop Mode
+#120 0000      #cH 2 Off
+#122 0001      # in1 to chan 1
+#123 5001      # precon to vref, cath to vref
+#124 E2C9      #, 0.9 vref, 100K Gain
+#125 2525
+#126 0025
+#127 0110     # 16 pulse 1 int
+#12B 0E10	# INTEG_OFFSET (optimal +500ns)
+#12E 0E10     #integrator timing
+#12D 0055     # chop -+-+
+#12E 0000     #ADC offset = 0 for chop mode	
+#12F 0000     #ADC offset = 0 for chop mode
+#132 0010	#decimate 2
+
+
+## Data Output Config
+110 0004	#DATA_FORMAT
+#130 0004
+
