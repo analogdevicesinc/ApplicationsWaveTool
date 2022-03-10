@@ -47,6 +47,7 @@ from ctypes import *
 import DataParser.M2M2DataParserManager as m2m2_parser
 import DataParser.GraphDataParser as graphData_parser
 
+
 class awt_transfer_class():
     singleton = None
 
@@ -56,36 +57,36 @@ class awt_transfer_class():
             cls.m2m2parser_inst = m2m2_parser.M2M2DataParserClass()
             cls.graphdata_inst = graphData_parser.GraphDataParser(args[0])
             cls.sock = ''
-            cls.sync = [0xA0, 0xB0, 0xC0, 0xD0, 0xE0]
+            cls.sync = [0xA0, 0xA1, 0xB0, 0xA3, 0xC0, 0xC1, 0xC2, 0xC3, 0xC4]
         return cls.singleton
 
     def opensock(self, Port=50007):
         IP = "0.0.0.0"
-        status= awt_udp_response_ENUM_t.UDP_RESPONSE_SUCCESS
+        status = awt_udp_response_ENUM_t.UDP_RESPONSE_SUCCESS
         try:
-            self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
+            self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # UDP
             self.sock.bind((IP, Port))
         except:
             print("socket Bind Error "+str(sys.exc_info()))
             self.sock = ''
             status = awt_udp_response_ENUM_t.UDP_TRANSFER_SOCKBIND_FAILURE
         return status
-        
+
     def closesock(self):
         self.sock.close()
-        
-    def _rx_pkts_udp(self, sock, Size = 200):
+
+    def _rx_pkts_udp(self, sock, Size=200):
         recv_data = ""
         try:
             recv_data, recv_addr = sock.recvfrom(Size)
         except socket.timeout:
-            logstr = "socket Receive time out  "+str(sys.exc_info()) 
-            print (logstr)
+            logstr = "socket Receive time out  "+str(sys.exc_info())
+            print(logstr)
             sock = ''
             return sock
-        except :
+        except:
             logstr = "Socket Receive Error "+str(sys.exc_info())
-            print (logstr)
+            print(logstr)
             return recv_data
         return recv_data
 
@@ -101,17 +102,20 @@ class awt_transfer_class():
             view_sync = ReceivedPkts[0]
             self.seqdatastr = None
             if view_sync in self.sync:
-                self.seqdatastr = self.graphdata_inst.parse_GraphData(ReceivedPkts)
-                #plotter
+                self.seqdatastr = self.graphdata_inst.parse_GraphData(
+                    ReceivedPkts)
+                # plotter
 
                 #sys.stdout.write("\rReceived Packet Count: " + str(self.graphdata_inst.samplecount))
             else:
                 if(ReceivedPkts != ""):
-                    self.m2m2datastr = self.m2m2parser_inst.m2m2_data_parser(ReceivedPkts)
+                    self.m2m2datastr = self.m2m2parser_inst.m2m2_data_parser(
+                        ReceivedPkts)
                     self.status = "Received M2M2 Packet"
-    
+
+
 class awt_controller_class():
-    
+
     def __init__(self):
 
         self.response = ""
@@ -126,12 +130,12 @@ class awt_controller_class():
         self.txportnum = 50001
         self.rxportnum = 50002
         self.sock = ''
-        
-    def opensock(self, sock, IPaddr = 'localhost', TxPortNum = 50001, RxPortNum = 50002):
+
+    def opensock(self, sock, IPaddr='localhost', TxPortNum=50001, RxPortNum=50002):
         try:
             self.txportnum = TxPortNum
             self.rxportnum = RxPortNum
-            self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
+            self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # UDP
             self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             self.sock.bind((self.ipaddr, self.rxportnum))
             self.sock.setblocking(0)
@@ -139,26 +143,27 @@ class awt_controller_class():
             self.ipaddr = IPaddr
         except:
             self.responseStatus = awt_udp_response_ENUM_t.UDP_CONTROLLER_SOCKBIND_FAILURE
-            
+
     def closesock(self):
         self.sock.close()
-        
+
     def _send_command_udp(self):
-        size = self.sock.sendto(self.command, (self.ipaddr, self.txportnum));
-        if size!= len(self.command) :
+        size = self.sock.sendto(self.command, (self.ipaddr, self.txportnum))
+        if size != len(self.command):
             self.responseStatus = awt_udp_response_ENUM_t.UDP_RESPONSE_SEND_FAILED
-            
+
     def _rx_pkts_udp(self):
         recv_data = ""      # to return string object by default even if recvfrom is timedout and not returned any object/string for rec_data
 
         try:
-            recv_data, recv_addr = self.sock.recvfrom(8192)    # size <- if size < UDP Packet size, only the partial data copied and rest of data in UDP packet will be ignored/lost
+            # size <- if size < UDP Packet size, only the partial data copied and rest of data in UDP packet will be ignored/lost
+            recv_data, recv_addr = self.sock.recvfrom(8192)
 
         except socket.timeout:
             self.responseStatus = awt_udp_response_ENUM_t.UDP_RESPONSE_FAILED
 
         return recv_data
-        
+
     def regread(self, regaddr):
         '''
         The Controller Request API for Read register operation. 
@@ -175,10 +180,10 @@ class awt_controller_class():
         str_array[2] = regaddr.to_bytes(2, byteorder='big')[0]
         str_array[3] = regaddr.to_bytes(2, byteorder='big')[1]
         self.command = bytes(memoryview(str_array))
-        self._send_command_udp();
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
-        
+
     def regwrite(self, regaddr, regval):
         '''
         The Controller Request Message Builder for Write register operation. 
@@ -198,10 +203,10 @@ class awt_controller_class():
         str_array[4] = regval.to_bytes(2, byteorder='big')[0]
         str_array[5] = regval.to_bytes(2, byteorder='big')[1]
         self.command = bytes(memoryview(str_array))
-        self._send_command_udp();
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
-        
+
     def play(self):
         '''
         The Controller Request API for Play ADPD sensor operation. 
@@ -215,7 +220,7 @@ class awt_controller_class():
         str_array[0] = int("02", 16)
         str_array[1] = int("00", 16)
         self.command = bytes(memoryview(str_array))
-        self._send_command_udp();
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
 
@@ -231,12 +236,50 @@ class awt_controller_class():
         str_array = bytearray(2)
         str_array[0] = int("03", 16)
         str_array[1] = int("00", 16)
-        self.command = bytes(memoryview(str_array))     
-        self._send_command_udp();
+        self.command = bytes(memoryview(str_array))
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
-        
-    def start_udp_xfer(self, isEnable = 0):
+
+    def SetUsecase(self, usecase):
+        '''
+        The Controller Request API for Play ADPD sensor operation. 
+        This function will:
+            1. Create the message to Play ADPD Sensor data
+            2. Send the message to the Wavetool
+            3. Get the response from the Wavetool
+            4. Parse the response to match the request
+        '''
+        str_array = bytearray(2)
+        str_array[0] = int("17", 16)
+        str_array[1] = int(usecase, 16)
+
+        self.command = bytes(memoryview(str_array))
+        self._send_command_udp()
+        ReceivedPkts = self._rx_pkts_udp()
+        self._udp_controller_response(ReceivedPkts)
+
+    def EnDisViewLog(self, status):
+        str_array = bytearray(2)
+        str_array[0] = int("E", 16)
+        str_array[1] = status  # int(status, 16)
+
+        self.command = bytes(memoryview(str_array))
+        self._send_command_udp()
+        ReceivedPkts = self._rx_pkts_udp()
+        self._udp_controller_response(ReceivedPkts)
+
+    def EnDisNandLog(self, status):
+        str_array = bytearray(2)
+        str_array[0] = int("F", 16)
+        str_array[1] = int(status, 16)
+
+        self.command = bytes(memoryview(str_array))
+        self._send_command_udp()
+        ReceivedPkts = self._rx_pkts_udp()
+        self._udp_controller_response(ReceivedPkts)
+
+    def start_udp_xfer(self, isEnable=0):
         '''
         The Controller Request API for start the UDP Transfer operation.
         This function will:
@@ -245,16 +288,16 @@ class awt_controller_class():
             3. Get the response from the Wavetool
             4. Parse the response to match the request
         '''
-        str_array = bytearray(3)
-        str_array[0] = int("06", 16)
-        str_array[1] = int("01", 16)
-        str_array[2] = isEnable
-        self.command = bytes(memoryview(str_array))     
-        self._send_command_udp();
+        str_array = bytearray(2)
+        str_array[0] = int("11", 16)
+        # str_array[1] = int("01", 16)
+        str_array[1] = isEnable
+        self.command = bytes(memoryview(str_array))
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
 
-    def start_log_xfer(self, isEnable = 0):
+    def start_log_xfer(self, isEnable=0):
         '''
         The Controller Request API for enable the Log operation.
         This function will:
@@ -268,11 +311,11 @@ class awt_controller_class():
         str_array[1] = int("01", 16)
         str_array[2] = isEnable
         self.command = bytes(memoryview(str_array))
-        self._send_command_udp();
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
 
-    def slot_plot_select(self, plot, slot):
+    def slot_plot_select(self, slot, channel):
         '''
         The Controller Request API for select the slot for the plotting.
         This function will:
@@ -284,10 +327,28 @@ class awt_controller_class():
         str_array = bytearray(4)
         str_array[0] = int("10", 16)
         str_array[1] = int("02", 16)
-        str_array[2] = plot
-        str_array[3] = slot
+        str_array[2] = slot
+        str_array[3] = channel
         self.command = bytes(memoryview(str_array))
-        self._send_command_udp();
+        self._send_command_udp()
+        ReceivedPkts = self._rx_pkts_udp()
+        self._udp_controller_response(ReceivedPkts)
+
+    def reset_slot_select(self):
+        '''
+        The Controller Request API for reset the selected slot channels for the plotting.
+        This function will:
+            1. Create the message to reset the selected slot for a plot
+            2. Send the message to the Wavetool
+            3. Get the response from the Wavetool
+            4. Parse the response to match the request
+        '''
+        str_array = bytearray(2)
+        str_array[0] = int("13", 16)
+        str_array[1] = int("00", 16)
+
+        self.command = bytes(memoryview(str_array))
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
 
@@ -305,25 +366,7 @@ class awt_controller_class():
         str_array[1] = int("01", 16)
         str_array[2] = m2m2Enable
         self.command = bytes(memoryview(str_array))
-        self._send_command_udp();
-        ReceivedPkts = self._rx_pkts_udp()
-        self._udp_controller_response(ReceivedPkts)
-
-    def tabView(self, view):
-        '''
-        The Controller Request API for Tab View Select.
-        This function will:
-            1. Create the message to reset software
-            2. Send the message to the Wavetool
-            3. Get the response from the Wavetool
-            4. Parse the response to match the request
-        '''      
-        str_array = bytearray(3)
-        str_array[0] = int("13", 16)
-        str_array[1] = int("01", 16)
-        str_array[2] = view
-        self.command = bytes(memoryview(str_array))
-        self._send_command_udp();
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
 
@@ -340,11 +383,11 @@ class awt_controller_class():
         str_array[0] = int("12", 16)
         str_array[1] = int("00", 16)
         self.command = bytes(memoryview(str_array))
-        self._send_command_udp();
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
-        
-    def connect(self, portnum):
+
+    def connect(self, connectionType, portnum):
         '''
         The Controller Request API for connecting the sensor board with the COM port given.
         This function will:
@@ -353,12 +396,13 @@ class awt_controller_class():
             3. Get the response from the Wavetool
             4. Parse the response to match the request
         '''
-        str_array = bytearray(3)
+        str_array = bytearray(4)
         str_array[0] = int("0A", 16)
-        str_array[1] = int("01", 16)
-        str_array[2] = portnum
+        str_array[1] = int("02", 16)
+        str_array[2] = connectionType
+        str_array[3] = portnum
         self.command = bytes(memoryview(str_array))
-        self._send_command_udp();
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
 
@@ -374,29 +418,12 @@ class awt_controller_class():
         str_array = bytearray(2)
         str_array[0] = int("0B", 16)
         str_array[1] = int("00", 16)
-        self.command = bytes(memoryview(str_array))  
-        self._send_command_udp();
-        ReceivedPkts = self._rx_pkts_udp()
-        self._udp_controller_response(ReceivedPkts)
-        
-    def listview(self, view = 0):
-        '''
-        The Controller Request API for listing the availale views.
-        This function will:
-            1. Create the message for opening the ADPD View
-            2. Send the message to the Wavetool
-            3. Get the response from the Wavetool
-            4. Parse the response to match the request
-        '''
-        str_array = bytearray(2)
-        str_array[0] = int("0C", 16)
-        str_array[1] = int("00", 16)
         self.command = bytes(memoryview(str_array))
-        self._send_command_udp();
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
 
-    def openview(self, viewsel=0, view=""):
+    def openview(self, viewsel):
         '''
         The Controller Request API for opening the ADPD View. 
         This function will:
@@ -405,24 +432,15 @@ class awt_controller_class():
             3. Get the response from the Wavetool
             4. Parse the response to match the request
         '''
-        str_array = bytearray(3)
+        str_array = bytearray(2)
         str_array[0] = int("0C", 16)
-        str_array[1] = int("01", 16)
-        if(view ==""):
-            str_array[2] = viewsel
-        else:
-            try:
-                viewsel = self.dcfgdict[view]
-                str_array[2] = viewsel
-            except:
-                self.responseStatus = awt_udp_response_ENUM_t.UDP_RESPONSE_VIEWSPLUGIN_NOTFOUND_OR_INVALID
-                return
+        str_array[1] = int(viewsel, 16)
+
         self.command = bytes(memoryview(str_array))
-        self._send_command_udp();
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
 
-            
     def listDCFGs(self):
         '''
         The Controller Request API for listing the available DCFG files. 
@@ -438,7 +456,7 @@ class awt_controller_class():
         str_array[0] = int("0D", 16)
         str_array[1] = int("00", 16)
         self.command = bytes(memoryview(str_array))
-        self._send_command_udp();
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
 
@@ -458,7 +476,7 @@ class awt_controller_class():
         str_array = bytearray(3)
         str_array[0] = int("0D", 16)
         str_array[1] = int("01", 16)
-        if(dcfgfile==""):
+        if(dcfgfile == ""):
             str_array[2] = dcfgsel
         else:
             try:
@@ -467,8 +485,8 @@ class awt_controller_class():
             except:
                 self.responseStatus = awt_udp_response_ENUM_t.UDP_RESPONSE_CONFIGFILE_NOTFOUND_OR_INVALID
                 return
-        self.command = bytes(memoryview(str_array)) 
-        self._send_command_udp();
+        self.command = bytes(memoryview(str_array))
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
 
@@ -487,7 +505,7 @@ class awt_controller_class():
         str_array[0] = int("14", 16)
         str_array[1] = int("00", 16)
         self.command = bytes(memoryview(str_array))
-        self._send_command_udp();
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
 
@@ -507,7 +525,7 @@ class awt_controller_class():
         str_array = bytearray(3)
         str_array[0] = int("15", 16)
         str_array[1] = int("01", 16)
-        if(cloudDcfgfile==""):
+        if(cloudDcfgfile == ""):
             str_array[2] = cloudDcfgsel
         else:
             try:
@@ -516,8 +534,8 @@ class awt_controller_class():
             except:
                 self.responseStatus = awt_udp_response_ENUM_t.UDP_RESPONSE_CONFIGFILE_NOTFOUND_OR_INVALID
                 return
-        self.command = bytes(memoryview(str_array)) 
-        self._send_command_udp();
+        self.command = bytes(memoryview(str_array))
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
 
@@ -536,80 +554,84 @@ class awt_controller_class():
         str_array[2] = plotNo
         str_array[3] = streamByte
         self.command = bytes(memoryview(str_array))
-        self._send_command_udp();
+        self._send_command_udp()
         ReceivedPkts = self._rx_pkts_udp()
         self._udp_controller_response(ReceivedPkts)
-    
+
     def _udp_controller_response(self, ReceivedPkts):
         '''
         The Controller Response Message Parser
         '''
-        if len(ReceivedPkts)>0 :
-           RegisterValue = [];
-           Receiveddata = [];
-           Receiveddata2 = [];
-           Receiveddata,Receiveddata2=ReceivedPkts[:3],ReceivedPkts[3:]           
+        if len(ReceivedPkts) > 0:
+            RegisterValue = []
+            Receiveddata = []
+            Receiveddata2 = []
+            Receiveddata, Receiveddata2 = ReceivedPkts[:3], ReceivedPkts[3:]
 
-           arg1 = Receiveddata[0]
-           arg2 = Receiveddata[1]
-           self.requestopt = arg1
-           self.response = Receiveddata
-           self.responsedata = ""
-           
-           # If List views
-           if (arg1 == awt_udp_response_ENUM_t.UDP_LISTVIEW_RESPONSE_ID):
-               Receiveddata1 = Receiveddata2.decode('ascii')
-               receivedfiles = Receiveddata1.split("\r\n")
+            arg1 = Receiveddata[0]
+            arg2 = Receiveddata[1]
+            self.requestopt = arg1
+            self.response = Receiveddata
+            self.responsedata = ""
 
-               for i in range(len(receivedfiles)):
-                   number = hex(i + 1)
-                   self.viewdict[str(receivedfiles[i])] = int(number, 16)
-                   number = number.replace(number[:2],'')
-                   if (len(number) == 1):
-                       number = "0" +number
-                   self.responsedata = self.responsedata + ("" + number.upper() + " )" +receivedfiles[i] + "\n")
+            # If List views
+            if (arg1 == awt_udp_response_ENUM_t.UDP_LISTVIEW_RESPONSE_ID):
+                Receiveddata1 = Receiveddata2.decode('ascii')
+                receivedfiles = Receiveddata1.split("\r\n")
 
-           # If List config files
-           elif (arg1 == awt_udp_response_ENUM_t.UDP_LISTCONFIG_RESPONSE_ID):
-               Receiveddata1 = Receiveddata2.decode('ascii')
-               receivedfiles = Receiveddata1.split("\r\n")
+                for i in range(len(receivedfiles)):
+                    number = hex(i + 1)
+                    self.viewdict[str(receivedfiles[i])] = int(number, 16)
+                    number = number.replace(number[:2], '')
+                    if (len(number) == 1):
+                        number = "0" + number
+                    self.responsedata = self.responsedata + \
+                        ("" + number.upper() + " )" + receivedfiles[i] + "\n")
 
-               for i in range(len(receivedfiles)):
-                   number = hex(i+1)
-                   self.dcfgdict[str(receivedfiles[i])] = int(number, 16)
-                   number = number.replace(number[:2],'')
-                   if(len(number) == 1):
-                       number = "0"+number                           
-                   self.responsedata = self.responsedata + (""+number.upper()+" )"+receivedfiles[i] + "\n")
+            # If List config files
+            elif (arg1 == awt_udp_response_ENUM_t.UDP_LISTCONFIG_RESPONSE_ID):
+                Receiveddata1 = Receiveddata2.decode('ascii')
+                receivedfiles = Receiveddata1.split("\r\n")
 
-           elif (arg1 == awt_udp_response_ENUM_t.UDP_LISTCLOUDCONFIG_RESPONSE_ID):
-               Receiveddata1 = Receiveddata2.decode('ascii')
-               receivedfiles = Receiveddata1.split("\r\n")
+                for i in range(len(receivedfiles)):
+                    number = hex(i+1)
+                    self.dcfgdict[str(receivedfiles[i])] = int(number, 16)
+                    number = number.replace(number[:2], '')
+                    if(len(number) == 1):
+                        number = "0"+number
+                    self.responsedata = self.responsedata + \
+                        (""+number.upper()+" )"+receivedfiles[i] + "\n")
 
-               for i in range(len(receivedfiles)):
-                   number = hex(i+1)
-                   self.cloudDcfgDict[str(receivedfiles[i])] = int(number, 16)
-                   number = number.replace(number[:2],'')
-                   if(len(number) == 1):
-                       number = "0"+number                           
-                   self.responsedata = self.responsedata + (""+number.upper()+" )"+receivedfiles[i] + "\n")
+            elif (arg1 == awt_udp_response_ENUM_t.UDP_LISTCLOUDCONFIG_RESPONSE_ID):
+                Receiveddata1 = Receiveddata2.decode('ascii')
+                receivedfiles = Receiveddata1.split("\r\n")
 
-           # If Register Read operation    
-           elif (len(Receiveddata2) == 2 and arg1 == awt_udp_response_ENUM_t.UDP_READREG_RESPONSE_ID):
+                for i in range(len(receivedfiles)):
+                    number = hex(i+1)
+                    self.cloudDcfgDict[str(receivedfiles[i])] = int(number, 16)
+                    number = number.replace(number[:2], '')
+                    if(len(number) == 1):
+                        number = "0"+number
+                    self.responsedata = self.responsedata + \
+                        (""+number.upper()+" )"+receivedfiles[i] + "\n")
 
-               RegisterValue = int.from_bytes(Receiveddata2, byteorder='big')
-               #RegisterValue = hex(RegisterValue)
-               self.responsedata = RegisterValue
-           else:
-               if len(Receiveddata2) > 0:
-                   self.responsedata = Receiveddata2.decode('ascii')
+            # If Register Read operation
+            elif (len(Receiveddata2) == 2 and arg1 == awt_udp_response_ENUM_t.UDP_READREG_RESPONSE_ID):
 
-           self.responseStatus = arg2
-           Receiveddata = ""
-           Receiveddata2 = ""
-        else :
+                RegisterValue = int.from_bytes(Receiveddata2, byteorder='big')
+                #RegisterValue = hex(RegisterValue)
+                self.responsedata = RegisterValue
+            else:
+                if len(Receiveddata2) > 0:
+                    self.responsedata = Receiveddata2.decode('ascii')
+
+            self.responseStatus = arg2
+            Receiveddata = ""
+            Receiveddata2 = ""
+        else:
             self.responseStatus = "Received message size is zero"
-            
+
+
 class awt_udp_response_ENUM_t(c_ushort):
     '''
     Class defining the Enumerations for the response status.
@@ -648,18 +670,17 @@ class awt_udp_response_ENUM_t(c_ushort):
     UDP_RESPONSE_FAIL_NOTSUPPORTED = 0x11
     UDP_RESPONSE_FAIL_CHANNELSELECT_PLAYMODE = 0x12
     UDP_RESPONSE_CHANNEL_NOT_ENABLED = 0x13
-    
+
     UDP_TRANSFER_SOCKOPEN_FAILURE = 0x30
     UDP_TRANSFER_SOCKBIND_FAILURE = 0x31
     UDP_CONTROLLER_SOCKBIND_FAILURE = 0x32
-    
-    UDP_LISTCONFIG_RESPONSE_ID = 0x95
-    UDP_READREG_RESPONSE_ID = 0x80
-    UDP_DATATRANSFER_RESPONSE_ID = 0x86
-    UDP_LISTVIEW_RESPONSE_ID = 0x94
-    UDP_LISTCLOUDCONFIG_RESPONSE_ID = 0x98
-    
+
+    UDP_READREG_RESPONSE_ID = 0x86
+    UDP_LISTCONFIG_RESPONSE_ID = 0x88
+
+    UDP_DATATRANSFER_RESPONSE_ID = 0x92
+    UDP_LISTVIEW_RESPONSE_ID = 0x93
+    UDP_LISTCLOUDCONFIG_RESPONSE_ID = 0x95
+
     UDP_ADPDVIEW_ID = 0x40
     UDP_SMOKEVIEW_IP = 0x41
-
-

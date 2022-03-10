@@ -49,23 +49,32 @@ from enum import Enum
 
 class CoolidgeDataBuffers:
     def __init__(self, framesz):
-        self.Slot_DataArr = [[[],[],[],[],[],[]],[[],[],[],[],[],[]],
-                             [[],[],[],[],[],[]],[[],[],[],[],[],[]],
-                             [[],[],[],[],[],[]],[[],[],[],[],[],[]],
-                             [[],[],[],[],[],[]],[[],[],[],[],[],[]],
-                             [[],[],[],[],[],[]],[[],[],[],[],[],[]],
-                             [[],[],[],[],[],[]],[[],[],[],[],[],[]]]
-        self.Slot_CntArr = [[],[],[],[],[],[],[],[],[],[],[],[]]
-        self.slot_samplecount = [0,0,0,0,0,0,0,0,0,0,0,0]
-        self.slot_frameSz = [framesz,framesz,framesz,framesz,framesz,framesz,framesz,framesz,framesz,framesz,framesz,framesz]
-        self.isBuffReady = [False, False, False, False, False, False, False, False, False, False, False, False]
-        
+        self.Slot_DataArr = [[[], [], [], [], [], []],
+                             [[], [], [], [], [], []],
+                             [[], [], [], [], [], []],
+                             [[], [], [], [], [], []],
+                             [[], [], [], [], [], []],
+                             [[], [], [], [], [], []],
+                             [[], [], [], [], [], []],
+                             [[], [], [], [], [], []],
+                             [[], [], [], [], [], []],
+                             [[], [], [], [], [], []],
+                             [[], [], [], [], [], []],
+                             [[], [], [], [], [], []]]
+        self.Slot_CntArr = [[], [], [], [], [], [], [], [], [], [], [], []]
+        self.slot_samplecount = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        self.slot_frameSz = [framesz, framesz, framesz, framesz, framesz,
+                             framesz, framesz, framesz, framesz, framesz, framesz, framesz]
+        self.isBuffReady = [False, False, False, False, False,
+                            False, False, False, False, False, False, False]
+
     def CheckBufferReady(self):
-        self.isBuffReady = [False, False, False, False, False, False, False, False, False, False, False, False]
+        self.isBuffReady = [False, False, False, False, False,
+                            False, False, False, False, False, False, False]
         for idx in range(len(self.isBuffReady)):
-            #print(self.slot_samplecount[idx])
-            if ((self.slot_samplecount[idx] % self.slot_frameSz[idx]) == 
-                            (self.slot_frameSz[idx] - 1)):
+            # print(self.slot_samplecount[idx])
+            if ((self.slot_samplecount[idx] % self.slot_frameSz[idx]) ==
+                    (self.slot_frameSz[idx] - 1)):
                 self.isBuffReady[idx] = True
 
 
@@ -81,15 +90,18 @@ class SPO2DataBuffers:
         self.slot_samplecount = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         self.slot_frameSz = [framesz, framesz, framesz, framesz, framesz, framesz, framesz, framesz, framesz, framesz,
                              framesz, framesz]
-        self.isBuffReady = [False, False, False, False, False, False, False, False, False, False, False, False]
+        self.isBuffReady = [False, False, False, False, False,
+                            False, False, False, False, False, False, False]
 
     def CheckBufferReady(self):
-        self.isBuffReady = [False, False, False, False, False, False, False, False, False, False, False, False]
+        self.isBuffReady = [False, False, False, False, False,
+                            False, False, False, False, False, False, False]
         for idx in range(len(self.isBuffReady)):
             # print(self.slot_samplecount[idx])
             if ((self.slot_samplecount[idx] % self.slot_frameSz[idx]) ==
                     (self.slot_frameSz[idx] - 1)):
                 self.isBuffReady[idx] = True
+
 
 class GraphDataParser():
 
@@ -132,7 +144,7 @@ class GraphDataParser():
         self.samplecntarr = []
         self.isSmokeDataReady = False
 
-        #Sync PPG and PPG
+        # Sync PPG and PPG
         self.PPG_ts = []
         self.HR_DataArr = []
         self.X_DataArr = []
@@ -143,13 +155,13 @@ class GraphDataParser():
         self.samplecntarr = []
         self.isPPGDataReady = False
 
-        #Coolidge
+        # Coolidge
         self.adpd4000_inst = CoolidgeDataBuffers(self.frameSz)
 
-        #SPO2
+        # SPO2
         self.spo2_inst = SPO2DataBuffers(self.frameSz)
 
-        #Sync ADXL
+        # ADXL
         self.ADXL_ts = []
         self.ADXL_X_DataArr = []
         self.ADXL_Y_DataArr = []
@@ -157,21 +169,21 @@ class GraphDataParser():
         self.ADXL_samplecntarr = []
         self.isADXLDataReady = False
 
-        #Sync ECG
+        # ECG
         self.ECG_ts = []
         self.ECG_DataArr = []
         self.ECG_HRArr = []
         self.ECG_samplecntarr = []
         self.isECGDataReady = False
 
-        #Sync EDA
+        # EDA
         self.EDA_ts = []
-        self.EDA_ModuleArr= []
+        self.EDA_ModuleArr = []
         self.EDA_PhaseArr = []
         self.EDA_samplecntarr = []
         self.isEDADataReady = False
 
-        #Sync TEMP
+        # TEMP
         self.TEMP_ts = []
         self.TEMP_TEMP1Arr = []
         self.TEMP_TEMP2Arr = []
@@ -192,7 +204,7 @@ class GraphDataParser():
 
         sync = ReceivedPkts[0]
 
-        if sync == 0xA0: #ADPD,SMOKE
+        if sync == 0xA0:  # ADPD,SMOKE
             size_data = ReceivedPkts[1:3]
             seq_num = ReceivedPkts[3:5]
             ts = ReceivedPkts[5:9]
@@ -205,7 +217,7 @@ class GraphDataParser():
             if ((self.samplecount % self.frameSz) == 0):
                 self.clear_data_buffers()
 
-            self.samplecount = self.samplecount + 1;
+            self.samplecount = self.samplecount + 1
             self.samplecntarr.append(self.samplecount)
 
             timestamp = struct.unpack('I', ts)[0]
@@ -248,7 +260,7 @@ class GraphDataParser():
                 startbit += increment
 
             if not self.header_write:
-                self.write_header(self.slotarr,self.unitarr,self.offsetarr)
+                self.write_header(self.slotarr, self.unitarr, self.offsetarr)
 
             data_index = 0
             if(self.slot_a is not Slotsize.SLOT_OFF):
@@ -259,7 +271,8 @@ class GraphDataParser():
                 elif self.slot_a == Slot.SLOT_4CH:
                     for i in range(4):
                         self.SlotA_DataArr[i].append(self.dataarr[i])
-                    self.seqdatastr += str(self.dataarr[0]) + "\t" + str(self.dataarr[1]) + "\t" + str(self.dataarr[2]) + "\t" + str(self.dataarr[3]) + "\t"
+                    self.seqdatastr += str(self.dataarr[0]) + "\t" + str(self.dataarr[1]) + "\t" + str(
+                        self.dataarr[2]) + "\t" + str(self.dataarr[3]) + "\t"
                     data_index += 4
 
             if (self.slot_b is not Slotsize.SLOT_OFF):
@@ -270,14 +283,14 @@ class GraphDataParser():
                     for i in range(4):
                         self.SlotB_DataArr[i].append(self.dataarr[data_index])
                         data_index += 1
-                    self.seqdatastr += str(self.dataarr[data_index - 4]) + "\t" + str(self.dataarr[data_index - 3]) + "\t" + str(self.dataarr[data_index - 2]) + "\t" + str(self.dataarr[data_index - 1]) + "\t"
-
+                    self.seqdatastr += str(self.dataarr[data_index - 4]) + "\t" + str(self.dataarr[data_index - 3]) + "\t" + str(
+                        self.dataarr[data_index - 2]) + "\t" + str(self.dataarr[data_index - 1]) + "\t"
 
             self.status = "Success"
             self.seqdatastr += str(timestamp) + "\t" + str(self.num) + "\n"
             self.m2m2datastr = ""
 
-        elif sync == 0xA1: #ADPD4000
+        elif sync == 0xA1:  # ADPD4000
             size_data = ReceivedPkts[1:3]
             seq_num = ReceivedPkts[3:5]
             ts = ReceivedPkts[5:9]
@@ -290,9 +303,9 @@ class GraphDataParser():
             for x in range(length):
                 info = slot_info[x]
                 DSL_info = self.getBitValues(info, 0, 5)
-                for i in range(0,6):
-                    dataCount += self.getBitValues(info, i , i)
-                
+                for i in range(0, 6):
+                    dataCount += self.getBitValues(info, i, i)
+
                 channel_info = self.getBitValues(info, 6, 7)
                 self.slotinfoarr.append(info)
                 self.channel_infoarr.append(channel_info)
@@ -336,7 +349,7 @@ class GraphDataParser():
 
             for x in range(length):
                 data = ReceivedPkts[startbit:(startbit + increment)]
-                data = struct.unpack('d',data)[0]
+                data = struct.unpack('d', data)[0]
                 self.dataarr.append(data)
                 startbit += increment
 
@@ -365,25 +378,25 @@ class GraphDataParser():
                     s2_bit = self.DSLinfoarr[idx] >> 3 & 1
                     l1_bit = self.DSLinfoarr[idx] >> 4 & 1
                     l2_bit = self.DSLinfoarr[idx] >> 5 & 1
-                    if d1_bit is 1:
-                        d1_data = self.dataarr[ndatabuffindex]                    
+                    if d1_bit == 1:
+                        d1_data = self.dataarr[ndatabuffindex]
                         ndatabuffindex += 1
-                    if s1_bit is 1:
+                    if s1_bit == 1:
                         s1_data = self.dataarr[ndatabuffindex]
                         ndatabuffindex += 1
-                    if l1_bit is 1:
+                    if l1_bit == 1:
                         l1_data = self.dataarr[ndatabuffindex]
                         ndatabuffindex += 1
-                    if d2_bit is 1:
+                    if d2_bit == 1:
                         d2_data = self.dataarr[ndatabuffindex]
                         ndatabuffindex += 1
-                    if s2_bit is 1:
+                    if s2_bit == 1:
                         s2_data = self.dataarr[ndatabuffindex]
                         ndatabuffindex += 1
-                    if l2_bit is 1:
+                    if l2_bit == 1:
                         l2_data = self.dataarr[ndatabuffindex]
                         ndatabuffindex += 1
-                    
+
                     #print(d1_data, s1_data, d2_data, s2_data)
                     self.adpd4000_inst.Slot_DataArr[idx][0].append(d1_data)
                     self.adpd4000_inst.Slot_DataArr[idx][1].append(s1_data)
@@ -392,7 +405,8 @@ class GraphDataParser():
                     self.adpd4000_inst.Slot_DataArr[idx][4].append(s2_data)
                     self.adpd4000_inst.Slot_DataArr[idx][5].append(l2_data)
                     self.adpd4000_inst.slot_samplecount[idx] += 1
-                    self.adpd4000_inst.Slot_CntArr[idx].append(self.adpd4000_inst.slot_samplecount[idx])
+                    self.adpd4000_inst.Slot_CntArr[idx].append(
+                        self.adpd4000_inst.slot_samplecount[idx])
                     #print (self.adpd4000_inst.Slot_DataArr[idx])
                 idx += 1
 
@@ -405,18 +419,19 @@ class GraphDataParser():
                 str_data += str(self.dataarr[x]) + "\t"
 
             str_intdata = ""
-            if intrpt_flag :
+            if intrpt_flag:
                 intBitsToRead = (dataBitsToRead + 56)
-                data1 = ReceivedPkts[dataBitsToRead : intBitsToRead] 
+                data1 = ReceivedPkts[dataBitsToRead: intBitsToRead]
                 length = int(len(data1) / 8)
                 if len(data1) % 7 != 0:
                     print("InterruptByte: Not in a correct length")
 
                 for x in range(length):
-                    intdata = ReceivedPkts[dataBitsToRead:(dataBitsToRead + increment)]
-                    intdata = struct.unpack('d',intdata)[0]
+                    intdata = ReceivedPkts[dataBitsToRead:(
+                        dataBitsToRead + increment)]
+                    intdata = struct.unpack('d', intdata)[0]
                     self.interptStatus.append(intdata)
-                    dataBitsToRead += increment      
+                    dataBitsToRead += increment
 
                 length = len(self.interptStatus)
 
@@ -428,7 +443,8 @@ class GraphDataParser():
                 print("Intstatus data = " + str_intdata)
                 self.interptStatus.clear()
 
-            self.seqdatastr += "ADPD\t" + str(self.num) + "\t" + str(timestamp) + "\t" + str_data + "\n"
+            self.seqdatastr += "ADPD\t" + \
+                str(self.num) + "\t" + str(timestamp) + "\t" + str_data + "\n"
 
         elif sync == 0xC1:  # SP02
             size_data = ReceivedPkts[1:3]
@@ -483,10 +499,10 @@ class GraphDataParser():
                     s2_data = 0
                     s1_bit = self.DSLinfoarr[idx] >> 0 & 1
                     s2_bit = self.DSLinfoarr[idx] >> 1 & 1
-                    if s1_bit is 1:
+                    if s1_bit == 1:
                         s1_data = self.dataarr[ndatabuffindex]
                         ndatabuffindex += 1
-                    if s2_bit is 1:
+                    if s2_bit == 1:
                         s2_data = self.dataarr[ndatabuffindex]
                         ndatabuffindex += 1
 
@@ -494,11 +510,13 @@ class GraphDataParser():
                     self.spo2_inst.Slot_DataArr[idx][0].append(s1_data)
                     self.spo2_inst.Slot_DataArr[idx][1].append(s2_data)
                     self.spo2_inst.slot_samplecount[idx] += 1
-                    self.spo2_inst.Slot_CntArr[idx].append(self.spo2_inst.slot_samplecount[idx])
+                    self.spo2_inst.Slot_CntArr[idx].append(
+                        self.spo2_inst.slot_samplecount[idx])
                 idx += 1
 
             if not self.header_write:
-                self.seqdatastr = "App" + "\t" + "Seq No" + "\t" + "Time Stamp" + "\t" + "Data\n"
+                self.seqdatastr = "App" + "\t" + "Seq No" + \
+                    "\t" + "Time Stamp" + "\t" + "Data\n"
                 self.header_write = True
 
             i = 0
@@ -507,6 +525,7 @@ class GraphDataParser():
             self.seqdatastr += "SPO2\t"
             self.seqdatastr += str(str(self.num)) + "\t"
 
+            #self.seqdatastr += str(self.dataarr[i]) + "\t"
             self.seqdatastr += self.get_time(self.dataarr[i]) + "\t"
             i += 1
 
@@ -526,7 +545,7 @@ class GraphDataParser():
             self.seqdatastr += str(self.dataarr[i]) + "\n"  # MOTION
             i += 1
 
-        elif sync == 0xB0:  #ADXL
+        elif sync == 0xB0:  # ADXL
             size_data = ReceivedPkts[1:3]
             seq_num = ReceivedPkts[3:5]
             no_samples = ReceivedPkts[5]
@@ -538,7 +557,7 @@ class GraphDataParser():
             increment = 8
             startbit = 11
 
-            if len(data1) % 8!= 0:
+            if len(data1) % 8 != 0:
                 print("Not in a correct length")
 
             for x in range(length):
@@ -548,13 +567,13 @@ class GraphDataParser():
                 startbit += increment
 
             if not self.header_write:
-                self.seqdatastr = "App" + "\t" + "Seq No" + "\t" + "Time Stamp" + "\t" + "Data_X" + "\t" + "Data_Y" + "\t" + "Data_Z\n"
+                self.seqdatastr = "App" + "\t" + "Seq No" + "\t" + "Time Stamp" + \
+                    "\t" + "Data_X" + "\t" + "Data_Y" + "\t" + "Data_Z\n"
                 self.header_write = True
 
             if ((self.samplecount_adxl % self.framesize) == 0):
-                if(self.samplecount_adxl != 0 and self.printdata):
-                    print("ADXL" + str(self.ADXL_X_DataArr) + str(self.ADXL_Y_DataArr) + str(self.ADXL_Z_DataArr))
                 self.clear_adxl_data_buffers()
+                self.isADXLDataReady = False
 
             i = 0
             for x in range(no_samples):
@@ -577,7 +596,10 @@ class GraphDataParser():
                 self.seqdatastr += str(self.dataarr[i]) + "\n"
                 i += 1
 
-        elif sync == 0xC0:  #PPG
+            if ((self.samplecount_adxl % self.framesize) == 0):
+                self.isADXLDataReady = True
+
+        elif sync == 0xC0:  # PPG
             size_data = ReceivedPkts[1:3]
             seq_num = ReceivedPkts[3:5]
             no_samples = ReceivedPkts[5]
@@ -589,7 +611,7 @@ class GraphDataParser():
             increment = 8
             startbit = 11
 
-            if len(data1) % 8!= 0:
+            if len(data1) % 8 != 0:
                 print("Not in a correct length")
 
             for x in range(length):
@@ -599,14 +621,11 @@ class GraphDataParser():
                 startbit += increment
 
             if not self.header_write:
-                self.seqdatastr = "App" + "\t" + "Seq No" + "\t" +"Time Stamp" + "\t" + "ADPD_Data" + "\t" + "Data_X" + "\t" + "Data_Y" + "\t" + "Data_Z" + "\t" + "HR\n"
+                self.seqdatastr = "App" + "\t" + "Seq No" + "\t" + "Time Stamp" + "\t" + \
+                    "ADPD_Data" + "\t" + "Data_X" + "\t" + "Data_Y" + "\t" + "Data_Z" + "\t" + "HR\n"
                 self.header_write = True
 
             if ((self.samplecount_ppg % self.frameSz) == 0):
-                #if(self.samplecount_ppg != 0 and self.printdata):
-                    #print("PPG" + str(self.PPG_DataArr))
-                    #print("ADXL" + str(self.X_DataArr) + str(self.Y_DataArr) + str(self.Z_DataArr))
-                    #print("HR" + str(self.HR_DataArr))
                 self.clear_ppg_data_buffers()
                 self.isPPGDataReady = False
 
@@ -622,7 +641,6 @@ class GraphDataParser():
                 self.seqdatastr += self.get_time(self.dataarr[i]) + "\t"
                 i += 1
                 self.PPG_DataArr.append(self.dataarr[i])
-                # print("PPG_DataArr: " + str(self.PPG_DataArr[-1]))
                 self.seqdatastr += str(self.dataarr[i]) + "\t"
                 i += 1
                 self.X_DataArr.append(self.dataarr[i])
@@ -637,10 +655,11 @@ class GraphDataParser():
                 self.HR_DataArr.append(self.dataarr[i])
                 self.seqdatastr += str(self.dataarr[i]) + "\n"
                 i += 1
+
             if ((self.samplecount_ppg % self.frameSz) == 0):
                 self.isPPGDataReady = True
 
-        elif sync == 0xC2:  #ECG
+        elif sync == 0xC2:  # ECG
             size_data = ReceivedPkts[1:3]
             seq_num = ReceivedPkts[3:5]
             no_samples = ReceivedPkts[5]
@@ -656,7 +675,7 @@ class GraphDataParser():
             increment = 8
             startbit = 14
 
-            if len(data1) % 8!= 0:
+            if len(data1) % 8 != 0:
                 print("Not in a correct length")
 
             for x in range(length):
@@ -666,13 +685,13 @@ class GraphDataParser():
                 startbit += increment
 
             if not self.header_write:
-                self.seqdatastr = "App" + "\t" + "Seq No" + "\t" + "Time Stamp" + "\t" + "ECG" + "\t" + "HR\n"
+                self.seqdatastr = "App" + "\t" + "Seq No" + "\t" + \
+                    "Time Stamp" + "\t" + "ECG" + "\t" + "HR\n"
                 self.header_write = True
 
             if ((self.samplecount_ecg % self.framesize) == 0):
-                if (self.samplecount_ecg != 0 and self.printdata):
-                    print("ECG" + str(self.ECG_DataArr) + str(self.ECG_HRArr))
                 self.clear_ecg_data_buffers()
+                self.isECGDataReady = False
 
             i = 0
             for x in range(no_samples):
@@ -692,7 +711,10 @@ class GraphDataParser():
                 self.seqdatastr += str(self.dataarr[i]) + "\n"
                 i += 1
 
-        elif sync == 0xC3:  #EDA
+            if ((self.samplecount_ecg % self.framesize) == 0):
+                self.isECGDataReady = True
+
+        elif sync == 0xC3:  # EDA
             size_data = ReceivedPkts[1:3]
             seq_num = ReceivedPkts[3:5]
             no_samples = ReceivedPkts[5]
@@ -706,7 +728,7 @@ class GraphDataParser():
             increment = 8
             startbit = 12
 
-            if len(data1) % 8!= 0:
+            if len(data1) % 8 != 0:
                 print("Not in a correct length")
 
             for x in range(length):
@@ -716,13 +738,13 @@ class GraphDataParser():
                 startbit += increment
 
             if not self.header_write:
-                self.seqdatastr = "App" + "\t" + "Seq No" + "\t" + "Time Stamp" + "\t" + "Module" + "\t" + "Phase\n"
+                self.seqdatastr = "App" + "\t" + "Seq No" + "\t" + \
+                    "Time Stamp" + "\t" + "Module" + "\t" + "Phase\n"
                 self.header_write = True
 
             if ((self.samplecount_eda % self.framesize) == 0):
-                if(self.samplecount_eda != 0 and self.printdata):
-                    print("EDA" + str(self.EDA_ModuleArr) + str(self.EDA_PhaseArr))
                 self.clear_eda_data_buffers()
+                self.isEDADataReady = False
 
             i = 0
             for x in range(no_samples):
@@ -742,7 +764,10 @@ class GraphDataParser():
                 self.seqdatastr += str(self.dataarr[i]) + "\n"
                 i += 1
 
-        elif sync == 0xC4:  #Temperature
+            if ((self.samplecount_eda % self.framesize) == 0):
+                self.isEDADataReady = True
+
+        elif sync == 0xC4:  # Temperature
             size_data = ReceivedPkts[1:3]
             seq_num = ReceivedPkts[3:5]
             no_samples = ReceivedPkts[5]
@@ -754,7 +779,7 @@ class GraphDataParser():
             increment = 8
             startbit = 11
 
-            if len(data1) % 8!= 0:
+            if len(data1) % 8 != 0:
                 print("Not in a correct length")
 
             for x in range(length):
@@ -764,13 +789,13 @@ class GraphDataParser():
                 startbit += increment
 
             if not self.header_write:
-                self.seqdatastr = "App" + "\t" + "Seq No" + "\t" + "Time Stamp" + "\t" + "Temp 1" +"\t" +  "Temp 2\n"
+                self.seqdatastr = "App" + "\t" + "Seq No" + "\t" + \
+                    "Time Stamp" + "\t" + "Temp 1" + "\t" + "Temp 2\n"
                 self.header_write = True
 
             if ((self.samplecount_temperature % self.frameSz) == 0):
-                if(self.samplecount_temperature != 0 and self.printdata):
-                    print("TEMPERATURE" + str(self.TEMP_TEMP1Arr) + str(self.TEMP_TEMP2Arr))
                 self.clear_temp_data_buffers()
+                self.isTempDataReady = False
 
             i = 0
             for x in range(no_samples):
@@ -790,10 +815,12 @@ class GraphDataParser():
                 self.seqdatastr += str(self.dataarr[i]) + "\n"
                 i += 1
 
-        return self.seqdatastr
-    
+            if ((self.samplecount_temperature % self.frameSz) == 0):
+                self.isTempDataReady = True
 
-    def getBitValues(self,value, startBit, endBit):
+        return self.seqdatastr
+
+    def getBitValues(self, value, startBit, endBit):
         '''
         To get the value of the bits specified
         '''
@@ -877,7 +904,7 @@ class GraphDataParser():
 
         return offset_name
 
-    def get_slotsize(self,slot):
+    def get_slotsize(self, slot):
         if slot == Slot.SLOT_OFF.value:
             size = 0
         elif slot == Slot.SLOT_SUM.value:
@@ -889,7 +916,7 @@ class GraphDataParser():
 
         return size
 
-    def write_header(self,slot,unit,offset):
+    def write_header(self, slot, unit, offset):
         str_header = ""
         if slot[0] != Slot.SLOT_OFF.name:
             if slot[0] == Slot.SLOT_SUM.name:
@@ -926,10 +953,11 @@ class GraphDataParser():
         self.seqdatastr += str_header + "Time Stamp" + "\t" + "Sequence Number\n"
         self.header_write = True
 
-    def write_ADPDCL_header(self,view_info):
+    def write_ADPDCL_header(self, view_info):
         str_header = ""
 
-        self.seqdatastr = "App" + "\t" + "Seq No" + "\t" + "Time Stamp" + "\t" + "Data\n"
+        self.seqdatastr = "App" + "\t" + "Seq No" + \
+            "\t" + "Time Stamp" + "\t" + "Data\n"
         # if view_info == 1:
         #     str_header += "View : MultiSlot View" + "\t"
         #     str_header += "Plot Unit : " + str(self.unitarr[0]) + "\t"
@@ -975,11 +1003,13 @@ class GraphDataParser():
 
         return str_time
 
+
 class Slot(Enum):
     SLOT_OFF = 0
     SLOT_SUM = 1
     SLOT_4CH = 2
     SLOT_DIM = 3
+
 
 class Slotsize(Enum):
     SLOT_OFF = 0
@@ -989,17 +1019,20 @@ class Slotsize(Enum):
     SLOT_SUM_4CH = 5
     SLOT_4CH_4CH = 8
 
+
 class Unit(Enum):
     COUNT = 0
     CTR = 1
     PTR = 2
     UV = 3
 
+
 class Offset(Enum):
     NO_OFFSET = 0
     NULL_OFFSET = 1
     STATS_OFFSET = 2
     NULL_STATS_OFFSET = 3
+
 
 class ADPDCL_Slot(Enum):
     SLOT_A = 0
@@ -1014,5 +1047,3 @@ class ADPDCL_Slot(Enum):
     SLOT_J = 9
     SLOT_K = 10
     SLOT_L = 11
-
-
