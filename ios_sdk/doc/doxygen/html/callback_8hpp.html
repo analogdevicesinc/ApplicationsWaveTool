@@ -95,6 +95,7 @@ $(document).ready(function(){initNavTree('callback_8hpp.html',''); initResizable
 <code>#include &lt;sstream&gt;</code><br />
 <code>#include &quot;m2m2/cpp/system_interface.hpp&quot;</code><br />
 <code>#include &quot;m2m2/cpp/sensor_adpd_application_interface.hpp&quot;</code><br />
+<code>#include &quot;m2m2/cpp/bia_application_interface.hpp&quot;</code><br />
 <code>#include &quot;<a class="el" href="sys__alert__enum_8hpp_source.html">sys_alert_enum.hpp</a>&quot;</code><br />
 </div>
 <p><a href="callback_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -173,13 +174,25 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpedometer__stream__callback.html">pedometer_stream_callback</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbcm__stream__cb__data__t.html">bcm_stream_cb_data_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A callback struct to be used with the BCM data stream.  <a href="structbcm__stream__cb__data__t.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbia__stream__cb__data__t.html">bia_stream_cb_data_t</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbcm__stream__callback.html">bcm_stream_callback</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbia__stream__callback.html">bia_stream_callback</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbia__app__algo__out__stream__cb__data__t.html">bia_app_algo_out_stream_cb_data_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbia__algo__stream__callback.html">bia_algo_stream_callback</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsensor__ad7156__cb__data__t.html">sensor_ad7156_cb_data_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classad7156__stream__callback.html">ad7156_stream_callback</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structhrv__stream__cb__data__t.html">hrv_stream_cb_data_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A callback struct to be used with the HRV data stream.  <a href="structhrv__stream__cb__data__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classhrv__stream__callback.html">hrv_stream_callback</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structagc__stream__cb__data__t.html">agc_stream_cb_data_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A callback struct to be used with the HRV data stream.  <a href="structagc__stream__cb__data__t.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A callback struct to be used with the AGC data stream.  <a href="structagc__stream__cb__data__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classagc__stream__callback.html">agc_stream_callback</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -196,27 +209,40 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a529c1c3c55bcd7ed841848317c57a519"><td class="mdescLeft">&#160;</td><td class="mdescRight">An enum used to specify if a particular data sample is from SPORT mode ECG or MONITOR mode ECG.  <a href="callback_8hpp.html#a529c1c3c55bcd7ed841848317c57a519">More...</a><br /></td></tr>
 <tr class="separator:a529c1c3c55bcd7ed841848317c57a519"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7448ad5d529ea7599cb612e0ad5c8dfe"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfe">ADDR_SENSOR_STREAM_ENUM_t</a> : uint16_t { <br />
-&#160;&#160;<a class="el" href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfea81af51814221231ae30e29bc4cb52614">ADPD_SENSOR_STREAM1</a> = 1
-, <a class="el" href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfead45cc27d5d2e612726d05aaddc179f52">ADPD_SENSOR_STREAM2</a>
-, <a class="el" href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfeada0319f006c302b53862814b2bf75ba0">ADPD_SENSOR_STREAM3</a>
-, <a class="el" href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfea1d3d96c021e21d68ddbb53ce00ed50c2">ADPD_SENSOR_STREAM4</a>
+<tr class="memitem:a0d24fdf7b687cc84075b02ace40c4ebe"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebe">ADDR_SENSOR_STREAM_ENUM_t</a> : uint8_t { <br />
+&#160;&#160;<a class="el" href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebea81af51814221231ae30e29bc4cb52614">ADPD_SENSOR_STREAM1</a> = 1
+, <a class="el" href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebead45cc27d5d2e612726d05aaddc179f52">ADPD_SENSOR_STREAM2</a>
+, <a class="el" href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebeada0319f006c302b53862814b2bf75ba0">ADPD_SENSOR_STREAM3</a>
+, <a class="el" href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebea1d3d96c021e21d68ddbb53ce00ed50c2">ADPD_SENSOR_STREAM4</a>
 , <br />
-&#160;&#160;<a class="el" href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfeaf528f0b1b963fb952ca7e13b594d3532">ADPD_SENSOR_STREAM5</a>
-, <a class="el" href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfeaf6aef8b370f1cb221a2a619debd5caf3">ADPD_SENSOR_STREAM6</a>
-, <a class="el" href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfeab067bc33299dd87aad429f39967042bb">ADPD_SENSOR_STREAM7</a>
-, <a class="el" href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfeaa4cb6c16fcd0edaaa0649dde93d2f70d">ADPD_SENSOR_STREAM8</a>
+&#160;&#160;<a class="el" href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebeaf528f0b1b963fb952ca7e13b594d3532">ADPD_SENSOR_STREAM5</a>
+, <a class="el" href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebeaf6aef8b370f1cb221a2a619debd5caf3">ADPD_SENSOR_STREAM6</a>
+, <a class="el" href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebeab067bc33299dd87aad429f39967042bb">ADPD_SENSOR_STREAM7</a>
+, <a class="el" href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebeaa4cb6c16fcd0edaaa0649dde93d2f70d">ADPD_SENSOR_STREAM8</a>
 , <br />
-&#160;&#160;<a class="el" href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfea078e5bce56ad4387f18efc8fa03cd50c">ADPD_SENSOR_STREAM9</a>
-, <a class="el" href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfea405745ba6996ae9239e40138dd8bf8c6">ADPD_SENSOR_STREAM10</a>
-, <a class="el" href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfea8efd6d7228ac57adfa3e93514f45d176">ADPD_SENSOR_STREAM11</a>
-, <a class="el" href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfead77561b9eb1c173c4924bb0b7789bc39">ADPD_SENSOR_STREAM12</a>
+&#160;&#160;<a class="el" href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebea078e5bce56ad4387f18efc8fa03cd50c">ADPD_SENSOR_STREAM9</a>
+, <a class="el" href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebea405745ba6996ae9239e40138dd8bf8c6">ADPD_SENSOR_STREAM10</a>
+, <a class="el" href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebea8efd6d7228ac57adfa3e93514f45d176">ADPD_SENSOR_STREAM11</a>
+, <a class="el" href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebead77561b9eb1c173c4924bb0b7789bc39">ADPD_SENSOR_STREAM12</a>
 , <br />
-&#160;&#160;<a class="el" href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfea3fde4690a0a3ab55dc97044407ba9f65">ADPD_SENSOR_INTERRUPT</a>
+&#160;&#160;<a class="el" href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebea3fde4690a0a3ab55dc97044407ba9f65">ADPD_SENSOR_INTERRUPT</a>
 <br />
  }</td></tr>
-<tr class="memdesc:a7448ad5d529ea7599cb612e0ad5c8dfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">A callback struct to be used with the ADPDCL data stream.  <a href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfe">More...</a><br /></td></tr>
-<tr class="separator:a7448ad5d529ea7599cb612e0ad5c8dfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a0d24fdf7b687cc84075b02ace40c4ebe"><td class="mdescLeft">&#160;</td><td class="mdescRight">A callback struct to be used with the ADPDCL data stream.  <a href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebe">More...</a><br /></td></tr>
+<tr class="separator:a0d24fdf7b687cc84075b02ace40c4ebe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a877c6b11b98ef3b44e2ce4490f20cb"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cb">PM_BOARD_TYPE</a> : uint8_t { <br />
+&#160;&#160;<a class="el" href="callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cbac902711b5c13bf40b29977792d101a81">PM_BOARD_TYPE_UNKNOWN</a> = ADI_PM_BOARD_TYPE_t::ADI_PM_BOARD_TYPE_UNKNOWN
+, <a class="el" href="callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cba07d0afd29cc008406b356d44922f61b0">PM_BOARD_TYPE_ADPD107_WATCH</a> = ADI_PM_BOARD_TYPE_t::ADI_PM_BOARD_TYPE_ADPD107_WATCH
+, <a class="el" href="callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cba10138c8606c854edf8b9ed6d1ea8341e">PM_BOARD_TYPE_ADPD107_CHEST_STRAP</a> = ADI_PM_BOARD_TYPE_t::ADI_PM_BOARD_TYPE_ADPD107_CHEST_STRAP
+, <a class="el" href="callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cba674b4a0da5fddf8b1d75a8a84029cfc3">PM_BOARD_TYPE_ADPD185_WATCH</a> = ADI_PM_BOARD_TYPE_t::ADI_PM_BOARD_TYPE_ADPD185_WATCH
+, <br />
+&#160;&#160;<a class="el" href="callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cbaf04444d47faaf46ae06a1e2b49de645a">PM_BOARD_TYPE_ADPD188_WATCH</a> = ADI_PM_BOARD_TYPE_t::ADI_PM_BOARD_TYPE_ADPD188_WATCH
+, <a class="el" href="callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cbaba9ec3a6295fe3d8c06b7443d5b6ba5f">PM_BOARD_TYPE_STUDYWATCH</a> = ADI_PM_BOARD_TYPE_t::ADI_PM_BOARD_TYPE_STUDYWATCH
+, <a class="el" href="callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cba6ba6b45969be31072a3d16a55056af0e">PM_BOARD_TYPE_VSM_WATCH</a> = ADI_PM_BOARD_TYPE_t::ADI_PM_BOARD_TYPE_VSM_WATCH
+<br />
+ }</td></tr>
+<tr class="memdesc:a1a877c6b11b98ef3b44e2ce4490f20cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">A callback struct to be used with the battery stream.  <a href="callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cb">More...</a><br /></td></tr>
+<tr class="separator:a1a877c6b11b98ef3b44e2ce4490f20cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe2848e5ca49ebd18ae38747c36f8830"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="callback_8hpp.html#afe2848e5ca49ebd18ae38747c36f8830">PM_SYS_BAT_STATE_ENUM_t</a> : uint8_t { <br />
 &#160;&#160;<a class="el" href="callback_8hpp.html#afe2848e5ca49ebd18ae38747c36f8830a22dd841584dd4180c26e7b1574630496">SYS_BAT_STATE_NOT_AVAIL</a> = M2M2_PM_SYS_BAT_STATE_ENUM_t::M2M2_PM_SYS_BAT_STATE_NOT_AVAIL
 , <a class="el" href="callback_8hpp.html#afe2848e5ca49ebd18ae38747c36f8830a84c026c4fcece534b8ce33eff8485e1e">SYS_BAT_STATE_NOT_CHARGING</a> = M2M2_PM_SYS_BAT_STATE_ENUM_t::M2M2_PM_SYS_BAT_STATE_NOT_CHARGING
@@ -227,37 +253,94 @@ Enumerations</h2></td></tr>
 , <a class="el" href="callback_8hpp.html#afe2848e5ca49ebd18ae38747c36f8830a33d6c8ceabdb1fb6bf8803bf09fcf4a4">SYS_BAT_STATE_CHARGE_ERR</a> = M2M2_PM_SYS_BAT_STATE_ENUM_t::M2M2_PM_SYS_BAT_STATE_CHARGE_ERR
 <br />
  }</td></tr>
-<tr class="memdesc:afe2848e5ca49ebd18ae38747c36f8830"><td class="mdescLeft">&#160;</td><td class="mdescRight">A callback struct to be used with the battery stream.  <a href="callback_8hpp.html#afe2848e5ca49ebd18ae38747c36f8830">More...</a><br /></td></tr>
 <tr class="separator:afe2848e5ca49ebd18ae38747c36f8830"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22977a758d67662a16296cc723a7f4f5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="callback_8hpp.html#a22977a758d67662a16296cc723a7f4f5">BIA_APP_INFO_BITSET_ENUM_t</a> : uint8_t { <a class="el" href="callback_8hpp.html#a22977a758d67662a16296cc723a7f4f5a2c3b83c9aa074f0148430ce32b703061">BIA_APP_INFO_BITSET_LEADSOFF</a> = M2M2_SENSOR_BIA_APP_INFO_BITSET_ENUM_t::M2M2_SENSOR_BIA_APP_INFO_BITSET_LEADSOFF
+, <a class="el" href="callback_8hpp.html#a22977a758d67662a16296cc723a7f4f5acb08fe3eb5af8280d0112b943ee3a67c">SENSOR_BIA_APP_INFO_BITSET_LEADSON</a> = M2M2_SENSOR_BIA_APP_INFO_BITSET_ENUM_t::M2M2_SENSOR_BIA_APP_INFO_BITSET_LEADSON
+ }</td></tr>
+<tr class="memdesc:a22977a758d67662a16296cc723a7f4f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A callback struct to be used with the BIA data stream.  <a href="callback_8hpp.html#a22977a758d67662a16296cc723a7f4f5">More...</a><br /></td></tr>
+<tr class="separator:a22977a758d67662a16296cc723a7f4f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26fbf38917a74c094480675ec929cd2c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="callback_8hpp.html#a26fbf38917a74c094480675ec929cd2c">BIA_SWEEP_FREQ_INDEX_ENUM_t</a> : uint8_t { <br />
+&#160;&#160;<a class="el" href="callback_8hpp.html#a26fbf38917a74c094480675ec929cd2caf7e82b661509a9ccf2f481b231eac435">SENSOR_BIA_FREQ_1000HZ</a> = M2M2_SENSOR_BIA_SWEEP_FREQ_INDEX_ENUM_t::M2M2_SENSOR_BIA_FREQ_1000HZ
+, <a class="el" href="callback_8hpp.html#a26fbf38917a74c094480675ec929cd2ca4af9fa4c4ea0a00b3164ee32f5c2532d">SENSOR_BIA_FREQ_3760HZ</a> = M2M2_SENSOR_BIA_SWEEP_FREQ_INDEX_ENUM_t::M2M2_SENSOR_BIA_FREQ_3760HZ
+, <a class="el" href="callback_8hpp.html#a26fbf38917a74c094480675ec929cd2ca32d746d479ae84ef0f36ce2fdd6a6327">SENSOR_BIA_FREQ_14140HZ</a> = M2M2_SENSOR_BIA_SWEEP_FREQ_INDEX_ENUM_t::M2M2_SENSOR_BIA_FREQ_14140HZ
+, <a class="el" href="callback_8hpp.html#a26fbf38917a74c094480675ec929cd2ca8c73a0e77e3238682f051f9505291074">SENSOR_BIA_FREQ_53180HZ</a> = M2M2_SENSOR_BIA_SWEEP_FREQ_INDEX_ENUM_t::M2M2_SENSOR_BIA_FREQ_53180HZ
+, <br />
+&#160;&#160;<a class="el" href="callback_8hpp.html#a26fbf38917a74c094480675ec929cd2ca1db78d14b9ecf27d91d1385ce9ebf8ce">SENSOR_BIA_FREQ_200KHZ</a> = M2M2_SENSOR_BIA_SWEEP_FREQ_INDEX_ENUM_t::M2M2_SENSOR_BIA_FREQ_200KHZ
+, <a class="el" href="callback_8hpp.html#a26fbf38917a74c094480675ec929cd2cac808359e504e20445a8c9c59e9878827">SENSOR_BIA_FREQ_50KHZ</a> = M2M2_SENSOR_BIA_SWEEP_FREQ_INDEX_ENUM_t::M2M2_SENSOR_BIA_FREQ_50KHZ
+<br />
+ }</td></tr>
+<tr class="separator:a26fbf38917a74c094480675ec929cd2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a7448ad5d529ea7599cb612e0ad5c8dfe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7448ad5d529ea7599cb612e0ad5c8dfe">&#9670;&nbsp;</a></span>ADDR_SENSOR_STREAM_ENUM_t</h2>
+<a id="a0d24fdf7b687cc84075b02ace40c4ebe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d24fdf7b687cc84075b02ace40c4ebe">&#9670;&nbsp;</a></span>ADDR_SENSOR_STREAM_ENUM_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfe">ADDR_SENSOR_STREAM_ENUM_t</a> : uint16_t</td>
+          <td class="memname">enum <a class="el" href="callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebe">ADDR_SENSOR_STREAM_ENUM_t</a> : uint8_t</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>A callback struct to be used with the ADPDCL data stream. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a7448ad5d529ea7599cb612e0ad5c8dfea81af51814221231ae30e29bc4cb52614"></a>ADPD_SENSOR_STREAM1&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a7448ad5d529ea7599cb612e0ad5c8dfead45cc27d5d2e612726d05aaddc179f52"></a>ADPD_SENSOR_STREAM2&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a7448ad5d529ea7599cb612e0ad5c8dfeada0319f006c302b53862814b2bf75ba0"></a>ADPD_SENSOR_STREAM3&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a7448ad5d529ea7599cb612e0ad5c8dfea1d3d96c021e21d68ddbb53ce00ed50c2"></a>ADPD_SENSOR_STREAM4&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a7448ad5d529ea7599cb612e0ad5c8dfeaf528f0b1b963fb952ca7e13b594d3532"></a>ADPD_SENSOR_STREAM5&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a7448ad5d529ea7599cb612e0ad5c8dfeaf6aef8b370f1cb221a2a619debd5caf3"></a>ADPD_SENSOR_STREAM6&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a7448ad5d529ea7599cb612e0ad5c8dfeab067bc33299dd87aad429f39967042bb"></a>ADPD_SENSOR_STREAM7&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a7448ad5d529ea7599cb612e0ad5c8dfeaa4cb6c16fcd0edaaa0649dde93d2f70d"></a>ADPD_SENSOR_STREAM8&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a7448ad5d529ea7599cb612e0ad5c8dfea078e5bce56ad4387f18efc8fa03cd50c"></a>ADPD_SENSOR_STREAM9&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a7448ad5d529ea7599cb612e0ad5c8dfea405745ba6996ae9239e40138dd8bf8c6"></a>ADPD_SENSOR_STREAM10&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a7448ad5d529ea7599cb612e0ad5c8dfea8efd6d7228ac57adfa3e93514f45d176"></a>ADPD_SENSOR_STREAM11&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a7448ad5d529ea7599cb612e0ad5c8dfead77561b9eb1c173c4924bb0b7789bc39"></a>ADPD_SENSOR_STREAM12&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a7448ad5d529ea7599cb612e0ad5c8dfea3fde4690a0a3ab55dc97044407ba9f65"></a>ADPD_SENSOR_INTERRUPT&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0d24fdf7b687cc84075b02ace40c4ebea81af51814221231ae30e29bc4cb52614"></a>ADPD_SENSOR_STREAM1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d24fdf7b687cc84075b02ace40c4ebead45cc27d5d2e612726d05aaddc179f52"></a>ADPD_SENSOR_STREAM2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d24fdf7b687cc84075b02ace40c4ebeada0319f006c302b53862814b2bf75ba0"></a>ADPD_SENSOR_STREAM3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d24fdf7b687cc84075b02ace40c4ebea1d3d96c021e21d68ddbb53ce00ed50c2"></a>ADPD_SENSOR_STREAM4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d24fdf7b687cc84075b02ace40c4ebeaf528f0b1b963fb952ca7e13b594d3532"></a>ADPD_SENSOR_STREAM5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d24fdf7b687cc84075b02ace40c4ebeaf6aef8b370f1cb221a2a619debd5caf3"></a>ADPD_SENSOR_STREAM6&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d24fdf7b687cc84075b02ace40c4ebeab067bc33299dd87aad429f39967042bb"></a>ADPD_SENSOR_STREAM7&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d24fdf7b687cc84075b02ace40c4ebeaa4cb6c16fcd0edaaa0649dde93d2f70d"></a>ADPD_SENSOR_STREAM8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d24fdf7b687cc84075b02ace40c4ebea078e5bce56ad4387f18efc8fa03cd50c"></a>ADPD_SENSOR_STREAM9&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d24fdf7b687cc84075b02ace40c4ebea405745ba6996ae9239e40138dd8bf8c6"></a>ADPD_SENSOR_STREAM10&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d24fdf7b687cc84075b02ace40c4ebea8efd6d7228ac57adfa3e93514f45d176"></a>ADPD_SENSOR_STREAM11&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d24fdf7b687cc84075b02ace40c4ebead77561b9eb1c173c4924bb0b7789bc39"></a>ADPD_SENSOR_STREAM12&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0d24fdf7b687cc84075b02ace40c4ebea3fde4690a0a3ab55dc97044407ba9f65"></a>ADPD_SENSOR_INTERRUPT&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a22977a758d67662a16296cc723a7f4f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22977a758d67662a16296cc723a7f4f5">&#9670;&nbsp;</a></span>BIA_APP_INFO_BITSET_ENUM_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="callback_8hpp.html#a22977a758d67662a16296cc723a7f4f5">BIA_APP_INFO_BITSET_ENUM_t</a> : uint8_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A callback struct to be used with the BIA data stream. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a22977a758d67662a16296cc723a7f4f5a2c3b83c9aa074f0148430ce32b703061"></a>BIA_APP_INFO_BITSET_LEADSOFF&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a22977a758d67662a16296cc723a7f4f5acb08fe3eb5af8280d0112b943ee3a67c"></a>SENSOR_BIA_APP_INFO_BITSET_LEADSON&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a26fbf38917a74c094480675ec929cd2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26fbf38917a74c094480675ec929cd2c">&#9670;&nbsp;</a></span>BIA_SWEEP_FREQ_INDEX_ENUM_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="callback_8hpp.html#a26fbf38917a74c094480675ec929cd2c">BIA_SWEEP_FREQ_INDEX_ENUM_t</a> : uint8_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a26fbf38917a74c094480675ec929cd2caf7e82b661509a9ccf2f481b231eac435"></a>SENSOR_BIA_FREQ_1000HZ&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a26fbf38917a74c094480675ec929cd2ca4af9fa4c4ea0a00b3164ee32f5c2532d"></a>SENSOR_BIA_FREQ_3760HZ&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a26fbf38917a74c094480675ec929cd2ca32d746d479ae84ef0f36ce2fdd6a6327"></a>SENSOR_BIA_FREQ_14140HZ&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a26fbf38917a74c094480675ec929cd2ca8c73a0e77e3238682f051f9505291074"></a>SENSOR_BIA_FREQ_53180HZ&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a26fbf38917a74c094480675ec929cd2ca1db78d14b9ecf27d91d1385ce9ebf8ce"></a>SENSOR_BIA_FREQ_200KHZ&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a26fbf38917a74c094480675ec929cd2cac808359e504e20445a8c9c59e9878827"></a>SENSOR_BIA_FREQ_50KHZ&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -282,6 +365,31 @@ Enumerations</h2></td></tr>
 
 </div>
 </div>
+<a id="a1a877c6b11b98ef3b44e2ce4490f20cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a877c6b11b98ef3b44e2ce4490f20cb">&#9670;&nbsp;</a></span>PM_BOARD_TYPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cb">PM_BOARD_TYPE</a> : uint8_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A callback struct to be used with the battery stream. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a1a877c6b11b98ef3b44e2ce4490f20cbac902711b5c13bf40b29977792d101a81"></a>PM_BOARD_TYPE_UNKNOWN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a1a877c6b11b98ef3b44e2ce4490f20cba07d0afd29cc008406b356d44922f61b0"></a>PM_BOARD_TYPE_ADPD107_WATCH&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a1a877c6b11b98ef3b44e2ce4490f20cba10138c8606c854edf8b9ed6d1ea8341e"></a>PM_BOARD_TYPE_ADPD107_CHEST_STRAP&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a1a877c6b11b98ef3b44e2ce4490f20cba674b4a0da5fddf8b1d75a8a84029cfc3"></a>PM_BOARD_TYPE_ADPD185_WATCH&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a1a877c6b11b98ef3b44e2ce4490f20cbaf04444d47faaf46ae06a1e2b49de645a"></a>PM_BOARD_TYPE_ADPD188_WATCH&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a1a877c6b11b98ef3b44e2ce4490f20cbaba9ec3a6295fe3d8c06b7443d5b6ba5f"></a>PM_BOARD_TYPE_STUDYWATCH&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a1a877c6b11b98ef3b44e2ce4490f20cba6ba6b45969be31072a3d16a55056af0e"></a>PM_BOARD_TYPE_VSM_WATCH&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <a id="afe2848e5ca49ebd18ae38747c36f8830"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afe2848e5ca49ebd18ae38747c36f8830">&#9670;&nbsp;</a></span>PM_SYS_BAT_STATE_ENUM_t</h2>
 
@@ -293,8 +401,6 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>A callback struct to be used with the battery stream. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="afe2848e5ca49ebd18ae38747c36f8830a22dd841584dd4180c26e7b1574630496"></a>SYS_BAT_STATE_NOT_AVAIL&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="afe2848e5ca49ebd18ae38747c36f8830a84c026c4fcece534b8ce33eff8485e1e"></a>SYS_BAT_STATE_NOT_CHARGING&#160;</td><td class="fielddoc"></td></tr>

@@ -4,6 +4,7 @@ from common_application_interface_def import *
 
 from common_sensor_interface_def import *
 
+
 class M2M2_SENSOR_ADPD_COMMAND_ENUM_t(c_ubyte):
     _M2M2_SENSOR_ADPD_COMMAND_LOWEST = 0x40
     M2M2_SENSOR_ADPD_COMMAND_LOAD_CFG_REQ = 0x42
@@ -15,39 +16,46 @@ class M2M2_SENSOR_ADPD_COMMAND_ENUM_t(c_ubyte):
     M2M2_SENSOR_ADPD_COMMAND_GET_SLOT_REQ = 0x48
     M2M2_SENSOR_ADPD_COMMAND_GET_SLOT_RESP = 0x49
     M2M2_SENSOR_ADPD_COMMAND_SET_DARK_OFFSET_REQ = 0x4A
-    M2M2_SENSOR_ADPD_COMMAND_GET_CTR_REQ = 0x4B
-    M2M2_SENSOR_ADPD_COMMAND_GET_CTR_RESP = 0x4C
-    M2M2_SENSOR_ADPD_COMMAND_FLOATMODE_CFG_REQ = 0x4D
-    M2M2_SENSOR_ADPD_COMMAND_FLOATMODE_CFG_RESP = 0x4E
-    M2M2_SENSOR_ADPD_COMMAND_SET_DARK_OFFSET_RESP = 0x60
-    M2M2_SENSOR_ADPD_COMMAND_DO_TEST1_REQ = 0x61
-    M2M2_SENSOR_ADPD_COMMAND_DO_TEST1_RESP = 0x62
-    M2M2_SENSOR_ADPD_COMMAND_DO_TEST2_REQ = 0x63
-    M2M2_SENSOR_ADPD_COMMAND_DO_TEST2_RESP = 0x64
-    M2M2_SENSOR_ADPD_COMMAND_DO_TEST3_REQ = 0x65
-    M2M2_SENSOR_ADPD_COMMAND_DO_TEST3_RESP = 0x66
-    M2M2_SENSOR_ADPD_COMMAND_SET_PAUSE_REQ = 0x67
-    M2M2_SENSOR_ADPD_COMMAND_SET_PAUSE_RESP = 0x68
-    M2M2_SENSOR_ADPD_COMMUNICATION_MODE_REQ = 0x69
-    M2M2_SENSOR_ADPD_COMMUNICATION_MODE_RESP = 0x6A
-    M2M2_SENSOR_ADPD_COMMAND_SET_SLOT_ACTIVE_REQ = 0x6B
-    M2M2_SENSOR_ADPD_COMMAND_SET_SLOT_ACTIVE_RESP = 0x6C
-    M2M2_SENSOR_ADPD_COMMAND_GET_SLOT_ACTIVE_REQ = 0x6D
-    M2M2_SENSOR_ADPD_COMMAND_GET_SLOT_ACTIVE_RESP = 0x6F
-    M2M2_SENSOR_ADPD_COMMAND_GET_EFUSE_REQ = 0x70
-    M2M2_SENSOR_ADPD_COMMAND_GET_EFUSE_RESP = 0x71
-    M2M2_SENSOR_ADPD_COMMAND_CREATE_DCFG_REQ = 0x72
-    M2M2_SENSOR_ADPD_COMMAND_CREATE_DCFG_RESP = 0x73
-    M2M2_SENSOR_ADPD_COMMAND_SET_FS_REQ = 0x74
-    M2M2_SENSOR_ADPD_COMMAND_SET_FS_RESP = 0x75
-    M2M2_SENSOR_ADPD_COMMAND_DISABLE_SLOTS_REQ = 0x76
-    M2M2_SENSOR_ADPD_COMMAND_DISABLE_SLOTS_RESP = 0x77
-    M2M2_SENSOR_ADPD_COMMAND_AGC_ON_OFF_REQ = 0x78
-    M2M2_SENSOR_ADPD_COMMAND_AGC_ON_OFF_RESP = 0x79
-    M2M2_SENSOR_ADPD_COMMAND_AGC_RECALIBRATE_REQ = 0x7A
-    M2M2_SENSOR_ADPD_COMMAND_AGC_RECALIBRATE_RESP = 0x7B
-    M2M2_SENSOR_ADPD_COMMAND_AGC_INFO_REQ = 0x7C
-    M2M2_SENSOR_ADPD_COMMAND_AGC_INFO_RESP = 0x7D
+    M2M2_SENSOR_ADPD_COMMAND_SET_DARK_OFFSET_RESP = 0x4B
+    M2M2_SENSOR_ADPD_COMMAND_GET_CTR_REQ = 0x4C
+    M2M2_SENSOR_ADPD_COMMAND_GET_CTR_RESP = 0x4D
+    M2M2_SENSOR_ADPD_COMMAND_FLOATMODE_CFG_REQ = 0x4E
+    M2M2_SENSOR_ADPD_COMMAND_FLOATMODE_CFG_RESP = 0x4F
+    M2M2_SENSOR_ADPD_COMMAND_DO_TEST1_REQ = 0x60
+    M2M2_SENSOR_ADPD_COMMAND_DO_TEST1_RESP = 0x61
+    M2M2_SENSOR_ADPD_COMMAND_DO_TEST2_REQ = 0x62
+    M2M2_SENSOR_ADPD_COMMAND_DO_TEST2_RESP = 0x63
+    M2M2_SENSOR_ADPD_COMMAND_DO_TEST3_REQ = 0x64
+    M2M2_SENSOR_ADPD_COMMAND_DO_TEST3_RESP = 0x65
+    M2M2_SENSOR_ADPD_COMMAND_SET_PAUSE_REQ = 0x66
+    M2M2_SENSOR_ADPD_COMMAND_SET_PAUSE_RESP = 0x67
+    M2M2_SENSOR_ADPD_COMMUNICATION_MODE_REQ = 0x68
+    M2M2_SENSOR_ADPD_COMMUNICATION_MODE_RESP = 0x69
+    M2M2_SENSOR_ADPD_COMMAND_SET_SLOT_ACTIVE_REQ = 0x6A
+    M2M2_SENSOR_ADPD_COMMAND_SET_SLOT_ACTIVE_RESP = 0x6B
+    M2M2_SENSOR_ADPD_COMMAND_GET_SLOT_ACTIVE_REQ = 0x6C
+    M2M2_SENSOR_ADPD_COMMAND_GET_SLOT_ACTIVE_RESP = 0x6D
+    M2M2_SENSOR_ADPD_COMMAND_GET_EFUSE_REQ = 0x6E
+    M2M2_SENSOR_ADPD_COMMAND_GET_EFUSE_RESP = 0x6F
+    M2M2_SENSOR_ADPD_COMMAND_CREATE_DCFG_REQ = 0x70
+    M2M2_SENSOR_ADPD_COMMAND_CREATE_DCFG_RESP = 0x71
+    M2M2_SENSOR_ADPD_COMMAND_SET_FS_REQ = 0x72
+    M2M2_SENSOR_ADPD_COMMAND_SET_FS_RESP = 0x73
+    M2M2_SENSOR_ADPD_COMMAND_DISABLE_SLOTS_REQ = 0x74
+    M2M2_SENSOR_ADPD_COMMAND_DISABLE_SLOTS_RESP = 0x75
+    M2M2_SENSOR_ADPD_COMMAND_AGC_ON_OFF_REQ = 0x76
+    M2M2_SENSOR_ADPD_COMMAND_AGC_ON_OFF_RESP = 0x77
+    M2M2_SENSOR_ADPD_COMMAND_AGC_RECALIBRATE_REQ = 0x78
+    M2M2_SENSOR_ADPD_COMMAND_AGC_RECALIBRATE_RESP = 0x79
+    M2M2_SENSOR_ADPD_COMMAND_AGC_INFO_REQ = 0x7A
+    M2M2_SENSOR_ADPD_COMMAND_AGC_INFO_RESP = 0x7B
+    M2M2_SENSOR_ADPD_COMMAND_AGC_STATUS_REQ = 0x7C
+    M2M2_SENSOR_ADPD_COMMAND_AGC_STATUS_RESP = 0x7D
+    M2M2_SENSOR_ADPD_COMMAND_SET_EXT_DATA_STREAM_ODR_REQ = 0x7E
+    M2M2_SENSOR_ADPD_COMMAND_SET_EXT_DATA_STREAM_ODR_RESP = 0x7F
+    M2M2_SENSOR_ADPD_COMMAND_EXT_ADPD_DATA_STREAM = 0x80
+    M2M2_SENSOR_ADPD_COMMAND_UC_HR_ENAB_REQ = 0x82
+    M2M2_SENSOR_ADPD_COMMAND_UC_HR_ENAB_RESP = 0x83
 
 class M2M2_SENSOR_ADPD_SLOTMODE_ENUM_t(c_ubyte):
     M2M2_SENSOR_ADPD_SLOTMODE_DISABLED = 0x0
@@ -89,6 +97,7 @@ class M2M2_SENSOR_ADPD_DEVICE_ID_ENUM_t(c_ubyte):
     M2M2_SENSOR_ADPD4000_DEVICE_4000_IR = 0x2A
     M2M2_SENSOR_ADPD4000_DEVICE_4000_B = 0x2B
     M2M2_SENSOR_ADPD4000_DEVICE_4000_G_R_IR_B = 0x2C
+    M2M2_SENSOR_ADPD4000_DEVICE_4100_SWO2 = 0x2D
 
 class m2m2_sensor_adpd_resp_t(Structure):
     _pack_ = 1
@@ -104,7 +113,6 @@ class m2m2_sensor_adpd_testcommand_resp_t(Structure):
     _fields_ = [
               ("command", c_ubyte),
               ("status", c_ubyte),
-              ("deviceid", c_ushort),
               ("retdata", c_ulong * 3),
               ]
 
@@ -118,7 +126,7 @@ class adpd_data_header_t(Structure):
               ("timestamp", c_ulong),
               ]
 
-class adpdCl_data_header_t(Structure):
+class adpd4000_data_header_t(Structure):
     _pack_ = 1
     _fields_ = [
               ("command", c_ubyte),
@@ -129,7 +137,7 @@ class adpdCl_data_header_t(Structure):
               ("timestamp", c_ulong),
               ]
 
-class m2m2_sensor_adpdCl_data_stream_t(Structure):
+class m2m2_sensor_adpd4000_data_stream_t(Structure):
     _pack_ = 1
     _fields_ = [
               ("command", c_ubyte),
@@ -142,7 +150,7 @@ class m2m2_sensor_adpdCl_data_stream_t(Structure):
               ("adpddata", c_ubyte * 24),
               ]
 
-class m2m2_sensor_adpdCl_impulse_stream_t(Structure):
+class m2m2_sensor_adpd4000_impulse_stream_t(Structure):
     _pack_ = 1
     _fields_ = [
               ("command", c_ubyte),
@@ -270,7 +278,7 @@ class m2m2_sensor_adpd_slot_resp_t(Structure):
               ("slotB", c_ubyte),
               ]
 
-class m2m2_sensor_adpdCl_slot_resp_t(Structure):
+class m2m2_sensor_adpd4000_slot_resp_t(Structure):
     _pack_ = 1
     _fields_ = [
               ("command", c_ubyte),
@@ -281,7 +289,7 @@ class m2m2_sensor_adpdCl_slot_resp_t(Structure):
               ("channel_num", c_ubyte),
               ]
 
-class m2m2_sensor_adpdCl_slot_active_resp_t(Structure):
+class m2m2_sensor_adpd4000_slot_active_resp_t(Structure):
     _pack_ = 1
     _fields_ = [
               ("command", c_ubyte),
@@ -306,7 +314,7 @@ class m2m2_sensor_com_mode_resp_t(Structure):
               ("com_mode", c_ubyte),
               ]
 
-class m2m2_sensor_adpdCl_resp_t(Structure):
+class m2m2_sensor_adpd4000_resp_t(Structure):
     _pack_ = 1
     _fields_ = [
               ("command", c_ubyte),
@@ -335,6 +343,14 @@ class m2m2_sensor_fifo_status_bytes_t(Structure):
               ("level1_int", c_ushort),
               ("tia_ch1_int", c_ushort),
               ("tia_ch2_int", c_ushort),
+              ]
+
+class m2m2_sensor_adpd4000_set_fs_t(Structure):
+    _pack_ = 1
+    _fields_ = [
+              ("command", c_ubyte),
+              ("status", c_ubyte),
+              ("odr", c_ushort),
               ]
 
 class m2m2_adpd4k_slot_info_t(Structure):
@@ -372,38 +388,61 @@ def m2m2_adpd_dcfg_op_hdr_t(array_size):
               ]
   return m2m2_adpd_dcfg_op_hdr_t_internal()
 
-class m2m2_sensor_adpd4000_set_fs_t(Structure):
-    _pack_ = 1
-    _fields_ = [
-              ("command", c_ubyte),
-              ("status", c_ubyte),
-              ("odr", c_ushort),
-              ]
-              
-class m2m2_adpd_agc_cntrl_t(Structure):
-    _pack_ = 1
-    _fields_ = [
-    ("command", c_ubyte),
-    ("status", c_ubyte),
-    ("agc_cntrl", c_ubyte),
-                ]
-				
-class m2m2_adpd_agc_recalibrate_t(Structure):
-    _pack_ = 1
-    _fields_ = [
-    ("command", c_ubyte),
-    ("status", c_ubyte),				
-                ]
-
 class m2m2_adpd_agc_info_t(Structure):
     _pack_ = 1
     _fields_ = [
               ("command", c_ubyte),
               ("status", c_ubyte),
               ("led_index", c_ubyte),
-              ("green_ch1", c_ulong * 10),
-              ("green_ch2", c_ulong * 10),
+              ("led_ch1", c_ulong * 10),
+              ("led_ch2", c_ulong * 10),
               ("DC0_LEDcurrent", c_ushort),
               ("TIA_ch1_i", c_ushort),
               ("TIA_ch2_i", c_ushort),
               ]
+
+class m2m2_adpd_agc_cntrl_data_t(Structure):
+    _pack_ = 1
+    _fields_ = [
+              ("agc_cntrl", c_ubyte),
+              ("agc_type", c_ubyte),
+              ]
+
+def m2m2_adpd_agc_cntrl_t(array_size):
+  class m2m2_adpd_agc_cntrl_t_internal(Structure):
+    _pack_ = 1
+    _fields_ = [
+              ("command", c_ubyte),
+              ("status", c_ubyte),
+              ("num_ops", c_ubyte),
+              ("ops", m2m2_adpd_agc_cntrl_data_t * array_size),
+              ]
+  return m2m2_adpd_agc_cntrl_t_internal()
+
+class adpd_ext_data_stream_t(Structure):
+    _pack_ = 1
+    _fields_ = [
+              ("command", c_ubyte),
+              ("status", c_ubyte),
+              ("sequence_num", c_ulong),
+              ("data", c_ulong),
+              ("timestamp", c_ulong),
+              ]
+
+class adpd_ext_data_stream_odr_t(Structure):
+    _pack_ = 1
+    _fields_ = [
+              ("command", c_ubyte),
+              ("status", c_ubyte),
+              ("sampling_freq", c_ushort),
+              ]
+
+class m2m2_adpd_set_uc_hr_enab_t(Structure):
+    _pack_ = 1
+    _fields_ = [
+              ("command", c_ubyte),
+              ("status", c_ubyte),
+              ("control", c_ubyte),
+              ("slotNum", c_ushort),
+              ]
+

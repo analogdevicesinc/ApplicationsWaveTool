@@ -18,8 +18,9 @@ var classppg__application =
     [ "lcfg_read", "classppg__application.html#a3492d82da35a8ca0f7b3c40b93881083", null ],
     [ "lcfg_write", "classppg__application.html#a82c1db3a65bf15ee18fde3f40a6cd9c5", null ],
     [ "load_lcfg", "classppg__application.html#a585e88340765a9432a48fdd4126f06d9", null ],
-    [ "read_dcb_config", "classppg__application.html#ab61c15a9e7e9864db1d6d203c958f137", null ],
-    [ "write_dcb_config", "classppg__application.html#aff6dd1c9d0b712abf38a30000e39848c", null ],
+    [ "read_dcb_config", "classppg__application.html#a05d2ad0bec66adc559a8022c0267399d", null ],
+    [ "write_dcb_config", "classppg__application.html#aea949a3a5a5c7aab920175fe849e53b2", null ],
     [ "agc_stream", "classppg__application.html#a56b0654a398c32c3af11cadd4f1728d9", null ],
+    [ "hrv_stream", "classppg__application.html#af299180fab762d15b4aa1a2382b3b80e", null ],
     [ "ppg_stream", "classppg__application.html#a120b7f707fd02ae12401d098fd5a506d", null ]
 ];

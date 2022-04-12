@@ -3,7 +3,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "ad7156_application.cpp", "ad7156__application_8cpp.html", null ],
     [ "adpd4000_application.cpp", "adpd4000__application_8cpp.html", "adpd4000__application_8cpp" ],
     [ "adxl_application.cpp", "adxl__application_8cpp.html", null ],
-    [ "bcm_application.cpp", "bcm__application_8cpp.html", null ],
+    [ "bia_application.cpp", "bia__application_8cpp.html", null ],
     [ "callback.cpp", "callback_8cpp.html", null ],
     [ "display_application.cpp", "display__application_8cpp.html", null ],
     [ "ecg_application.cpp", "ecg__application_8cpp.html", null ],
@@ -19,5 +19,6 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "sqi_application.cpp", "sqi__application_8cpp.html", null ],
     [ "syncppg_application.cpp", "syncppg__application_8cpp.html", null ],
     [ "temperature_application.cpp", "temperature__application_8cpp.html", null ],
+    [ "user0_config_application.cpp", "user0__config__application_8cpp.html", null ],
     [ "watch.cpp", "watch_8cpp.html", "watch_8cpp" ]
 ];

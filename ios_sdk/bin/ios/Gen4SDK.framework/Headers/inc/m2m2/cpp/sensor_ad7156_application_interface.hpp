@@ -5,7 +5,9 @@
 
 #include "common_application_interface.hpp"
 #include "common_sensor_interface.hpp"
+#include "m2m2_core.hpp"
 #include <stdint.h>
+
 
 /* Explicitly enforce struct packing so that the nested structs and unions are laid out
     as expected. */
@@ -15,7 +17,7 @@
 #error "WARNING! Your compiler might not support '#pragma pack(1)'! \
   You must add an equivalent compiler directive to the file generator!"
 #endif  // defined __CC_ARM || defined __IAR_SYSTEMS_ICC__ || __clang__ || defined _MSC_VER || defined __GNUC__
-#pragma pack(push,1)
+#pragma pack(1)
 
 
 enum M2M2_SENSOR_AD7156_COMMAND_ENUM_t:uint8_t {
@@ -28,16 +30,16 @@ static_assert(sizeof(M2M2_SENSOR_AD7156_COMMAND_ENUM_t) == 1, "Enum 'M2M2_SENSOR
 struct m2m2_sensor_ad7156_resp_t {
   uint8_t  command; 
   uint8_t  status; 
-} ;
+};
 
 struct m2m2_sensor_ad7156_data_t {
-  uint8_t  command;
+  uint8_t  command; 
   uint8_t  status; 
   uint16_t  sequence_num; 
   uint32_t  timestamp; 
-  uint8_t  touch_position;//Top or Bottom
-  uint8_t  touch_value;
-} ;
+  uint16_t  ch1_cap; 
+  uint16_t  ch2_cap; 
+};
 
 // Reset struct packing outside of this file
 #pragma pack()

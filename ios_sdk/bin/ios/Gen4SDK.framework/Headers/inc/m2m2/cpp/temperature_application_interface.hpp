@@ -18,6 +18,7 @@
 #endif  // defined __CC_ARM || defined __IAR_SYSTEMS_ICC__ || __clang__ || defined _MSC_VER || defined __GNUC__
 #pragma pack(1)
 
+
 enum M2M2_TEMPERATURE_APP_CMD_ENUM_t:uint8_t {
   _M2M2_TEMPERATURE_APP_CMD_LOWEST = 96,
   M2M2_TEMPERATURE_APP_CMD_SET_FS_REQ = 98,
@@ -32,6 +33,18 @@ struct temperature_app_stream_t {
   uint32_t  nTS; 
   uint16_t  nTemperature1; 
   uint16_t  nTemperature2; 
+};
+
+struct temperature_app_dcb_lcfg_t {
+  uint8_t  command; 
+  uint8_t  status; 
+};
+
+struct temperature_app_lcfg_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint8_t  field; 
+  uint32_t  value[21]; 
 };
 
 // Reset struct packing outside of this file

@@ -2,8 +2,26 @@ var classtemperature__application =
 [
     [ "temperature_application", "classtemperature__application.html#accc8d16a658c4b629736cbf8310c37cc", null ],
     [ "~temperature_application", "classtemperature__application.html#a2fda6c45427d2a8e91091cc3e86dab92", null ],
+    [ "dcb_delete_config", "classtemperature__application.html#aa977d308540ddbaa347cba8466b7dd73", null ],
+    [ "dcb_set_lcfg", "classtemperature__application.html#aab6e5dc01a4c28bb191b0314540ea73f", null ],
     [ "get_address", "classtemperature__application.html#a9ef02a41e248c3168e038b91d0f4e128", null ],
     [ "get_dcfg", "classtemperature__application.html#a7a5c0603b58994cd760a77b6e957d52f", null ],
     [ "get_name", "classtemperature__application.html#a81c43ca525a7e2444aa91f5cfa2b20e0", null ],
-    [ "temperature_stream", "classtemperature__application.html#a9d305a05deb0ec2c712ee51b1fb36ceb", null ]
+    [ "read_dcb_config", "classtemperature__application.html#ab61c15a9e7e9864db1d6d203c958f137", null ],
+    [ "read_lcfg", "classtemperature__application.html#a4bc7a664c16f2341d65325d8ab1f89a5", null ],
+    [ "write_dcb_config", "classtemperature__application.html#a34a1dc9a6fb4e3362d9fc45e7eeca35b", null ],
+    [ "write_lcfg", "classtemperature__application.html#a4f2303b43c913d13ba22f7404a21c6ee", null ],
+    [ "temperature_stream", "classtemperature__application.html#a9d305a05deb0ec2c712ee51b1fb36ceb", null ],
+    [ "temperature_stream1", "classtemperature__application.html#a82494f4de10aa1dc1a22770c6377cc46", null ],
+    [ "temperature_stream10", "classtemperature__application.html#abf63b0b3656f240258faf6dfa2c28a8c", null ],
+    [ "temperature_stream11", "classtemperature__application.html#a1e0fee5a86470da03a986bf153209902", null ],
+    [ "temperature_stream12", "classtemperature__application.html#a7736f2076c198970d1efbad87afd5de7", null ],
+    [ "temperature_stream2", "classtemperature__application.html#aab70cad55d7e43cfaef247e8bfb45865", null ],
+    [ "temperature_stream3", "classtemperature__application.html#a4cb3a2671d753c6c1ab58534c4967462", null ],
+    [ "temperature_stream4", "classtemperature__application.html#aab8004403425d4f610ef58f47b32d1a6", null ],
+    [ "temperature_stream5", "classtemperature__application.html#a62484b0d6a0fadec739ff9ebcf8ec8db", null ],
+    [ "temperature_stream6", "classtemperature__application.html#aa6f9d2e31e1d79fcc54ea7e6c2b4124c", null ],
+    [ "temperature_stream7", "classtemperature__application.html#af00e503eac1f582f5197989bdd26b35a", null ],
+    [ "temperature_stream8", "classtemperature__application.html#ad734cd5b49f1300c47ddf01c1c92a036", null ],
+    [ "temperature_stream9", "classtemperature__application.html#a95a519090b5317ad098f14a27f3c7720", null ]
 ];

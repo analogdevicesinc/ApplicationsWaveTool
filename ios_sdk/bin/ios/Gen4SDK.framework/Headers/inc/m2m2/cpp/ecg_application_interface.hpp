@@ -19,6 +19,7 @@
 #endif  // defined __CC_ARM || defined __IAR_SYSTEMS_ICC__ || __clang__ || defined _MSC_VER || defined __GNUC__
 #pragma pack(1)
 
+
 enum M2M2_ECG_APP_CMD_ENUM_t:uint8_t {
   _M2M2_ECG_APP_CMD_LOWEST = 93,
   M2M2_ECG_APP_CMD_GET_ALGO_VENDOR_VERSION_REQ = 94,
@@ -58,7 +59,8 @@ struct ecg_app_lcfg_op_hdr_t {
   uint8_t  command; 
   uint8_t  status; 
   uint8_t  num_ops; 
-  ecg_app_lcfg_op_t  ops[0]; 
+  ecg_app_lcfg_op_t  ops[1]; // NOTE: THIS FIELD IS INTENDED TO BE OF VARIABLE LENGTH! 
+        // NOTE: Use offsetof(ecg_app_lcfg_op_hdr_t, ops) instead of sizeof(ecg_app_lcfg_op_hdr_t)
 };
 
 struct ecg_data_set_t {
@@ -84,9 +86,10 @@ struct ecg_app_sync_t {
   uint8_t  sync; 
 };
 
-struct _ecg_app_dcb_lcfg_t {
+struct ecg_app_dcb_lcfg_t {
   uint8_t  command; 
-  uint8_t  status;  
+  uint8_t  status; 
 };
+
 // Reset struct packing outside of this file
 #pragma pack()

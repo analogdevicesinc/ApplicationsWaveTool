@@ -8,6 +8,7 @@ var structadpd4000__stream__cb__data__t =
     [ "dark", "structadpd4000__stream__cb__data__t.html#a8a936a9db372e39b4a1e844f454a3955", null ],
     [ "impulse", "structadpd4000__stream__cb__data__t.html#acd1a53477aa56d7de0a82bcf1c578aaf", null ],
     [ "lit", "structadpd4000__stream__cb__data__t.html#a784a602a6c11cacd7c2804a389742739", null ],
+    [ "sample_num", "structadpd4000__stream__cb__data__t.html#acabf2416f107dcdf9a99a2357ec48b75", null ],
     [ "signal", "structadpd4000__stream__cb__data__t.html#a7c1b70b404e83272e560887ddd8daf14", null ],
     [ "timestamp", "structadpd4000__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999", null ]
 ];

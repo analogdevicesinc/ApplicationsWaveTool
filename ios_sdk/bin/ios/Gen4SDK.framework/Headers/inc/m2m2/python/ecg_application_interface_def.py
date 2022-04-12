@@ -6,6 +6,7 @@ from common_sensor_interface_def import *
 
 from m2m2_core_def import *
 
+
 class M2M2_ECG_APP_CMD_ENUM_t(c_ubyte):
     _M2M2_ECG_APP_CMD_LOWEST = 0x5D
     M2M2_ECG_APP_CMD_GET_ALGO_VENDOR_VERSION_REQ = 0x5E
@@ -76,7 +77,7 @@ class ecg_app_sync_t(Structure):
               ("status", c_ubyte),
               ("sync", c_ubyte),
               ]
-            
+
 class ecg_app_dcb_lcfg_t(Structure):
     _pack_ = 1
     _fields_ = [

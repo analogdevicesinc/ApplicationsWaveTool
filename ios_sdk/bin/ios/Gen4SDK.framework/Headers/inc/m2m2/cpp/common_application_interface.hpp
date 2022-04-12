@@ -3,10 +3,10 @@
 // #############################################################################
 #pragma once
 
+#include "dcb_interface.hpp"
 #include "m2m2_core.hpp"
 #include <stdint.h>
 
-#define MAXTXRXDCFGSIZE       (57)  /*  MAXTXRXDCFGSIZE is equal to MAXADPD4000DCBSIZE in dcb_interface.h */
 
 /* Explicitly enforce struct packing so that the nested structs and unions are laid out
     as expected. */
@@ -17,6 +17,9 @@
   You must add an equivalent compiler directive to the file generator!"
 #endif  // defined __CC_ARM || defined __IAR_SYSTEMS_ICC__ || __clang__ || defined _MSC_VER || defined __GNUC__
 #pragma pack(1)
+
+#define MAXTXRXDCFGSIZE	57
+#define PING_PKT_SZ	230
 
 enum M2M2_APP_COMMON_STATUS_ENUM_t:uint8_t {
   M2M2_APP_COMMON_STATUS_OK = 0,
@@ -31,9 +34,34 @@ enum M2M2_APP_COMMON_STATUS_ENUM_t:uint8_t {
   M2M2_APP_COMMON_STATUS_SUBSCRIBER_ADDED = 9,
   M2M2_APP_COMMON_STATUS_SUBSCRIBER_REMOVED = 10,
   M2M2_APP_COMMON_STATUS_SUBSCRIBER_COUNT_DECREMENT = 11,
-  __M2M2_APP_COMMON_STATUS_HIGHEST = 32,
+  _M2M2_APP_COMMON_STATUS_ENUM_t__M2M2_APP_COMMON_STATUS_HIGHEST = 32,
 };
 static_assert(sizeof(M2M2_APP_COMMON_STATUS_ENUM_t) == 1, "Enum 'M2M2_APP_COMMON_STATUS_ENUM_t' has an incorrect size!");
+
+enum M2M2_APP_COMMON_ALARM_STATUS_ENUM_t:uint8_t {
+  M2M2_APP_COMMON_ALARM_STATUS_BATTERY_LEVEL_LOW = 0,
+  M2M2_APP_COMMON_ALARM_STATUS_BATTERY_LEVEL_CRITICAL = 1,
+  M2M2_APP_COMMON_ALARM_STATUS_BATTERY_LEVEL_FULL = 2,
+  M2M2_APP_COMMON_ALARM_STATUS_USER_CONFIG_LOG_ENABLED = 3,
+  M2M2_APP_COMMON_ALARM_STATUS_ENABLE_USER_CONFIG_LOG_FAILED = 4,
+  M2M2_APP_COMMON_ALARM_STATUS_USER_CONFIG_LOG_DISABLED = 5,
+  M2M2_APP_COMMON_ALARM_STATUS_DISABLE_USER_CONFIG_LOG_FAILED = 6,
+  M2M2_APP_COMMON_ALARM_STATUS_DCB_CONFIG_LOG_ENABLED = 7,
+  M2M2_APP_COMMON_ALARM_STATUS_ENABLE_DCB_CONFIG_LOG_FAILED = 8,
+  M2M2_APP_COMMON_ALARM_STATUS_DCB_CONFIG_LOG_DISABLED = 9,
+  M2M2_APP_COMMON_ALARM_STATUS_DISABLE_DCB_CONFIG_LOG_FAILED = 10,
+  M2M2_APP_COMMON_ALARM_STATUS_LOW_TOUCH_LOGGING_ALREADY_STARTED = 11,
+  M2M2_APP_COMMON_ALARM_STATUS_CONFIG_FILE_NOT_FOUND = 12,
+  M2M2_APP_COMMON_ALARM_STATUS_CONFIG_FILE_READ_ERR = 13,
+  M2M2_APP_COMMON_ALARM_STATUS_LOW_TOUCH_MEMORY_FULL_ERR = 14,
+  M2M2_APP_COMMON_ALARM_STATUS_LOW_TOUCH_MAX_FILE_ERR = 15,
+  M2M2_APP_COMMON_ALARM_STATUS_FS_STOP_LOGGING = 16,
+  M2M2_APP_COMMON_ALARM_STATUS_FS_MEMORY_FULL = 17,
+  M2M2_APP_COMMON_ALARM_STATUS_FS_BATTERY_CRITICAL = 18,
+  M2M2_APP_COMMON_ALARM_STATUS_FS_PWR_STATE_SHUTDOWN = 19,
+  _M2M2_APP_COMMON_ALARM_STATUS_ENUM_t__M2M2_APP_COMMON_ALARM_STATUS_HIGHEST = 32,
+};
+static_assert(sizeof(M2M2_APP_COMMON_ALARM_STATUS_ENUM_t) == 1, "Enum 'M2M2_APP_COMMON_ALARM_STATUS_ENUM_t' has an incorrect size!");
 
 enum M2M2_APP_COMMON_CMD_ENUM_t:uint8_t {
   M2M2_APP_COMMON_CMD_GET_VERSION_REQ = 0,
@@ -64,7 +92,9 @@ enum M2M2_APP_COMMON_CMD_ENUM_t:uint8_t {
   M2M2_APP_COMMON_CMD_WRITE_LCFG_RESP = 25,
   M2M2_APP_COMMON_CMD_PING_REQ = 26,
   M2M2_APP_COMMON_CMD_PING_RESP = 27,
-  __M2M2_APP_COMMON_CMD_HIGHEST = 32,
+  M2M2_APP_COMMON_CMD_ALARM_NOTIFICATION = 28,
+  M2M2_APP_COMMON_CMD_HOST_INFO_RESP = 29,
+  _M2M2_APP_COMMON_CMD_ENUM_t__M2M2_APP_COMMON_CMD_HIGHEST = 32,
 };
 static_assert(sizeof(M2M2_APP_COMMON_CMD_ENUM_t) == 1, "Enum 'M2M2_APP_COMMON_CMD_ENUM_t' has an incorrect size!");
 
@@ -81,8 +111,8 @@ struct m2m2_app_common_ver_req_t {
 struct m2m2_app_common_ping_t {
   uint8_t  command; 
   uint8_t  status; 
-  uint32_t  sequence_num;
-  //uint8_t  data[PING_PKT_SZ];
+  uint32_t  sequence_num; 
+  uint8_t  data[230]; 
 };
 
 struct m2m2_app_common_version_t {
@@ -98,7 +128,7 @@ struct m2m2_app_common_version_t {
 struct m2m2_app_common_status_t {
   uint8_t  command; 
   uint8_t  status; 
-  M2M2_ADDR_ENUM_t  stream; 
+  uint16_t  stream; 
   uint8_t  num_subscribers; 
   uint8_t  num_start_reqs; 
 };
@@ -106,15 +136,15 @@ struct m2m2_app_common_status_t {
 struct m2m2_app_common_sub_op_t {
   uint8_t  command; 
   uint8_t  status; 
-  M2M2_ADDR_ENUM_t  stream; 
+  uint16_t  stream; 
 };
 
 struct m2m2_sensor_dcfg_data_t {
   uint8_t  command; 
   uint8_t  status; 
   uint8_t  size; 
-  uint8_t  num_tx_pkts;
-  uint8_t  dcfgdata[228]; // MAXTXRXDCFGSIZE * sizeof(uint32_t) 
+  uint8_t  num_tx_pkts; 
+  uint32_t  dcfgdata[57]; 
 };
 
 struct m2m2_app_lcfg_data_t {
@@ -128,6 +158,12 @@ struct _m2m2_app_data_stream_hdr_t {
   uint8_t  command; 
   uint8_t  status; 
   uint16_t  sequence_num; 
+};
+
+struct m2m2_app_common_sync_timer_hdr_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint32_t  enable; 
 };
 
 // Reset struct packing outside of this file

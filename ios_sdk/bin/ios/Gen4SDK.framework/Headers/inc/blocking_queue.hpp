@@ -84,6 +84,12 @@ class blocking_queue {
     // cv_.notify_all();
   }
 
+  void clear()
+  {
+	  std::queue<T> empty;
+	  std::swap(queue_, empty);
+  }
+
   T pop() {
 #ifdef SWIG_PY
     // This is needed so that Python threads can continue to run properly if we end up blocking from within C++

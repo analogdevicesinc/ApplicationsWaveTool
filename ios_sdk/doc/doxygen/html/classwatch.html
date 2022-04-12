@@ -175,6 +175,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a969796aab0d680f75505bd291a071dca"><td class="memItemLeft" align="right" valign="top">M2M2_ADDR_ENUM_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a969796aab0d680f75505bd291a071dca">get_stream_address</a> (void)</td></tr>
 <tr class="memdesc:a969796aab0d680f75505bd291a071dca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the M2M2 address assigned to the SDK.  <a href="classwatch.html#a969796aab0d680f75505bd291a071dca">More...</a><br /></td></tr>
 <tr class="separator:a969796aab0d680f75505bd291a071dca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c731c737eaf87da52804c7d5acb8979"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a8c731c737eaf87da52804c7d5acb8979">setLowTouchStatus</a> (bool status)</td></tr>
+<tr class="separator:a8c731c737eaf87da52804c7d5acb8979"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abee833763f258653db3e33934486a83f"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#abee833763f258653db3e33934486a83f">start_syncppg</a> (<a class="el" href="classppg__stream__callback.html">ppg_stream_callback</a> &amp;ppg_stream_cb, <a class="el" href="classsyncppg__stream__callback.html">syncppg_stream_callback</a> &amp;sync_stream_cb)</td></tr>
 <tr class="separator:abee833763f258653db3e33934486a83f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10d1cd43da4ac7157e8eb783e9a2c535"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a10d1cd43da4ac7157e8eb783e9a2c535">stop_syncppg</a> (void)</td></tr>
@@ -215,6 +217,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9d1af98c72ef3e808828959c8493acd6"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a9d1af98c72ef3e808828959c8493acd6">stop_adpd4000_ir</a> (void)</td></tr>
 <tr class="memdesc:a9d1af98c72ef3e808828959c8493acd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the ADPD4000 stream.  <a href="classwatch.html#a9d1af98c72ef3e808828959c8493acd6">More...</a><br /></td></tr>
 <tr class="separator:a9d1af98c72ef3e808828959c8493acd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a618d079417c8abc8dd028f8c77375177"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a618d079417c8abc8dd028f8c77375177">start_adpd4000_g_r_ir_b</a> (<a class="el" href="classadpd4000__stream__callback.html">adpd4000_stream_callback</a> &amp;stream_cb)</td></tr>
+<tr class="memdesc:a618d079417c8abc8dd028f8c77375177"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the ADPD4000 stream with default configuration.  <a href="classwatch.html#a618d079417c8abc8dd028f8c77375177">More...</a><br /></td></tr>
+<tr class="separator:a618d079417c8abc8dd028f8c77375177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeda4d91746382a23ff406f9b4668219f"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#aeda4d91746382a23ff406f9b4668219f">stop_adpd4000_g_r_ir_b</a> (void)</td></tr>
+<tr class="memdesc:aeda4d91746382a23ff406f9b4668219f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the ADPD4000 stream.  <a href="classwatch.html#aeda4d91746382a23ff406f9b4668219f">More...</a><br /></td></tr>
+<tr class="separator:aeda4d91746382a23ff406f9b4668219f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a484d32131e4585c16eb1a42c42481272"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a484d32131e4585c16eb1a42c42481272">start_ecg</a> (<a class="el" href="classecg__stream__callback.html">ecg_stream_callback</a> &amp;stream_cb)</td></tr>
 <tr class="memdesc:a484d32131e4585c16eb1a42c42481272"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the ECG stream with a default configuration.  <a href="classwatch.html#a484d32131e4585c16eb1a42c42481272">More...</a><br /></td></tr>
 <tr class="separator:a484d32131e4585c16eb1a42c42481272"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -233,12 +241,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a48197a5fea0d2cd8987901eb3809a6c3"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a48197a5fea0d2cd8987901eb3809a6c3">stop_eda</a> (void)</td></tr>
 <tr class="memdesc:a48197a5fea0d2cd8987901eb3809a6c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the EDA stream.  <a href="classwatch.html#a48197a5fea0d2cd8987901eb3809a6c3">More...</a><br /></td></tr>
 <tr class="separator:a48197a5fea0d2cd8987901eb3809a6c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a667f0256e3a66d31d7d29aed91792b7a"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a667f0256e3a66d31d7d29aed91792b7a">start_bcm</a> (<a class="el" href="classbcm__stream__callback.html">bcm_stream_callback</a> &amp;stream_cb)</td></tr>
-<tr class="memdesc:a667f0256e3a66d31d7d29aed91792b7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the BCM stream with a default configuration.  <a href="classwatch.html#a667f0256e3a66d31d7d29aed91792b7a">More...</a><br /></td></tr>
-<tr class="separator:a667f0256e3a66d31d7d29aed91792b7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a225b6916d5b3dbb063864ecce2f0cc0d"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a225b6916d5b3dbb063864ecce2f0cc0d">stop_bcm</a> (void)</td></tr>
-<tr class="memdesc:a225b6916d5b3dbb063864ecce2f0cc0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the BCM stream.  <a href="classwatch.html#a225b6916d5b3dbb063864ecce2f0cc0d">More...</a><br /></td></tr>
-<tr class="separator:a225b6916d5b3dbb063864ecce2f0cc0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2402deca7f74aee5013c2c1b4468de37"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a2402deca7f74aee5013c2c1b4468de37">start_bia</a> (<a class="el" href="classbia__stream__callback.html">bia_stream_callback</a> &amp;stream_cb)</td></tr>
+<tr class="memdesc:a2402deca7f74aee5013c2c1b4468de37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the BIA stream with a default configuration.  <a href="classwatch.html#a2402deca7f74aee5013c2c1b4468de37">More...</a><br /></td></tr>
+<tr class="separator:a2402deca7f74aee5013c2c1b4468de37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c078d777453e306c128f7fa3d9429c3"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a8c078d777453e306c128f7fa3d9429c3">stop_bia</a> (void)</td></tr>
+<tr class="memdesc:a8c078d777453e306c128f7fa3d9429c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the BIA stream.  <a href="classwatch.html#a8c078d777453e306c128f7fa3d9429c3">More...</a><br /></td></tr>
+<tr class="separator:a8c078d777453e306c128f7fa3d9429c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1ea84dad43e508488305f433015978e"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#ac1ea84dad43e508488305f433015978e">start_hrv</a> (<a class="el" href="classhrv__stream__callback.html">hrv_stream_callback</a> &amp;stream_cb)</td></tr>
+<tr class="memdesc:ac1ea84dad43e508488305f433015978e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the HRV stream with a default configuration.  <a href="classwatch.html#ac1ea84dad43e508488305f433015978e">More...</a><br /></td></tr>
+<tr class="separator:ac1ea84dad43e508488305f433015978e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f48d35e27f58d1d43a26f17e4fa3361"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a4f48d35e27f58d1d43a26f17e4fa3361">stop_hrv</a> (void)</td></tr>
+<tr class="memdesc:a4f48d35e27f58d1d43a26f17e4fa3361"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the HRV stream.  <a href="classwatch.html#a4f48d35e27f58d1d43a26f17e4fa3361">More...</a><br /></td></tr>
+<tr class="separator:a4f48d35e27f58d1d43a26f17e4fa3361"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f75dc0046fefbeed7e61fb5297d7d14"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a0f75dc0046fefbeed7e61fb5297d7d14">start_pedometer</a> (<a class="el" href="classpedometer__stream__callback.html">pedometer_stream_callback</a> &amp;stream_cb)</td></tr>
 <tr class="memdesc:a0f75dc0046fefbeed7e61fb5297d7d14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the Pedometer stream with a default configuration.  <a href="classwatch.html#a0f75dc0046fefbeed7e61fb5297d7d14">More...</a><br /></td></tr>
 <tr class="separator:a0f75dc0046fefbeed7e61fb5297d7d14"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -250,7 +264,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8a304710234819be90ba659587e09a4f"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a8a304710234819be90ba659587e09a4f">stop_battery</a> (void)</td></tr>
 <tr class="separator:a8a304710234819be90ba659587e09a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a484b422b92f1979e2687ad42e27b46f5"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a484b422b92f1979e2687ad42e27b46f5">start_log_adxl</a> (void)</td></tr>
-<tr class="memdesc:a484b422b92f1979e2687ad42e27b46f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the HRV stream with a default configuration. &zwj;/ ret::err_status watch::start_hrv(hrv_stream_callback &amp;stream_cb) { ret::sdk_status status; <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7">m2m2_application::APP_COMMON_STATUS_ENUM_t</a> stream_start_status; switch (<a class="el" href="m2m2__application_8cpp.html#a7bf8bbe5d852b2c4421207c017f08d80">get_device_id()</a>) { case ret::device_identifiers::ADPD107WATCH: case ret::device_identifiers::SENSORBOARD3: status = this-&gt;adpd_app.load_cfg(adpd_application::ADPD_DEVICE_107); if (status == ret::SDK_OK) { status = this-&gt;ppg_app.load_lcfg(ppg_application::PPG_LCFG_ID_ADPD107); } else { return ret::LOAD_CFG_FAILED; } break; case ret::device_identifiers::ADPD185WATCH: status = this-&gt;adpd_app.load_cfg(adpd_application::ADPD_DEVICE_185); if (status == ret::SDK_OK) { status = this-&gt;ppg_app.load_lcfg(ppg_application::PPG_LCFG_ID_ADPD185); } else { return ret::LOAD_CFG_FAILED; } break; case ret::device_identifiers::ADPD188WATCH: status = this-&gt;adpd_app.load_cfg(adpd_application::ADPD_DEVICE_188); if (status == ret::SDK_OK) { status = this-&gt;ppg_app.load_lcfg(ppg_application::PPG_LCFG_ID_ADPD188); } else { return ret::LOAD_CFG_FAILED; } break; case ret::device_identifiers::ADPD107CHESTSTRAP: std::cerr &lt;&lt; "ADI SDK:: Error! HRV not supported for ADPD107CHESTSTRAP: " &lt;&lt; std::endl; return ret::OPERATION_NOT_SUPPORTED_FOR_THIS_DEVICE; default: std::cerr &lt;&lt; "ADI SDK:: Error! Unknown Device Id: " &lt;&lt; std::endl; return ret::UNKNOWN_DEVICE; } if (status == ret::SDK_OK) { status = this-&gt;adpd_app.calibrate_clock(); } else { return ret::PPG_LOAD_LCFG_FAILED; } if (status == ret::SDK_OK) { status = this-&gt;ppg_app.hrv_stream.subscribe(stream_cb); } else { return ret::CLOCK_CALIBRATE_FAILED; } if (status == ret::SDK_OK) { stream_start_status = this-&gt;adpd_app.adpd_stream.start(); } else { return ret::SUBSCRIBE_FAILED; } if (stream_start_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a7e722bf31624995fc6a2daca6d9b2707">m2m2_application::APP_COMMON_STATUS_ERROR</a> || stream_start_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a10b5085c275410eb41c968708f2e21f5">m2m2_application::APP_COMMON_STATUS_STREAM_NOT_STARTED</a>) { return ret::STREAM_START_FAILED; } else { stream_start_status = this-&gt;adxl_app.adxl_stream.start(); } if (stream_start_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a7e722bf31624995fc6a2daca6d9b2707">m2m2_application::APP_COMMON_STATUS_ERROR</a> || stream_start_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a10b5085c275410eb41c968708f2e21f5">m2m2_application::APP_COMMON_STATUS_STREAM_NOT_STARTED</a>) { return ret::STREAM_START_FAILED; } else { stream_start_status = this-&gt;ppg_app.ppg_stream.start(); } if (stream_start_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a7e722bf31624995fc6a2daca6d9b2707">m2m2_application::APP_COMMON_STATUS_ERROR</a> || stream_start_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a10b5085c275410eb41c968708f2e21f5">m2m2_application::APP_COMMON_STATUS_STREAM_NOT_STARTED</a>) { return ret::STREAM_START_FAILED; } else { return ret::STREAM_STARTED; } }.  <a href="classwatch.html#a484b422b92f1979e2687ad42e27b46f5">More...</a><br /></td></tr>
+<tr class="memdesc:a484b422b92f1979e2687ad42e27b46f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the Logging of ADXL stream.  <a href="classwatch.html#a484b422b92f1979e2687ad42e27b46f5">More...</a><br /></td></tr>
 <tr class="separator:a484b422b92f1979e2687ad42e27b46f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae92ba36ccaf99371ec813db848f483f3"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#ae92ba36ccaf99371ec813db848f483f3">stop_log_adxl</a> (void)</td></tr>
 <tr class="memdesc:ae92ba36ccaf99371ec813db848f483f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the Logging of ADXL stream.  <a href="classwatch.html#ae92ba36ccaf99371ec813db848f483f3">More...</a><br /></td></tr>
@@ -283,12 +297,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0cbb961523ab22a503be60935d2253a8"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a0cbb961523ab22a503be60935d2253a8">stop_log_pedometer</a> (void)</td></tr>
 <tr class="memdesc:a0cbb961523ab22a503be60935d2253a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the logging of pedometer stream.  <a href="classwatch.html#a0cbb961523ab22a503be60935d2253a8">More...</a><br /></td></tr>
 <tr class="separator:a0cbb961523ab22a503be60935d2253a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7e71427d8c2d4f96f5247baf5727c98"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#ad7e71427d8c2d4f96f5247baf5727c98">start_log_bcm</a> (void)</td></tr>
-<tr class="memdesc:ad7e71427d8c2d4f96f5247baf5727c98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the logging of BCM stream.  <a href="classwatch.html#ad7e71427d8c2d4f96f5247baf5727c98">More...</a><br /></td></tr>
-<tr class="separator:ad7e71427d8c2d4f96f5247baf5727c98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07af77094067c8d9b8e80eda76f4fd41"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a07af77094067c8d9b8e80eda76f4fd41">stop_log_bcm</a> (void)</td></tr>
-<tr class="memdesc:a07af77094067c8d9b8e80eda76f4fd41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the logging of BCM stream.  <a href="classwatch.html#a07af77094067c8d9b8e80eda76f4fd41">More...</a><br /></td></tr>
-<tr class="separator:a07af77094067c8d9b8e80eda76f4fd41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae820f20ed9c8220e4c39af18d867723b"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#ae820f20ed9c8220e4c39af18d867723b">start_log_bia</a> (void)</td></tr>
+<tr class="memdesc:ae820f20ed9c8220e4c39af18d867723b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the logging of BIA stream.  <a href="classwatch.html#ae820f20ed9c8220e4c39af18d867723b">More...</a><br /></td></tr>
+<tr class="separator:ae820f20ed9c8220e4c39af18d867723b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a894e74cdba3a3a5c59fdeaf77e8a8847"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a894e74cdba3a3a5c59fdeaf77e8a8847">stop_log_bia</a> (void)</td></tr>
+<tr class="memdesc:a894e74cdba3a3a5c59fdeaf77e8a8847"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop the logging of BIA stream.  <a href="classwatch.html#a894e74cdba3a3a5c59fdeaf77e8a8847">More...</a><br /></td></tr>
+<tr class="separator:a894e74cdba3a3a5c59fdeaf77e8a8847"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a261f1592e5e41fd3e32ae1017a3c7afb"><td class="memItemLeft" align="right" valign="top">ret::err_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a261f1592e5e41fd3e32ae1017a3c7afb">start_log_battery</a> (void)</td></tr>
 <tr class="memdesc:a261f1592e5e41fd3e32ae1017a3c7afb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the logging of battery stream.  <a href="classwatch.html#a261f1592e5e41fd3e32ae1017a3c7afb">More...</a><br /></td></tr>
 <tr class="separator:a261f1592e5e41fd3e32ae1017a3c7afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -358,8 +372,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a52fa3d25e4977def25889d715b168449"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa47ed5f861ca68bc1ff770742007c932"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpedometer__application.html">pedometer_application</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#aa47ed5f861ca68bc1ff770742007c932">ped_app</a></td></tr>
 <tr class="separator:aa47ed5f861ca68bc1ff770742007c932"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c91aac66673b0caaa8762689e447d2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classbcm__application.html">bcm_application</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a0c91aac66673b0caaa8762689e447d2a">bcm_app</a></td></tr>
-<tr class="separator:a0c91aac66673b0caaa8762689e447d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0312b8633dfd75fcc62e6165f85aff17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classbia__application.html">bia_application</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a0312b8633dfd75fcc62e6165f85aff17">bia_app</a></td></tr>
+<tr class="separator:a0312b8633dfd75fcc62e6165f85aff17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c0bfba53503aabc53b9df3763190320"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classdisplay__application.html">display_application</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a5c0bfba53503aabc53b9df3763190320">display_app</a></td></tr>
 <tr class="separator:a5c0bfba53503aabc53b9df3763190320"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd365a6626f0592d55c7d7cee5bf1895"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsqi__application.html">sqi_application</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#abd365a6626f0592d55c7d7cee5bf1895">sqi_app</a></td></tr>
@@ -368,10 +382,12 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a797b3c03c42a6ff38f55b7cc71d7fd20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4148f649beb4c3bca564cf5289c75ec8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classad7156__application.html">ad7156_application</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a4148f649beb4c3bca564cf5289c75ec8">ad7156_app</a></td></tr>
 <tr class="separator:a4148f649beb4c3bca564cf5289c75ec8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4afbd822fc6e8a11b09334a11f4af0e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classuser0__config__application.html">user0_config_application</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#a4afbd822fc6e8a11b09334a11f4af0e4">user_config_app</a></td></tr>
+<tr class="separator:a4afbd822fc6e8a11b09334a11f4af0e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:aa39bcc58da742ecfe7d2cb64b28b49aa"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#aa39bcc58da742ecfe7d2cb64b28b49aa">SDK_version</a> = &quot;4.0.5&quot;</td></tr>
+<tr class="memitem:aa39bcc58da742ecfe7d2cb64b28b49aa"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classwatch.html#aa39bcc58da742ecfe7d2cb64b28b49aa">SDK_version</a> = &quot;5.2.0&quot;</td></tr>
 <tr class="separator:aa39bcc58da742ecfe7d2cb64b28b49aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -758,6 +774,24 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a8c731c737eaf87da52804c7d5acb8979"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c731c737eaf87da52804c7d5acb8979">&#9670;&nbsp;</a></span>setLowTouchStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setLowTouchStatus </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>status</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ae7df86eba7821b00b4561e5ca4586904"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae7df86eba7821b00b4561e5ca4586904">&#9670;&nbsp;</a></span>start_adpd4000()</h2>
 
@@ -806,6 +840,26 @@ Static Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">ret::err_status start_adpd4000_g </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classadpd4000__stream__callback.html">adpd4000_stream_callback</a> &amp;&#160;</td>
+          <td class="paramname"><em>stream_cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start the ADPD4000 stream with default configuration. </p>
+
+</div>
+</div>
+<a id="a618d079417c8abc8dd028f8c77375177"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a618d079417c8abc8dd028f8c77375177">&#9670;&nbsp;</a></span>start_adpd4000_g_r_ir_b()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ret::err_status start_adpd4000_g_r_ir_b </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classadpd4000__stream__callback.html">adpd4000_stream_callback</a> &amp;&#160;</td>
           <td class="paramname"><em>stream_cb</em></td><td>)</td>
@@ -896,23 +950,23 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a667f0256e3a66d31d7d29aed91792b7a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a667f0256e3a66d31d7d29aed91792b7a">&#9670;&nbsp;</a></span>start_bcm()</h2>
+<a id="a2402deca7f74aee5013c2c1b4468de37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2402deca7f74aee5013c2c1b4468de37">&#9670;&nbsp;</a></span>start_bia()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ret::err_status start_bcm </td>
+          <td class="memname">ret::err_status start_bia </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classbcm__stream__callback.html">bcm_stream_callback</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classbia__stream__callback.html">bia_stream_callback</a> &amp;&#160;</td>
           <td class="paramname"><em>stream_cb</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Start the BCM stream with a default configuration. </p>
+<p>Start the BIA stream with a default configuration. </p>
 
 </div>
 </div>
@@ -953,6 +1007,26 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Start the EDA stream with a default configuration. </p>
+
+</div>
+</div>
+<a id="ac1ea84dad43e508488305f433015978e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1ea84dad43e508488305f433015978e">&#9670;&nbsp;</a></span>start_hrv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ret::err_status start_hrv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classhrv__stream__callback.html">hrv_stream_callback</a> &amp;&#160;</td>
+          <td class="paramname"><em>stream_cb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start the HRV stream with a default configuration. </p>
 
 </div>
 </div>
@@ -1056,10 +1130,6 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Start the HRV stream with a default configuration. &zwj;/ ret::err_status watch::start_hrv(hrv_stream_callback &amp;stream_cb) { ret::sdk_status status; <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7">m2m2_application::APP_COMMON_STATUS_ENUM_t</a> stream_start_status; switch (<a class="el" href="m2m2__application_8cpp.html#a7bf8bbe5d852b2c4421207c017f08d80">get_device_id()</a>) { case ret::device_identifiers::ADPD107WATCH: case ret::device_identifiers::SENSORBOARD3: status = this-&gt;adpd_app.load_cfg(adpd_application::ADPD_DEVICE_107); if (status == ret::SDK_OK) { status = this-&gt;ppg_app.load_lcfg(ppg_application::PPG_LCFG_ID_ADPD107); } else { return ret::LOAD_CFG_FAILED; } break; case ret::device_identifiers::ADPD185WATCH: status = this-&gt;adpd_app.load_cfg(adpd_application::ADPD_DEVICE_185); if (status == ret::SDK_OK) { status = this-&gt;ppg_app.load_lcfg(ppg_application::PPG_LCFG_ID_ADPD185); } else { return ret::LOAD_CFG_FAILED; } break; case ret::device_identifiers::ADPD188WATCH: status = this-&gt;adpd_app.load_cfg(adpd_application::ADPD_DEVICE_188); if (status == ret::SDK_OK) { status = this-&gt;ppg_app.load_lcfg(ppg_application::PPG_LCFG_ID_ADPD188); } else { return ret::LOAD_CFG_FAILED; } break; case ret::device_identifiers::ADPD107CHESTSTRAP: std::cerr &lt;&lt; "ADI SDK:: Error! HRV not supported for ADPD107CHESTSTRAP: " &lt;&lt; std::endl; return ret::OPERATION_NOT_SUPPORTED_FOR_THIS_DEVICE; default: std::cerr &lt;&lt; "ADI SDK:: Error! Unknown Device Id: " &lt;&lt; std::endl; return ret::UNKNOWN_DEVICE; } if (status == ret::SDK_OK) { status = this-&gt;adpd_app.calibrate_clock(); } else { return ret::PPG_LOAD_LCFG_FAILED; } if (status == ret::SDK_OK) { status = this-&gt;ppg_app.hrv_stream.subscribe(stream_cb); } else { return ret::CLOCK_CALIBRATE_FAILED; } if (status == ret::SDK_OK) { stream_start_status = this-&gt;adpd_app.adpd_stream.start(); } else { return ret::SUBSCRIBE_FAILED; } if (stream_start_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a7e722bf31624995fc6a2daca6d9b2707">m2m2_application::APP_COMMON_STATUS_ERROR</a> || stream_start_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a10b5085c275410eb41c968708f2e21f5">m2m2_application::APP_COMMON_STATUS_STREAM_NOT_STARTED</a>) { return ret::STREAM_START_FAILED; } else { stream_start_status = this-&gt;adxl_app.adxl_stream.start(); } if (stream_start_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a7e722bf31624995fc6a2daca6d9b2707">m2m2_application::APP_COMMON_STATUS_ERROR</a> || stream_start_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a10b5085c275410eb41c968708f2e21f5">m2m2_application::APP_COMMON_STATUS_STREAM_NOT_STARTED</a>) { return ret::STREAM_START_FAILED; } else { stream_start_status = this-&gt;ppg_app.ppg_stream.start(); } if (stream_start_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a7e722bf31624995fc6a2daca6d9b2707">m2m2_application::APP_COMMON_STATUS_ERROR</a> || stream_start_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a10b5085c275410eb41c968708f2e21f5">m2m2_application::APP_COMMON_STATUS_STREAM_NOT_STARTED</a>) { return ret::STREAM_START_FAILED; } else { return ret::STREAM_STARTED; } }. </p>
-<p>/*!</p>
-<p>Stop the HRV stream. &zwj;/ ret::err_status watch::stop_hrv(void) { <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7">m2m2_application::APP_COMMON_STATUS_ENUM_t</a> stream_stop_status; ret::sdk_status status; switch (<a class="el" href="m2m2__application_8cpp.html#a7bf8bbe5d852b2c4421207c017f08d80">get_device_id()</a>) { case ret::device_identifiers::ADPD107WATCH: case ret::device_identifiers::SENSORBOARD3: case ret::device_identifiers::ADPD185WATCH: case ret::device_identifiers::ADPD188WATCH: stream_stop_status = this-&gt;adpd_app.adpd_stream.stop(); if (stream_stop_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a7e722bf31624995fc6a2daca6d9b2707">m2m2_application::APP_COMMON_STATUS_ERROR</a> || stream_stop_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7aaa97ae51a61467f5beb61a6758f61d1a">m2m2_application::APP_COMMON_STATUS_STREAM_NOT_STOPPED</a>) { return ret::STREAM_STOP_FAILED; } else { stream_stop_status = this-&gt;adxl_app.adxl_stream.stop(); } if (stream_stop_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a7e722bf31624995fc6a2daca6d9b2707">m2m2_application::APP_COMMON_STATUS_ERROR</a> || stream_stop_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7aaa97ae51a61467f5beb61a6758f61d1a">m2m2_application::APP_COMMON_STATUS_STREAM_NOT_STOPPED</a>) { return ret::STREAM_STOP_FAILED; } else { stream_stop_status = this-&gt;ppg_app.ppg_stream.stop(); } if (stream_stop_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a7e722bf31624995fc6a2daca6d9b2707">m2m2_application::APP_COMMON_STATUS_ERROR</a> || stream_stop_status == <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7aaa97ae51a61467f5beb61a6758f61d1a">m2m2_application::APP_COMMON_STATUS_STREAM_NOT_STOPPED</a>) { return ret::STREAM_STOP_FAILED; } else { status = this-&gt;ppg_app.hrv_stream.unsubscribe(); } if (status == ret::SDK_OK) { return ret::STREAM_STOPPED; } else { return ret::UNSUBSCRIBE_FAILED; } case ret::device_identifiers::ADPD107CHESTSTRAP: std::cerr &lt;&lt; "ADI SDK:: Error! PPG not supported for ADPD107CHESTSTRAP: " &lt;&lt; std::endl; return ret::OPERATION_NOT_SUPPORTED_FOR_THIS_DEVICE; default: std::cerr &lt;&lt; "ADI SDK:: Error! Unknown Device Id: " &lt;&lt; std::endl; return ret::UNKNOWN_DEVICE; } }</p>
-<p>/*!</p>
 <p>Start the Logging of ADXL stream. </p>
 
 </div>
@@ -1084,14 +1154,14 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ad7e71427d8c2d4f96f5247baf5727c98"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7e71427d8c2d4f96f5247baf5727c98">&#9670;&nbsp;</a></span>start_log_bcm()</h2>
+<a id="ae820f20ed9c8220e4c39af18d867723b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae820f20ed9c8220e4c39af18d867723b">&#9670;&nbsp;</a></span>start_log_bia()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ret::err_status start_log_bcm </td>
+          <td class="memname">ret::err_status start_log_bia </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -1100,7 +1170,7 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Start the logging of BCM stream. </p>
+<p>Start the logging of BIA stream. </p>
 
 </div>
 </div>
@@ -1351,6 +1421,26 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="aeda4d91746382a23ff406f9b4668219f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeda4d91746382a23ff406f9b4668219f">&#9670;&nbsp;</a></span>stop_adpd4000_g_r_ir_b()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ret::err_status stop_adpd4000_g_r_ir_b </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stop the ADPD4000 stream. </p>
+
+</div>
+</div>
 <a id="a9d1af98c72ef3e808828959c8493acd6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9d1af98c72ef3e808828959c8493acd6">&#9670;&nbsp;</a></span>stop_adpd4000_ir()</h2>
 
@@ -1429,14 +1519,14 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a225b6916d5b3dbb063864ecce2f0cc0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a225b6916d5b3dbb063864ecce2f0cc0d">&#9670;&nbsp;</a></span>stop_bcm()</h2>
+<a id="a8c078d777453e306c128f7fa3d9429c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c078d777453e306c128f7fa3d9429c3">&#9670;&nbsp;</a></span>stop_bia()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ret::err_status stop_bcm </td>
+          <td class="memname">ret::err_status stop_bia </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -1445,7 +1535,7 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Stop the BCM stream. </p>
+<p>Stop the BIA stream. </p>
 
 </div>
 </div>
@@ -1486,6 +1576,26 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Stop the EDA stream. </p>
+
+</div>
+</div>
+<a id="a4f48d35e27f58d1d43a26f17e4fa3361"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f48d35e27f58d1d43a26f17e4fa3361">&#9670;&nbsp;</a></span>stop_hrv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ret::err_status stop_hrv </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stop the HRV stream. </p>
 
 </div>
 </div>
@@ -1609,14 +1719,14 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a07af77094067c8d9b8e80eda76f4fd41"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07af77094067c8d9b8e80eda76f4fd41">&#9670;&nbsp;</a></span>stop_log_bcm()</h2>
+<a id="a894e74cdba3a3a5c59fdeaf77e8a8847"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a894e74cdba3a3a5c59fdeaf77e8a8847">&#9670;&nbsp;</a></span>stop_log_bia()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ret::err_status stop_log_bcm </td>
+          <td class="memname">ret::err_status stop_log_bia </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -1625,7 +1735,7 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Stop the logging of BCM stream. </p>
+<p>Stop the logging of BIA stream. </p>
 
 </div>
 </div>
@@ -1876,14 +1986,14 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a0c91aac66673b0caaa8762689e447d2a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c91aac66673b0caaa8762689e447d2a">&#9670;&nbsp;</a></span>bcm_app</h2>
+<a id="a0312b8633dfd75fcc62e6165f85aff17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0312b8633dfd75fcc62e6165f85aff17">&#9670;&nbsp;</a></span>bia_app</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classbcm__application.html">bcm_application</a> bcm_app</td>
+          <td class="memname"><a class="el" href="classbia__application.html">bia_application</a> bia_app</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2068,7 +2178,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const std::string SDK_version = &quot;4.0.5&quot;</td>
+          <td class="memname">const std::string SDK_version = &quot;5.2.0&quot;</td>
         </tr>
       </table>
   </td>
@@ -2116,6 +2226,20 @@ Static Public Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classtemperature__application.html">temperature_application</a> temperature_app</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4afbd822fc6e8a11b09334a11f4af0e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4afbd822fc6e8a11b09334a11f4af0e4">&#9670;&nbsp;</a></span>user_config_app</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classuser0__config__application.html">user0_config_application</a> user_config_app</td>
         </tr>
       </table>
 </div><div class="memdoc">

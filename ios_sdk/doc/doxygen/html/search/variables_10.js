@@ -1,6 +1,30 @@
 var searchData=
 [
-  ['vendstr_1247',['vendstr',['../structcommon__app__version__t.html#ab4641fef96fd480667a4fa69ba5759a6',1,'common_app_version_t']]],
-  ['version_1248',['version',['../structpm__sys__info__t.html#ab6d7b6f8c2ceaba7acda80aaf05f4899',1,'pm_sys_info_t']]],
-  ['verstr_1249',['verstr',['../structcommon__app__version__t.html#a92d6ba64d4db92cbe6115e3ff20988cd',1,'common_app_version_t']]]
+  ['temp_5fambient_1607',['temp_ambient',['../structtemperature__stream__cb__data__t.html#a7261611174acc55e08367fe875e81285',1,'temperature_stream_cb_data_t']]],
+  ['temp_5fskin_1608',['temp_skin',['../structtemperature__stream__cb__data__t.html#a85ad6c11fdbce76e745e2306cea093c5',1,'temperature_stream_cb_data_t']]],
+  ['temperature_5fapp_1609',['temperature_app',['../classwatch.html#a61515cbb4c7881300e123acd5791e5c3',1,'watch']]],
+  ['temperature_5fstream_1610',['temperature_stream',['../classtemperature__application.html#a9d305a05deb0ec2c712ee51b1fb36ceb',1,'temperature_application']]],
+  ['temperature_5fstream1_1611',['temperature_stream1',['../classtemperature__application.html#a82494f4de10aa1dc1a22770c6377cc46',1,'temperature_application']]],
+  ['temperature_5fstream10_1612',['temperature_stream10',['../classtemperature__application.html#abf63b0b3656f240258faf6dfa2c28a8c',1,'temperature_application']]],
+  ['temperature_5fstream11_1613',['temperature_stream11',['../classtemperature__application.html#a1e0fee5a86470da03a986bf153209902',1,'temperature_application']]],
+  ['temperature_5fstream12_1614',['temperature_stream12',['../classtemperature__application.html#a7736f2076c198970d1efbad87afd5de7',1,'temperature_application']]],
+  ['temperature_5fstream2_1615',['temperature_stream2',['../classtemperature__application.html#aab70cad55d7e43cfaef247e8bfb45865',1,'temperature_application']]],
+  ['temperature_5fstream3_1616',['temperature_stream3',['../classtemperature__application.html#a4cb3a2671d753c6c1ab58534c4967462',1,'temperature_application']]],
+  ['temperature_5fstream4_1617',['temperature_stream4',['../classtemperature__application.html#aab8004403425d4f610ef58f47b32d1a6',1,'temperature_application']]],
+  ['temperature_5fstream5_1618',['temperature_stream5',['../classtemperature__application.html#a62484b0d6a0fadec739ff9ebcf8ec8db',1,'temperature_application']]],
+  ['temperature_5fstream6_1619',['temperature_stream6',['../classtemperature__application.html#aa6f9d2e31e1d79fcc54ea7e6c2b4124c',1,'temperature_application']]],
+  ['temperature_5fstream7_1620',['temperature_stream7',['../classtemperature__application.html#af00e503eac1f582f5197989bdd26b35a',1,'temperature_application']]],
+  ['temperature_5fstream8_1621',['temperature_stream8',['../classtemperature__application.html#ad734cd5b49f1300c47ddf01c1c92a036',1,'temperature_application']]],
+  ['temperature_5fstream9_1622',['temperature_stream9',['../classtemperature__application.html#a95a519090b5317ad098f14a27f3c7720',1,'temperature_application']]],
+  ['tempsource_1623',['tempSource',['../structtemperature__stream__cb__data__t.html#aa0a401859d2ae2e65b19fa228b0300cf',1,'temperature_stream_cb_data_t']]],
+  ['tia_5fch1_5fi_1624',['TIA_ch1_i',['../structget__agc__info__t.html#a42f3c1c0837b1c34a55fb6f56be26b15',1,'get_agc_info_t']]],
+  ['tia_5fch1_5fint_1625',['tia_ch1_int',['../structadpd4000__optional__stream__cb__data__t.html#a1593e965c144a9d0abd644616d7469dd',1,'adpd4000_optional_stream_cb_data_t']]],
+  ['tia_5fch2_5fi_1626',['TIA_ch2_i',['../structget__agc__info__t.html#a5c12a47ecba2ea9386888d270aea233e',1,'get_agc_info_t']]],
+  ['tia_5fch2_5fint_1627',['tia_ch2_int',['../structadpd4000__optional__stream__cb__data__t.html#a69b271bf02b2bc80a7c8e2c1a9de805b',1,'adpd4000_optional_stream_cb_data_t']]],
+  ['time_5fstamp_1628',['time_stamp',['../structbia__app__algo__out__stream__cb__data__t.html#ab5c874035247bd2d27d1be26ee620265',1,'bia_app_algo_out_stream_cb_data_t']]],
+  ['timestamp_1629',['timestamp',['../structadxl__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'adxl_stream_cb_data_t::timestamp()'],['../structeda__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'eda_stream_cb_data_t::timestamp()'],['../structecg__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'ecg_stream_cb_data_t::timestamp()'],['../structtemperature__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'temperature_stream_cb_data_t::timestamp()'],['../structppg__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'ppg_stream_cb_data_t::timestamp()'],['../structsyncppg__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'syncppg_stream_cb_data_t::timestamp()'],['../structadpd4000__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'adpd4000_stream_cb_data_t::timestamp()'],['../structadpd4000__optional__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'adpd4000_optional_stream_cb_data_t::timestamp()'],['../structbattery__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'battery_stream_cb_data_t::timestamp()'],['../structbia__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'bia_stream_cb_data_t::timestamp()'],['../structsensor__ad7156__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'sensor_ad7156_cb_data_t::timestamp()'],['../structhrv__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'hrv_stream_cb_data_t::timestamp()'],['../structagc__stream__cb__data__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'agc_stream_cb_data_t::timestamp()'],['../structpm__sys__bat__info__t.html#a2c17dfa2b3239f2312e94b9de57a7999',1,'pm_sys_bat_info_t::timestamp()']]],
+  ['timestamp_1630',['TimeStamp',['../structpedometer__stream__cb__data__t.html#a0fdff611074bd0d70c4cd2237dcfea8c',1,'pedometer_stream_cb_data_t']]],
+  ['toc_5fmem_5ferased_5fflag_1631',['toc_mem_erased_flag',['../structfs__application_1_1file__sys__format__debug__info__resp__t.html#ab0fbd694bfbf60e37b08690cc7222da2',1,'fs_application::file_sys_format_debug_info_resp_t']]],
+  ['type_1632',['type',['../structpm__sys__info__t.html#a45081b44014bf8ff38d93dbd00e053c0',1,'pm_sys_info_t']]],
+  ['tz_5fsec_1633',['TZ_sec',['../structsys__date__time__t.html#aadc2f6a9a024e1607a24f4b81cdcf5a9',1,'sys_date_time_t']]]
 ];

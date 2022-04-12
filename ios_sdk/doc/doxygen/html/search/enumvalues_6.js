@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ios_1353',['ios',['../classwatch.html#ad65979d086bf027f02ab2406846b031baf5645333d030b6e8445c36e9c58324bb',1,'watch']]]
+  ['green_5fdisplay_1769',['GREEN_DISPLAY',['../classdisplay__application.html#ac871a9f41e9e8dcab7891f921fb63707a016265cf56e893ac28a76b6e02f45ea0',1,'display_application']]]
 ];

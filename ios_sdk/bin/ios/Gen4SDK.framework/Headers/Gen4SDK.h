@@ -3,7 +3,7 @@
 //  Gen4SDK
 //
 //  Created by UX TEAM on 03/01/18.
-//  Copyright © 2018 UX TEAM. All rights reserved.
+//  Copyright © 2022 UX TEAM. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -17,7 +17,7 @@ FOUNDATION_EXPORT const unsigned char Gen3SDKVersionString[];
 
 
 // Include all the inc header file need to be compiled
-#import "inc/bcm_application.hpp"
+#import "inc/bia_application.hpp"
 #import "inc/sqi_application.hpp"
 #import "inc/display_application.hpp"
 #import "inc/lowTouch_application.hpp"
@@ -45,7 +45,7 @@ FOUNDATION_EXPORT const unsigned char Gen3SDKVersionString[];
 #import "inc/watch.hpp"
 
 // Include all the m2m2 interface header file need to be compiled
-#import "inc/m2m2/cpp/bcm_application_interface.hpp"
+#import "inc/m2m2/cpp/bia_application_interface.hpp"
 
 #import "inc/m2m2/cpp/common_application_interface.hpp"
 #import "inc/m2m2/cpp/common_sensor_interface.hpp"

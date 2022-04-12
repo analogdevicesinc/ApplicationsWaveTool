@@ -1,5 +1,3 @@
-#ifndef __SENSOR_ADPD_APP_INT_H__
-#define __SENSOR_ADPD_APP_INT_H__
 // #############################################################################
 // THIS IS AN AUTOMATICALLY GENERATED FILE, DO NOT MODIFY IT!
 // #############################################################################
@@ -8,6 +6,7 @@
 #include "common_application_interface.h"
 #include "common_sensor_interface.h"
 #include <stdint.h>
+
 
 /* Explicitly enforce struct packing so that the nested structs and unions are laid out
     as expected. */
@@ -22,6 +21,8 @@
 #ifndef STATIC_ASSERT_PROJ
 #define STATIC_ASSERT_PROJ(COND, MSG) typedef char static_assertion_##MSG[(COND)?1:-1]
 #endif // STATIC_ASSERT_PROJ
+
+
 typedef enum M2M2_SENSOR_ADPD_COMMAND_ENUM_t {
   _M2M2_SENSOR_ADPD_COMMAND_LOWEST = 64,
   M2M2_SENSOR_ADPD_COMMAND_LOAD_CFG_REQ = 66,
@@ -122,20 +123,20 @@ typedef enum M2M2_SENSOR_ADPD_DEVICE_ID_ENUM_t {
   M2M2_SENSOR_ADPD4000_DEVICE_4000_IR = 42,
   M2M2_SENSOR_ADPD4000_DEVICE_4000_B = 43,
   M2M2_SENSOR_ADPD4000_DEVICE_4000_G_R_IR_B = 44,
+  M2M2_SENSOR_ADPD4000_DEVICE_4100_SWO2 = 45,
 } M2M2_SENSOR_ADPD_DEVICE_ID_ENUM_t;
 STATIC_ASSERT_PROJ(sizeof(M2M2_SENSOR_ADPD_DEVICE_ID_ENUM_t) == 1, INCORRECT_SIZE_M2M2_SENSOR_ADPD_DEVICE_ID_ENUM_t);
 
 typedef struct _m2m2_sensor_adpd_resp_t {
   uint8_t  command; 
-  uint8_t  status;
-  M2M2_SENSOR_ADPD_DEVICE_ID_ENUM_t  deviceid;
+  uint8_t  status; 
+  M2M2_SENSOR_ADPD_DEVICE_ID_ENUM_t  deviceid; 
   uint16_t  retdata[5]; 
 } m2m2_sensor_adpd_resp_t;
 
 typedef struct _m2m2_sensor_adpd_testcommand_resp_t {
   uint8_t  command; 
   uint8_t  status; 
-  uint16_t  deviceid; 
   uint32_t  retdata[3]; 
 } m2m2_sensor_adpd_testcommand_resp_t;
 
@@ -300,7 +301,7 @@ typedef struct _m2m2_sensor_com_mode_resp_t {
 typedef struct _m2m2_sensor_adpd4000_resp_t {
   uint8_t  command; 
   uint8_t  status; 
-  M2M2_SENSOR_ADPD_DEVICE_ID_ENUM_t  deviceid;
+  M2M2_SENSOR_ADPD_DEVICE_ID_ENUM_t  deviceid; 
   uint16_t  retdata[5]; 
 } m2m2_sensor_adpd4000_resp_t;
 
@@ -322,17 +323,23 @@ typedef struct _m2m2_sensor_fifo_status_bytes_t {
   uint16_t  tia_ch2_int; 
 } m2m2_sensor_fifo_status_bytes_t;
 
+typedef struct _m2m2_sensor_adpd4000_set_fs_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint16_t  odr; 
+} m2m2_sensor_adpd4000_set_fs_t;
+
 typedef struct _m2m2_adpd4k_slot_info_t {
   uint8_t  command; 
   uint8_t  status; 
-  uint8_t  slots;
+  uint8_t  slots; 
 } m2m2_adpd4k_slot_info_t;
 
 typedef struct _m2m2_adpd_dcfg_resp_t {
   uint8_t  command; 
-  uint8_t  status;
-  uint16_t slotid;
-  uint16_t appid;
+  uint8_t  status; 
+  uint16_t  slotid; 
+  uint16_t  appid; 
 } m2m2_adpd_dcfg_resp_t;
 
 typedef struct _m2m2_adpd_dcfg_op_t {
@@ -347,36 +354,20 @@ typedef struct _m2m2_adpd_dcfg_op_hdr_t {
   m2m2_adpd_dcfg_op_t  ops[0]; 
 } m2m2_adpd_dcfg_op_hdr_t;
 
-typedef struct _m2m2_sensor_adpd4000_set_fs_t {
+typedef struct _m2m2_adpd_agc_info_t {
   uint8_t  command; 
   uint8_t  status; 
-  uint16_t  odr;  
-} m2m2_sensor_adpd4000_set_fs_t;
-
-typedef struct _m2m2_adpd_agc_recalibrate_t {
-  uint8_t  command;
-  uint8_t  status;
-} m2m2_adpd_agc_recalibrate_t;
-
-typedef struct _agc_data_t{
-  uint32_t ch1[10];
-  uint32_t ch2[10];
-}_agc_data_t;
-
-typedef struct _m2m2_adpd_agc_info_t {
-  uint8_t  command;
-  uint8_t  status;
-  uint8_t led_index;
-  uint32_t led_ch1[10];
-  uint32_t led_ch2[10];
-  uint16_t DC0_LEDcurrent;
-  uint16_t TIA_ch1_i;
-  uint16_t TIA_ch2_i;
+  uint8_t  led_index; 
+  uint32_t  led_ch1[10]; 
+  uint32_t  led_ch2[10]; 
+  uint16_t  DC0_LEDcurrent; 
+  uint16_t  TIA_ch1_i; 
+  uint16_t  TIA_ch2_i; 
 } m2m2_adpd_agc_info_t;
 
 typedef struct _m2m2_adpd_agc_cntrl_data_t {
-  uint8_t agc_cntrl;
-  uint8_t agc_type;
+  uint8_t  agc_cntrl; 
+  uint8_t  agc_type; 
 } m2m2_adpd_agc_cntrl_data_t;
 
 typedef struct _m2m2_adpd_agc_cntrl_t {
@@ -386,34 +377,26 @@ typedef struct _m2m2_adpd_agc_cntrl_t {
   m2m2_adpd_agc_cntrl_data_t  ops[0]; 
 } m2m2_adpd_agc_cntrl_t;
 
-typedef struct _m2m2_adpd_agc_status_t {
-  uint8_t  command;
-  uint8_t  status;
-  uint8_t agc_type;
-  uint8_t agc_status;
-} m2m2_adpd_agc_status_t;
-
 typedef struct _adpd_ext_data_stream_t {
-  uint8_t  command;
-  uint8_t  status;
-  uint32_t sequence_num;
-  uint32_t data;
-  uint32_t timestamp;
+  uint8_t  command; 
+  uint8_t  status; 
+  uint32_t  sequence_num; 
+  uint32_t  data; 
+  uint32_t  timestamp; 
 } adpd_ext_data_stream_t;
 
 typedef struct _adpd_ext_data_stream_odr_t {
-  uint8_t  command;
-  uint8_t  status;
-  uint16_t sampling_freq;
+  uint8_t  command; 
+  uint8_t  status; 
+  uint16_t  sampling_freq; 
 } adpd_ext_data_stream_odr_t;
 
 typedef struct _m2m2_adpd_set_uc_hr_enab_t {
-  uint8_t  command;
-  uint8_t  status;
-  uint8_t  control;
-  uint16_t  slotNum;
+  uint8_t  command; 
+  uint8_t  status; 
+  uint8_t  control; 
+  uint16_t  slotNum; 
 } m2m2_adpd_set_uc_hr_enab_t;
 
 // Reset struct packing outside of this file
 #pragma pack()
-#endif

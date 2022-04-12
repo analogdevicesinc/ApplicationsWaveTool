@@ -15,7 +15,7 @@ public:
 	
   ad7156_application(watch *sdk=NULL);
   ~ad7156_application(void);
-  m2m2_data_stream<adxl_stream_callback> ad7156_stream; 
+  m2m2_data_stream<ad7156_stream_callback> ad7156_stream;
   std::string get_name(void);
   M2M2_ADDR_ENUM_t get_address(void);
   std::vector<std::pair<uint16_t, uint16_t>> register_read(std::vector<uint16_t> addresses);

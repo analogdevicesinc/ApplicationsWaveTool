@@ -29,6 +29,7 @@ var classm2m2__application =
     [ "m2m2_application", "classm2m2__application.html#a80a24d3bda02d48ba319ca07fc1d8a90", null ],
     [ "async_send", "classm2m2__application.html#a4c0f5bd2178a27a7d6bf0d1f8d4288e1", null ],
     [ "bytes_to_string", "classm2m2__application.html#a3f3c858cce1816267fa72c2ec0f96fb0", null ],
+    [ "clearPackets", "classm2m2__application.html#a61294a8ad342383ed8ce80214e608525", null ],
     [ "dispatch", "classm2m2__application.html#ad1f196c40122c0492345f19d839b6b01", null ],
     [ "get_address", "classm2m2__application.html#a628f3cd1785ce9cf2652a0631c73f32e", null ],
     [ "get_name", "classm2m2__application.html#aeb58c19f95a5b8d41de3745903de2d50", null ],

@@ -1,4 +1,20 @@
 var searchData=
 [
-  ['operator_3d_422',['operator=',['../classblocking__queue.html#a227112b23143a09430790c659b178c52',1,'blocking_queue::operator=()'],['../classm2m2__application.html#a3f97b2655c210138258aace2659fa91e',1,'m2m2_application::operator=()'],['../classm2m2__data__stream.html#ab0dba0a5ea8444fd19398fe4484ba411',1,'m2m2_data_stream::operator=()']]]
+  ['nalgostatus_531',['nAlgoStatus',['../structsqi__stream__cb__data__t.html#a9571c15c5c65a398e25564e743887500',1,'sqi_stream_cb_data_t']]],
+  ['namefile_532',['namefile',['../structfs__application_1_1file__name.html#ad33c3032f6fc6eb62311670a73884728',1,'fs_application::file_name']]],
+  ['next_5fpage_533',['next_page',['../structfs__application_1_1file__sys__page__read__test__resp__pkt__t.html#a41e4a965e57175b6f2b17515787266b6',1,'fs_application::file_sys_page_read_test_resp_pkt_t']]],
+  ['nothing_5fis_5fwritten_5fto_5ferase_5ferror_534',['nothing_is_written_to_erase_error',['../structfs__application_1_1file__sys__format__debug__info__resp__t.html#a50cfe2d3f019165408cdf47b5267b9fb',1,'fs_application::file_sys_format_debug_info_resp_t']]],
+  ['nreserved_535',['nReserved',['../structsqi__stream__cb__data__t.html#ac0d4723a79449d7b7497e3afeaac9baf',1,'sqi_stream_cb_data_t']]],
+  ['nsqislot_536',['nSQISlot',['../structsqi__stream__cb__data__t.html#a91c7f86b7e38499078dafe6dca9c2a58',1,'sqi_stream_cb_data_t']]],
+  ['ntimestamp_537',['nTimeStamp',['../structsqi__stream__cb__data__t.html#a8bf820e29d13b94b16202d219bba34dd',1,'sqi_stream_cb_data_t']]],
+  ['num_5fblocks_538',['num_blocks',['../structbia__application_1_1fds__status__info__resp.html#a4483fd6bbdb7e25330d6300d63b14277',1,'bia_application::fds_status_info_resp']]],
+  ['num_5fblocks_5ferased_5fin_5fmem_5ffull_5fpartial_5ferase_539',['num_blocks_erased_in_mem_full_partial_erase',['../structfs__application_1_1file__sys__format__debug__info__resp__t.html#ab92b037d92b751363baee94ee99f9477',1,'fs_application::file_sys_format_debug_info_resp_t']]],
+  ['num_5fblocks_5ferased_5fin_5fpartial_5ferase_5f1_540',['num_blocks_erased_in_partial_erase_1',['../structfs__application_1_1file__sys__format__debug__info__resp__t.html#a80d2b374d27512767c2cb8afc95bd9d5',1,'fs_application::file_sys_format_debug_info_resp_t']]],
+  ['num_5fblocks_5ferased_5fin_5fpartial_5ferase_5f2_541',['num_blocks_erased_in_partial_erase_2',['../structfs__application_1_1file__sys__format__debug__info__resp__t.html#a21887f5e642389b29a1b4605c95f1874',1,'fs_application::file_sys_format_debug_info_resp_t']]],
+  ['num_5fbytes_542',['num_bytes',['../structfs__application_1_1file__sys__page__read__test__resp__pkt__t.html#aefd66aaf6bf7a0a84d75073f8d1f02c3',1,'fs_application::file_sys_page_read_test_resp_pkt_t']]],
+  ['num_5fbytes_5fwritten_543',['num_bytes_written',['../structfs__application_1_1file__sys__page__read__test__resp__pkt__t.html#a01dc094f38257e3e5958e737465c46d9',1,'fs_application::file_sys_page_read_test_resp_pkt_t']]],
+  ['num_5fcalibrated_5fvalues_544',['num_calibrated_values',['../structeda__rtia__cal__table.html#a6c0cc1c474df6360613813b0dbc6d8f2',1,'eda_rtia_cal_table']]],
+  ['num_5ftimes_5fformat_5ffailed_5fdue_5fbad_5fblocks_5f1_545',['num_times_format_failed_due_bad_blocks_1',['../structfs__application_1_1file__sys__format__debug__info__resp__t.html#a1f90b9ad55d2286150ebd10b734d906c',1,'fs_application::file_sys_format_debug_info_resp_t']]],
+  ['num_5ftimes_5fformat_5ffailed_5fdue_5fbad_5fblocks_5f2_546',['num_times_format_failed_due_bad_blocks_2',['../structfs__application_1_1file__sys__format__debug__info__resp__t.html#a8b4c0ece1daf2aefa992100c5f900a07',1,'fs_application::file_sys_format_debug_info_resp_t']]],
+  ['numsteps_547',['NumSteps',['../structpedometer__stream__cb__data__t.html#a6b0273bbbec699cf6c6507f2fb8889e0',1,'pedometer_stream_cb_data_t']]]
 ];

@@ -26,7 +26,7 @@ public:
 
   m2m2_data_stream<ppg_stream_callback> ppg_stream; //!< PPG data stream
   
-  //m2m2_data_stream<hrv_stream_callback> hrv_stream; //!< hrv data stream
+  m2m2_data_stream<hrv_stream_callback> hrv_stream; //!< hrv data stream
 
   m2m2_data_stream<agc_stream_callback> agc_stream; //!< agc data stream
   std::string get_name(void);
@@ -47,7 +47,7 @@ public:
 
   ret::sdk_status  dcb_delete_config(void);
 
-  ret::sdk_status write_dcb_config(std::vector<std::pair<uint16_t, uint32_t>> addr_vals);
+  ret::sdk_status write_dcb_config(std::vector<std::pair<uint16_t, int32_t>> addr_vals);
 
-  std::vector<std::pair<uint16_t, uint32_t>> read_dcb_config(void);
+  std::vector<std::pair<uint16_t, int32_t>> read_dcb_config(void);
 };

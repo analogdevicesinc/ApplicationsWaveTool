@@ -18,18 +18,19 @@
 #endif  // defined __CC_ARM || defined __IAR_SYSTEMS_ICC__ || __clang__ || defined _MSC_VER || defined __GNUC__
 #pragma pack(1)
 
+#define MAX_NUM_OF_CHAR	20
 
 enum FILE_STOP_LOGGING_t:uint8_t {
-	M2M2_FILE_SYS_STOP_LOGGING = 0,
-	M2M2_FILE_SYS_MEMORY_FULL = 1,
-	M2M2_FILE_SYS_BATTERY_LOW = 2,
-	M2M2_FILE_SYS_POWER_STATE_SHUTDOWN = 3,
-	M2M2_FILE_SYS_STOP_LOGGING_INVALID = 255,
+  M2M2_FILE_SYS_STOP_LOGGING = 0,
+  M2M2_FILE_SYS_MEMORY_FULL = 1,
+  M2M2_FILE_SYS_BATTERY_LOW = 2,
+  M2M2_FILE_SYS_POWER_STATE_SHUTDOWN = 3,
+  M2M2_FILE_SYS_STOP_LOGGING_INVALID = 255,
 };
 static_assert(sizeof(FILE_STOP_LOGGING_t) == 1, "Enum 'FILE_STOP_LOGGING_t' has an incorrect size!");
 
 enum M2M2_FILE_SYS_CMD_ENUM_t:uint8_t {
-  __M2M2_FILE_SYS_CMD_LOWEST = 64,
+  _M2M2_FILE_SYS_CMD_ENUM_t__M2M2_FILE_SYS_CMD_LOWEST = 64,
   M2M2_FILE_SYS_CMD_MOUNT_REQ = 66,
   M2M2_FILE_SYS_CMD_MOUNT_RESP = 67,
   M2M2_FILE_SYS_CMD_FORMAT_REQ = 70,
@@ -96,11 +97,27 @@ enum M2M2_FILE_SYS_CMD_ENUM_t:uint8_t {
   M2M2_FILE_SYS_CMD_GET_FILE_INFO_RESP = 141,
   M2M2_FILE_SYS_CMD_PAGE_READ_TEST_REQ = 142,
   M2M2_FILE_SYS_CMD_PAGE_READ_TEST_RESP = 143,
-} ;
+  M2M2_FILE_SYS_CMD_BLOCK_ERASE_REQ = 144,
+  M2M2_FILE_SYS_CMD_BLOCK_ERASE_RESP = 145,
+  M2M2_FILE_SYS_WRITE_RANDOM_DATA_TO_RSD_BLK_REQ = 146,
+  M2M2_FILE_SYS_WRITE_RANDOM_DATA_TO_RSD_BLK_RESP = 147,
+  M2M2_FILE_SYS_CMD_GET_FS_FORMAT_INFO_REQ = 148,
+  M2M2_FILE_SYS_CMD_GET_FS_FORMAT_INFO_RESP = 149,
+  M2M2_FILE_SYS_CMD_APPEND_FILE_REQ = 160,
+  M2M2_FILE_SYS_CMD_APPEND_FILE_RESP = 161,
+  M2M2_FILE_SYS_CMD_FILE_READ_TEST_REQ = 162,
+  M2M2_FILE_SYS_CMD_FILE_READ_TEST_RESP = 163,
+  M2M2_FILE_SYS_CMD_DOWNLOAD_LOG_BLE_REQ = 164,
+  M2M2_FILE_SYS_CMD_DOWNLOAD_LOG_BLE_RESP = 165,
+  M2M2_FILE_SYS_CMD_FILE_READ_WRITE_ERASE_REQ = 166,
+  M2M2_FILE_SYS_CMD_FILE_READ_WRITE_ERASE_RESP = 167,
+  M2M2_FILE_SYS_CLEAR_LFS_DEBUG_STATUS_INFO_REQ = 168,
+  M2M2_FILE_SYS_CLEAR_LFS_DEBUG_STATUS_INFO_RESP = 169,
+};
 static_assert(sizeof(M2M2_FILE_SYS_CMD_ENUM_t) == 1, "Enum 'M2M2_FILE_SYS_CMD_ENUM_t' has an incorrect size!");
 
 enum M2M2_FILE_SYS_STATUS_ENUM_t:uint8_t {
-  __M2M2_FILE_SYS_ERR_LOWEST = 64,
+  _M2M2_FILE_SYS_STATUS_ENUM_t__M2M2_FILE_SYS_ERR_LOWEST = 64,
   M2M2_FILE_SYS_STATUS_OK = 65,
   M2M2_FILE_SYS_STATUS_ERROR = 66,
   M2M2_FILE_SYS_END_OF_FILE = 67,
@@ -121,6 +138,7 @@ enum M2M2_FILE_SYS_STATUS_ENUM_t:uint8_t {
   M2M2_FILE_SYS_ERR_POWER_STATE_SHUTDOWN = 82,
   M2M2_FILE_SYS_ERR_CONFIG_FILE_POSITION = 83,
   M2M2_FILE_SYS_STATUS_BLOCKS_WRITE_ERROR = 84,
+  M2M2_FILE_SYS_NO_FILE_TO_APPEND = 85,
   M2M2_FILE_SYS_ERR_NOT_CHKD = 255,
 };
 static_assert(sizeof(M2M2_FILE_SYS_STATUS_ENUM_t) == 1, "Enum 'M2M2_FILE_SYS_STATUS_ENUM_t' has an incorrect size!");
@@ -139,58 +157,83 @@ enum FILE_SYS_STREAM_SUBS_STATE_ENUM_t:uint8_t {
 };
 static_assert(sizeof(FILE_SYS_STREAM_SUBS_STATE_ENUM_t) == 1, "Enum 'FILE_SYS_STREAM_SUBS_STATE_ENUM_t' has an incorrect size!");
 
+enum FILE_PAGE_CHUNK_RETRANSMIT_TYPE_ENUM_t:uint8_t {
+  M2M2_FILE_SYS_PAGE_CHUNK_CRC_ERROR = 0,
+  M2M2_FILE_SYS_PAGE_CHUNK_LOST = 1,
+};
+static_assert(sizeof(FILE_PAGE_CHUNK_RETRANSMIT_TYPE_ENUM_t) == 1, "Enum 'FILE_PAGE_CHUNK_RETRANSMIT_TYPE_ENUM_t' has an incorrect size!");
+
 struct m2m2_file_sys_cmd_t {
   uint8_t  command; 
   uint8_t  status; 
 };
 
-struct m2m2_file_sys_ls_req_t {
-	uint8_t  command;
-	uint8_t  status;
-	uint8_t  dir_path[0];
+struct m2m2_file_sys_blk_erase_cmd_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint16_t  block_no; 
 };
 
- struct m2m2_file_sys_get_resp_t {
+struct m2m2_file_sys_write_rsd_blk_cmd_t {
   uint8_t  command; 
   uint8_t  status; 
-  uint16_t  len_stream; 
-  uint8_t  byte_stream[512]; 
-  uint16_t  crc16; 
-} ;
+  uint32_t  data[20]; 
+};
 
- struct m2m2_file_sys_pkt_retransmit_req_t {
+struct m2m2_file_sys_ls_req_t {
   uint8_t  command; 
   uint8_t  status; 
-  uint8_t  Roll_over; 
-  uint16_t  chunk_number; 
-  uint8_t  file_name[0]; 
-} ;
+  uint8_t  dir_path[1]; // NOTE: THIS FIELD IS INTENDED TO BE OF VARIABLE LENGTH! 
+        // NOTE: Use offsetof(m2m2_file_sys_ls_req_t, dir_path) instead of sizeof(m2m2_file_sys_ls_req_t)
+};
 
-
- struct m2m2_file_sys_ls_resp_t {
+struct m2m2_file_sys_ls_resp_t {
   uint8_t  command; 
   uint8_t  status; 
   uint8_t  full_file_name[40]; 
   FILE_TYPE_ENUM_t  filetype; 
   uint32_t  filesize; 
-} ;
+};
 
- struct m2m2_file_sys_get_req_t {
+struct m2m2_file_sys_get_req_t {
   uint8_t  command; 
   uint8_t  status; 
-  uint8_t  file_name[0]; 
-} ;
+  uint8_t  file_name[1]; // NOTE: THIS FIELD IS INTENDED TO BE OF VARIABLE LENGTH! 
+        // NOTE: Use offsetof(m2m2_file_sys_get_req_t, file_name) instead of sizeof(m2m2_file_sys_get_req_t)
+};
 
- struct m2m2_file_sys_download_log_stream_t {
+struct m2m2_file_sys_page_chunk_retransmit_req_t {
   uint8_t  command; 
   uint8_t  status; 
-  uint16_t  len_stream; 
-  uint8_t  byte_stream[512];
-  //uint8_t  byte_stream[32];
+  FILE_PAGE_CHUNK_RETRANSMIT_TYPE_ENUM_t  retransmit_type; 
+  uint8_t  page_roll_over; 
+  uint8_t  page_chunk_number; 
+  uint16_t  page_number; 
+  uint8_t  file_name[1]; // NOTE: THIS FIELD IS INTENDED TO BE OF VARIABLE LENGTH! 
+        // NOTE: Use offsetof(m2m2_file_sys_page_chunk_retransmit_req_t, file_name) instead of sizeof(m2m2_file_sys_page_chunk_retransmit_req_t)
+};
+
+struct m2m2_file_sys_download_log_stream_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint8_t  page_chunk_number; 
+  uint16_t  page_number; 
+  uint16_t  page_chunk_size; 
+  uint8_t  page_chunk_bytes[512]; 
   uint16_t  crc16; 
-} ;
+};
 
- struct m2m2_file_sys_app_ref_hr_stream_t {
+struct m2m2_file_sys_download_log_ble_stream_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint8_t  page_chunk_number; 
+  uint16_t  page_number; 
+  uint16_t  page_chunk_size; 
+  uint8_t  page_chunk_bytes[224]; 
+  uint16_t  crc16; 
+};
+
+struct m2m2_file_sys_app_ref_hr_stream_t {
   uint8_t  command; 
   uint8_t  status; 
   uint16_t  refhr; 
@@ -201,15 +244,15 @@ struct m2m2_file_sys_ls_req_t {
   uint8_t  minute; 
   uint8_t  second; 
   uint32_t  TZ_sec; 
-} ;
+};
 
- struct m2m2_file_sys_set_key_value_pair_req_t {
+struct m2m2_file_sys_set_key_value_pair_req_t {
   uint8_t  command; 
   uint8_t  status; 
   uint8_t  valueID[16]; 
-} ;
+};
 
- struct m2m2_file_sys_set_key_value_pair_resp_t {
+struct m2m2_file_sys_set_key_value_pair_resp_t {
   uint8_t  command; 
   uint8_t  status; 
   uint16_t  keyID; 
@@ -221,88 +264,70 @@ struct m2m2_file_sys_ls_req_t {
   uint8_t  minute; 
   uint8_t  second; 
   uint32_t  TZ_sec; 
-} ;
-
+};
 
 struct m2m2_file_sys_pattern_write_req_pkt_t {
-	 uint8_t command;
-	 uint8_t status;
-	 uint32_t file_size;
-	 uint8_t scale_type;//linear -> 0, log -> 1, exp -> 2
-	 uint16_t scale_factor;//scale factor 2,3
-	 uint16_t num_files_to_write;
- };
+  uint8_t  command; 
+  uint8_t  status; 
+  uint32_t  file_size; 
+  uint8_t  scale_type; 
+  uint16_t  scale_factor; 
+  uint16_t  num_files_to_write; 
+};
 
- struct m2m2_file_sys_pattern_write_resp_pkt_t {
-	 uint8_t command;
-	 uint8_t status;
- };
+struct m2m2_file_sys_pattern_write_resp_pkt_t {
+  uint8_t  command; 
+  uint8_t  status; 
+};
 
- struct m2m2_file_sys_vol_info_resp_t {
+struct m2m2_file_sys_vol_info_resp_t {
   uint8_t  command; 
   uint8_t  status; 
   uint32_t  totalmemory; 
   uint32_t  usedmemory; 
   uint16_t  availmemory; 
-} ;
+};
 
- struct m2m2_file_sys_get_subs_status_resp_t {
+struct m2m2_file_sys_get_subs_status_resp_t {
   uint8_t  command; 
   uint8_t  status; 
   M2M2_ADDR_ENUM_t  stream; 
   FILE_SYS_STREAM_SUBS_STATE_ENUM_t  subs_state; 
-} ;
+};
 
- struct m2m2_file_sys_debug_info_req_t {
+struct m2m2_file_sys_debug_info_req_t {
   uint8_t  command; 
   uint8_t  status; 
   M2M2_ADDR_ENUM_t  stream; 
-} ;
+};
 
- struct m2m2_file_sys_debug_info_resp_t {
+struct m2m2_file_sys_debug_info_resp_t {
   uint8_t  command; 
   uint8_t  status; 
   M2M2_ADDR_ENUM_t  stream; 
   uint32_t  packets_received; 
   uint32_t  packets_missed; 
-  uint32_t  last_page_read;
-  uint32_t  last_page_read_offset;
-  uint8_t 	last_page_read_status;
-  uint32_t num_bytes_transferred;
-  uint32_t bytes_read;
-  uint8_t usb_cdc_write_failed;
-} ;
+  uint32_t  last_page_read; 
+  uint32_t  last_page_read_offset; 
+  uint8_t  last_page_read_status; 
+  uint32_t  num_bytes_transferred; 
+  uint32_t  bytes_read; 
+  uint8_t  usb_cdc_write_failed; 
+};
 
+struct m2m2_file_sys_debug_impt_info_req_t {
+  uint8_t  command; 
+  uint8_t  status; 
+};
 
- struct m2m2_file_sys_impt_debug_info_req_t {
-	 uint8_t  command;
-	 uint8_t  status;
- };
-
- struct m2m2_file_sys_impt_debug_info_resp_t {
-	 uint8_t  command;
-	 uint8_t  status;
-	 uint32_t head_pointer;
-	 uint32_t tail_pointer;
-	 uint32_t usb_avg_tx_time;
-	 uint32_t usb_avg_port_write_time;
-	 uint32_t page_read_time;
-  uint16_t init_circular_buffer_flag;
-  uint16_t mem_full_flag;
-  uint16_t data_offset;
-  uint16_t config_file_occupied;
-	 uint32_t page_write_time;
- };
-
-
- struct m2m2_file_sys_user_config_data {
+struct m2m2_file_sys_user_config_data {
   uint8_t  command; 
   uint8_t  status; 
   uint16_t  len_configstream; 
   uint8_t  byte_configstream[70]; 
-} ;
+};
 
- struct m2m2_file_sys_user_cfg_summary_pkt_t {
+struct m2m2_file_sys_user_cfg_summary_pkt_t {
   uint8_t  command; 
   uint8_t  status; 
   uint16_t  start_cmd_len; 
@@ -310,72 +335,153 @@ struct m2m2_file_sys_pattern_write_req_pkt_t {
   uint16_t  stop_cmd_len; 
   uint16_t  stop_cmd_cnt; 
   uint16_t  crc16; 
-} ;
+};
 
- struct m2m2_file_sys_get_file_count_pkt_t {
+struct m2m2_file_sys_get_file_count_pkt_t {
   uint8_t  command; 
   uint8_t  status; 
   uint16_t  file_count; 
-} ;
+};
 
+struct m2m2_file_sys_page_read_test_req_pkt_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint32_t  page_num; 
+  uint8_t  num_bytes; 
+};
 
- struct m2m2_file_sys_get_file_info_req_pkt_t {
-	 uint8_t  command;
-	 uint8_t  status;
-	 uint8_t  file_index;
- };
+struct m2m2_file_sys_page_read_test_resp_pkt_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint32_t  page_num; 
+  uint8_t  ecc_zone_status; 
+  uint32_t  next_page; 
+  uint8_t  occupied; 
+  uint16_t  num_bytes_written; 
+  uint8_t  data_region_status; 
+  uint8_t  sample_data[100]; 
+  uint8_t  num_bytes; 
+};
 
- struct m2m2_file_sys_get_file_info_resp_pkt_t {
-	 uint8_t  command;
-	 uint8_t  status;
-	 uint8_t  file_name[16];
-	 uint32_t start_page;
-	 uint32_t end_page;
-	 uint32_t file_size;
- } ;
+struct m2m2_file_sys_sample_data_file_read_req_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint32_t  start_page_ind; 
+  uint32_t  end_page_ind; 
+};
 
-  struct m2m2_file_sys_page_test_req_pkt_t {
-	 uint8_t  command;
-	 uint8_t  status;
-	 uint32_t  page_num;
- } ;
+struct m2m2_file_sys_sample_data_file_read_resp_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint8_t  sample_data[202]; 
+};
 
- struct m2m2_file_sys_page_test_resp_pkt_t {
-	 uint8_t  command;
-	 uint8_t  status;
-	 uint32_t page_num;
-	 uint8_t  ecc_zone_status;
-	 uint32_t next_page;
-	 uint8_t occupied;
-	 uint8_t  data_region_status;
-	 uint8_t sample_data[50];
- } ;
-
-
- struct m2m2_file_sys_log_stream_t {
+struct m2m2_file_sys_log_stream_t {
   uint8_t  command; 
   uint8_t  status; 
   M2M2_ADDR_ENUM_t  stream; 
-} ;
+};
 
- struct m2m2_file_sys_stop_log_cmd_t {
+struct m2m2_file_sys_stop_log_cmd_t {
   uint8_t  command; 
   uint8_t  status; 
   FILE_STOP_LOGGING_t  stop_type; 
-} ;
+};
 
- struct m2m2_file_sys_get_bad_blocks_cmd_t {
-  uint8_t  command;
-  uint8_t  status;
-  uint32_t bad_blocks;
-} ;
+struct m2m2_file_sys_get_bad_blocks_cmd_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint32_t  bad_blocks; 
+};
 
- struct m2m2_file_sys_write_blocks_t {
+struct m2m2_file_sys_write_blocks_t {
   uint8_t  command; 
   uint8_t  status; 
   uint16_t  num_blocks_write; 
   uint16_t  start_block_num; 
-} ;
+};
+
+struct m2m2_file_sys_format_debug_info_req_t {
+  uint8_t  command; 
+  uint8_t  status; 
+};
+
+struct m2m2_file_sys_debug_impt_info_resp_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint32_t  head_pointer; 
+  uint32_t  tail_pointer; 
+  uint32_t  usb_avg_tx_time; 
+  uint32_t  usb_avg_port_write_time; 
+  uint32_t  page_read_time; 
+  uint16_t  init_circular_buffer_flag; 
+  uint16_t  mem_full_flag; 
+  uint16_t  data_offset; 
+  uint16_t  config_file_occupied; 
+  uint32_t  page_write_time; 
+  uint16_t  fs_display_query_cnt; 
+  uint16_t  min_timer_cnt; 
+  uint8_t  block_lock_reg_val; 
+  uint8_t  config_reg_val; 
+  uint8_t  status_reg_val; 
+  uint8_t  die_select_reg_val; 
+  uint8_t  device_id; 
+  uint8_t  manufacture_id; 
+};
+
+struct m2m2_file_sys_format_debug_info_resp_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint8_t  erase_failed_due_bad_block_check; 
+  uint8_t  wrap_around_cond; 
+  uint8_t  nothing_is_written_to_erase_error; 
+  uint8_t  mem_full_in_partial_erase; 
+  uint8_t  toc_mem_erased_flag; 
+  uint8_t  succesfull_erase_flag; 
+  uint16_t  num_blocks_erased_in_mem_full_partial_erase; 
+  uint16_t  num_blocks_erased_in_partial_erase_1; 
+  uint16_t  num_blocks_erased_in_partial_erase_2; 
+  uint16_t  num_times_format_failed_due_bad_blocks_1; 
+  uint16_t  num_times_format_failed_due_bad_blocks_2; 
+  uint32_t  format_src_blk_ind; 
+  uint32_t  format_dest_blk_ind_1; 
+  uint32_t  format_dest_blk_ind_2; 
+};
+
+struct m2m2_file_sys_get_file_info_req_pkt_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint8_t  file_index; 
+};
+
+struct m2m2_file_sys_get_file_info_resp_pkt_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint8_t  file_name[16]; 
+  uint32_t  start_page; 
+  uint32_t  end_page; 
+  uint32_t  file_size; 
+};
+
+struct m2m2_file_sys_read_write_erase_req_pkt_t {
+  uint8_t  command; 
+  uint8_t  status; 
+};
+
+struct m2m2_file_sys_read_write_erase_resp_pkt_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint8_t  read_failure_type; 
+  uint32_t  read_time_stamp; 
+  uint8_t  write_failure_type; 
+  uint32_t  write_time_stamp; 
+  uint8_t  erase_failure_type; 
+  uint32_t  erase_time_stamp; 
+  uint8_t  get_status; 
+  uint8_t  get_battery_level; 
+  uint16_t  get_battery_voltage_level; 
+  uint8_t  get_battery_charge_status; 
+};
 
 // Reset struct packing outside of this file
 #pragma pack()

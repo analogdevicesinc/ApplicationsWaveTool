@@ -5,5 +5,7 @@ var m2m2__application_8hpp =
     [ "sys_date_time_t", "structsys__date__time__t.html", "structsys__date__time__t" ],
     [ "m2m2_application", "classm2m2__application.html", "classm2m2__application" ],
     [ "get_device_id", "m2m2__application_8hpp.html#a7bf8bbe5d852b2c4421207c017f08d80", null ],
-    [ "set_device_id", "m2m2__application_8hpp.html#a0c0e1f3d4d0d7b4110686982822ccb16", null ]
+    [ "get_LowTouch_status", "m2m2__application_8hpp.html#a378382697aff0d36e6809a052948cc6e", null ],
+    [ "set_device_id", "m2m2__application_8hpp.html#a0c0e1f3d4d0d7b4110686982822ccb16", null ],
+    [ "set_LowTouch_status", "m2m2__application_8hpp.html#a0e32fd759ba678cd686c1091d30bf4e3", null ]
 ];

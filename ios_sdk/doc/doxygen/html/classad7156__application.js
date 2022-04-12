@@ -10,5 +10,5 @@ var classad7156__application =
     [ "register_read", "classad7156__application.html#a07a74c8c57a51689aebef642e189a746", null ],
     [ "register_write", "classad7156__application.html#a03101c6c0a7907d973ee9d411ebbf658", null ],
     [ "write_dcb_config", "classad7156__application.html#acb1293519f424d8a88378bb26f15fde2", null ],
-    [ "ad7156_stream", "classad7156__application.html#a63b52d78e477591a5805fda3195b3bd2", null ]
+    [ "ad7156_stream", "classad7156__application.html#af45ec90992817b201d1262391cd31488", null ]
 ];

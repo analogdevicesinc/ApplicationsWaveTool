@@ -18,6 +18,7 @@
 #endif  // defined __CC_ARM || defined __IAR_SYSTEMS_ICC__ || __clang__ || defined _MSC_VER || defined __GNUC__
 #pragma pack(1)
 
+
 enum M2M2_SENSOR_SYNC_DATA_TYPES_ENUM_t:uint8_t {
   M2M2_SENSOR_ADPD_ADXL_SYNC_DATA = 0,
 };

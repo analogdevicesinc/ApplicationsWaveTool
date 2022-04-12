@@ -61,8 +61,8 @@
 #include "m2m2/cpp/file_system_interface.hpp"
 #include "m2m2/cpp/sqi_application_interface.hpp"
 #include "m2m2/cpp/pedometer_application_interface.hpp"
-//#include "m2m2/cpp/ad7689_application_interface.hpp"
-#include "m2m2/cpp/bcm_application_interface.hpp"
+#include "m2m2/cpp/sensor_ad7156_application_interface.hpp"
+#include "m2m2/cpp/bia_application_interface.hpp"
 //#include "m2m2/cpp/sensor_ad5940_application_interface.hpp"
 
 #define FIRMWARE_TS_PER_MS (32.0)
@@ -474,21 +474,23 @@ inline void m2m2_data_stream<eda_stream_callback>::dispatch(std::vector<uint8_t>
       pkt.payload.eda_data[i].imgdata = 1;
     }
 
-    if (device_identifier == ret::device_identifiers::SENSORBOARD3) {
-      admittance_real = pkt.payload.eda_data[i].realdata * pow(10, 3);
-      admittance_img = pkt.payload.eda_data[i].imgdata * pow(10, 3);
-    } else {
-      admittance_real = pkt.payload.eda_data[i].realdata / pow(10, 9);
-      admittance_img = pkt.payload.eda_data[i].imgdata / pow(10, 9);
-    }
-    admittance_magnitude = sqrt(admittance_real * admittance_real + admittance_img * admittance_img);
-    admittance_phase = atan2(admittance_img, admittance_real);
-    impedance_real = admittance_real / (admittance_real * admittance_real + admittance_img * admittance_img);
-    impedance_img = -(admittance_img / (admittance_real * admittance_real + admittance_img * admittance_img));
-    impedance_magnitude = 1 / (admittance_magnitude);
+    //if (device_identifier == ret::device_identifiers::SENSORBOARD3) {
+      impedance_real = pkt.payload.eda_data[i].realdata * pow(10, 3);
+      impedance_img = pkt.payload.eda_data[i].imgdata * pow(10, 3);
+    //}/* else {
+    //  admittance_real = pkt.payload.eda_data[i].realdata / pow(10, 3);
+    //  admittance_img = pkt.payload.eda_data[i].imgdata / pow(10, 9);
+    //}*/
+    impedance_magnitude = sqrt(impedance_real * impedance_real + impedance_img * impedance_img);
     impedance_phase = atan2(impedance_img, impedance_real);
+    admittance_real = impedance_real / (impedance_real * impedance_real + impedance_img * impedance_img);
+    admittance_img = -(impedance_img / (impedance_real * impedance_real + impedance_img * impedance_img));
+    admittance_magnitude = 1 / (impedance_magnitude);
+    admittance_phase = atan2(admittance_img, admittance_real);
 
     data_samples.push_back({pkt.payload.eda_data[i].timestamp / FIRMWARE_TS_PER_MS,
+							pkt.payload.eda_data[i].realdata / 1.0,
+							pkt.payload.eda_data[i].imgdata / 1.0,
                             admittance_real,
                             admittance_img,
                             impedance_real,
@@ -496,7 +498,7 @@ inline void m2m2_data_stream<eda_stream_callback>::dispatch(std::vector<uint8_t>
                             admittance_magnitude,
                             admittance_phase,
                             impedance_magnitude,
-                            impedance_phase
+                            impedance_phase,
                            });
   }
 
@@ -601,6 +603,9 @@ inline void m2m2_data_stream<temperature_stream_callback>::dispatch(std::vector<
 
   pkt.unpack(bytes);
   uint32_t current_timestamp = pkt.payload.nTS;
+  uint16_t source_stream;
+  m2m2_hdr_t *packet_source = reinterpret_cast<m2m2_hdr_t *> (&bytes[0]);
+  source_stream = static_cast<short>((int)BYTE_SWAP_16(packet_source->src));
 
   // Conversion from raw ADC LSBs to Celcius.
   // This is incredibly firmware/HW dependent.
@@ -621,9 +626,9 @@ inline void m2m2_data_stream<temperature_stream_callback>::dispatch(std::vector<
 //  alpha = alpha * (vAdc / (adc_VDD - vAdc));
 //  float temp_ambient = B * T0 / (B + log(alpha) * T0) - 273.15;
 
-  data_samples.push_back({current_timestamp / FIRMWARE_TS_PER_MS,
-                          pkt.payload.nTemperature1/10.0,
-                          pkt.payload.nTemperature2/10.0});
+  data_samples.push_back({ source_stream, current_timestamp / FIRMWARE_TS_PER_MS,
+                          pkt.payload.nTemperature1/1000.0,
+                          pkt.payload.nTemperature2/1000.0});
 
 
 #if SDK_TIMEOUT == 1
@@ -661,6 +666,14 @@ inline void m2m2_data_stream<ppg_stream_callback>::dispatch(std::vector<uint8_t>
   std::vector<ppg_stream_cb_data_t> data_samples;
   uint32_t current_timestamp = pkt.payload.timestamp;
 
+  std::vector<uint16_t> debugInfo = { 0 };
+
+  for (int i = 0;
+	  i < sizeof(ppg_stream_cb_data_t().debugInfo) / sizeof(ppg_stream_cb_data_t().debugInfo[0]);
+	  i++) {
+	  debugInfo.push_back(pkt.payload.debugInfo[i]);
+  }
+
   data_samples.push_back({current_timestamp / FIRMWARE_TS_PER_MS,
                           pkt.payload.adpdlibstate,
                              // 16Q4 fixed point to float
@@ -668,7 +681,8 @@ inline void m2m2_data_stream<ppg_stream_callback>::dispatch(std::vector<uint8_t>
                              // 16Q10 fixed point to float, and turn into a %
                           100.0f * (pkt.payload.confidence / 1024.0f),
                           pkt.payload.hr_type,
-                          pkt.payload.rr_interval});
+                          pkt.payload.rr_interval,
+	  debugInfo });
 
 #if SDK_TIMEOUT == 1
 
@@ -994,7 +1008,7 @@ inline void m2m2_data_stream<adpd4000_stream_callback>::dispatch(std::vector<uin
 		uint32_t Current_timestamp;
 		//uint32_t timestamp;
 		uint8_t sample_num;
-		uint8_t source_stream = 0;
+		short source_stream = 0;
 		std::vector<uint32_t> adpddata_D;
 		std::vector<uint32_t> adpddata_S;
 		std::vector<uint32_t> adpddata_L;
@@ -1003,7 +1017,8 @@ inline void m2m2_data_stream<adpd4000_stream_callback>::dispatch(std::vector<uin
 		seq_no = packet.payload.sequence_num;
 		//seq_no = (UINT16)assemble_uint(packet.payload.sequence_num);
 		m2m2_hdr_t *packet_source = reinterpret_cast<m2m2_hdr_t *> (&bytes[0]);
-		source_stream = (int)BYTE_SWAP_16(packet_source->src) - (int)M2M2_ADDR_ENUM_t::M2M2_ADDR_SENSOR_ADPD_STREAM1 + 1;
+		int lsource_stream = (int)BYTE_SWAP_16(packet_source->src) & 0xF000 ;
+		source_stream = static_cast<short>((int)BYTE_SWAP_16(packet_source->src) - static_cast<int>(M2M2_ADDR_ENUM_t::M2M2_ADDR_SENSOR_ADPD_STREAM1) + 1);
 
 		Dataformat = (short)packet.payload.data_format;
 		Dark = (short)((Dataformat & 0xF0) >> 4);
@@ -1079,7 +1094,7 @@ inline void m2m2_data_stream<adpd4000_stream_callback>::dispatch(std::vector<uin
 			}
 
 		}
-		data_samples.push_back({ static_cast<ADDR_SENSOR_STREAM_ENUM_t>(source_stream),Dark,Signal,Impulse,Lit,Channel_num,Current_timestamp / FIRMWARE_TS_PER_MS,adpddata_D,adpddata_S,adpddata_L});
+		data_samples.push_back({ static_cast<ADDR_SENSOR_STREAM_ENUM_t>(source_stream),Dark,Signal,Impulse,Lit,Channel_num, packet.payload.sample_num ,static_cast<double>( Current_timestamp ),adpddata_D,adpddata_S,adpddata_L});
 
 		this->callback->call(data_samples, packet.payload.sequence_num);
 	}
@@ -1238,30 +1253,75 @@ inline void m2m2_data_stream<fs_stream_callback>::dispatch(std::vector<uint8_t> 
     std::cerr << "ADI SDK:: Error! Undefined callback for stream: " << std::hex << (int)this->get_address() << std::endl;
     return;
   }
-  m2m2_pkt<m2m2_file_sys_download_log_stream_t> pkt;
-  pkt.unpack(bytes);
+
   std::vector<fs_stream_cb_data_t> data_samples;
-  
-  std::vector<uint8_t> byte_Streams;
-  
-  for (int i = 0; i < sizeof(pkt.payload.byte_stream); i++) {
-    byte_Streams.push_back(pkt.payload.byte_stream[i]);
+
+  m2m2_hdr_t *hdr = reinterpret_cast<m2m2_hdr_t *> (&bytes[0]);
+
+  uint16_t destination = BYTE_SWAP_16(hdr->dest);
+  if (destination == M2M2_ADDR_APP_CLI_BLE)
+  {
+	  m2m2_pkt<m2m2_file_sys_download_log_ble_stream_t> pkt_ble;
+
+	  pkt_ble.unpack(bytes);
+
+	  std::vector<uint8_t> byte_Streams;
+
+
+	  for (int i = 0; i < sizeof(pkt_ble.payload.page_chunk_bytes); i++) {
+		  byte_Streams.push_back(pkt_ble.payload.page_chunk_bytes[i]);
+	  }
+
+
+	  data_samples.push_back({ pkt_ble.payload.status,
+		  pkt_ble.payload.page_chunk_number,
+		pkt_ble.payload.page_number,
+		  pkt_ble.payload.page_chunk_size,
+		byte_Streams,
+		  bytes,
+		  static_cast<uint16_t>(bytes.size()),
+		pkt_ble.payload.crc16 });
+
+	  this->callback->call(data_samples);
+
+	  if (pkt_ble.payload.status == M2M2_FILE_SYS_END_OF_FILE) {
+		  this->callback = NULL;
+	  }
   }
-  
-  data_samples.push_back({pkt.payload.status,
-    pkt.payload.len_stream,
-    byte_Streams,
-    pkt.payload.crc16});
-  
-  this->callback->call(data_samples);
-  
-  if (pkt.payload.status == M2M2_FILE_SYS_END_OF_FILE) {
-    this->callback = NULL;
+  else
+  {
+	  m2m2_pkt<m2m2_file_sys_download_log_stream_t> pkt;
+
+	  pkt.unpack(bytes);
+
+	  std::vector<uint8_t> byte_Streams;
+
+
+	  for (int i = 0; i < sizeof(pkt.payload.page_chunk_bytes); i++) {
+		  byte_Streams.push_back(pkt.payload.page_chunk_bytes[i]);
+	  }
+
+
+	  data_samples.push_back({ pkt.payload.status,
+		  pkt.payload.page_chunk_number,
+		pkt.payload.page_number,
+		  pkt.payload.page_chunk_size,
+		byte_Streams,
+		bytes,
+		static_cast<uint16_t>(bytes.size()),
+		pkt.payload.crc16 });
+
+	  this->callback->call(data_samples);
+
+	  if (pkt.payload.status == M2M2_FILE_SYS_END_OF_FILE) {
+		  this->callback = NULL;
+	  }
   }
+
   
 }
 // #############################################################################
-// ## BCM STREAM CALLBACKS                                                    ##
+// ## BIA STREAM CALLBACKS                                                    ##
 // #############################################################################
 
 
@@ -1269,7 +1329,7 @@ inline void m2m2_data_stream<fs_stream_callback>::dispatch(std::vector<uint8_t> 
    \brief Dispatch a packet to an bcm_stream_callback.
 */
 template<>
-inline void m2m2_data_stream<bcm_stream_callback>::dispatch(std::vector<uint8_t> bytes) {
+inline void m2m2_data_stream<bia_stream_callback>::dispatch(std::vector<uint8_t> bytes) {
   if (!this->callback) {
     std::cout << "ADI SDK:: Error! Undefined callback for stream: " << std::hex
               << (int) this->get_address() << std::endl;
@@ -1278,89 +1338,97 @@ inline void m2m2_data_stream<bcm_stream_callback>::dispatch(std::vector<uint8_t>
     return;
   }
 
-  m2m2_pkt<bcm_app_stream_t> pkt;
-  std::vector<bcm_stream_cb_data_t> data_samples;
+  m2m2_pkt<bia_app_stream_t> pkt;
+  std::vector<bia_stream_cb_data_t> data_samples;
   pkt.unpack(bytes);
 
-  for (int i = 0; i < sizeof(bcm_app_stream_t().bcm_data) / sizeof(bcm_app_stream_t().bcm_data[0]); i++) {
-    double admittance_real = 0;
-    double admittance_img = 0;
-    double admittance_magnitude = 0;
-    double admittance_phase = 0;
-    double impedance_real = 0;
-    double impedance_img = 0;
-   // double previous_timestamp = 0;
-    double impedance_magnitude = 0;
-    double impedance_phase = 0;
-    uint8_t is_finger_on_leads = 0;
-    uint8_t signal_stability = 0;
+  for (int i = 0; i < sizeof(bia_app_stream_t().bia_data) / sizeof(bia_app_stream_t().bia_data[0]); i++) {
+	  double admittance_real = 0;
+	  double admittance_img = 0;
+	  double admittance_magnitude = 0;
+	  double admittance_phase = 0;
+	  double impedance_real = 0;
+	  double impedance_img = 0;
+	  // double previous_timestamp = 0;
+	  double impedance_magnitude = 0;
+	  double impedance_phase = 0;
+	  uint8_t is_finger_on_leads = 0;
+	  uint8_t signal_stability = 0;
 
-    if (pkt.payload.bcm_data[i].real == 0) {
-      pkt.payload.bcm_data[i].real = 1;
-    }
+	  if (pkt.payload.bia_data[i].real == 0) {
+		  pkt.payload.bia_data[i].real = 1;
+	  }
 
-    if (pkt.payload.bcm_data[i].img == 0) {
-      pkt.payload.bcm_data[i].img = 1;
-    }
+	  if (pkt.payload.bia_data[i].img == 0) {
+		  pkt.payload.bia_data[i].img = 1;
+	  }
 
-    impedance_real = ((double) pkt.payload.bcm_data[i].real) / 1024;
-    impedance_img = ((double) pkt.payload.bcm_data[i].img) / 1024;
+	  impedance_real = ((double)pkt.payload.bia_data[i].real) / 1000.0;
+	  impedance_img = ((double)pkt.payload.bia_data[i].img) / 1000.0;
 
-    if (((impedance_real > 100) && (impedance_real < 5000)) && ((impedance_img > -500) && (impedance_img < 100))) {
-      is_finger_on_leads = 1; // set the electrode touched status = 1
-    } else {
-      is_finger_on_leads = 0;
-    }
-    int ohmsdiff = 0;
+	  //if (((impedance_real > 100) && (impedance_real < 5000)) && ((impedance_img > -500) && (impedance_img < 100))) {
+	  if ((impedance_real > 100) && (impedance_real < 5000))
+	  {
+		is_finger_on_leads = 1; // set the electrode touched status = 1
+	  }
+	  else {
+		  is_finger_on_leads = 0;
+	  }
+	  double ohmsdiff = 0;
 
-	if (is_finger_on_leads == 1)
-	{
-		mImpedanceList.push_back(impedance_real);
-		if (mImpedanceList.size() == 20)  //define 20 in macro
-		{
-			ohmsdiff = abs(mImpedanceList[0] - mImpedanceList[mImpedanceList.size() - 1]);
-			mImpedanceList.clear();
-			if (ohmsdiff < BCM_STABILITY_OHMS_DIFF) //Checking ohms difference
-			{
-				if (++g_samplecount >= BCM_STABILITY_SAMPLES_COUNT) //counting samples
-				{
-					signal_stability = 1; // set signal stability
-				}
-			}
-			else
-			{
-				g_samplecount = 0;
-				signal_stability = 0;
-			}
-		}
-	}
-	else
-	{
-		mImpedanceList.clear();
-		g_samplecount = 0;
-		signal_stability = 0;
-	}
+	  if (is_finger_on_leads == 1)
+	  {
+		  mImpedanceList.push_back(impedance_real);
+		  if (mImpedanceList.size() == 20)  //define 20 in macro
+		  {
+			  ohmsdiff = abs(mImpedanceList[0] - mImpedanceList[mImpedanceList.size() - 1]);
+			  mImpedanceList.clear();
+			  if (ohmsdiff < BCM_STABILITY_OHMS_DIFF) //Checking ohms difference
+			  {
+				  if (++g_samplecount >= BCM_STABILITY_SAMPLES_COUNT) //counting samples
+				  {
+					  signal_stability = 1; // set signal stability
+				  }
+			  }
+			  else
+			  {
+				  g_samplecount = 0;
+				  signal_stability = 0;
+			  }
+		  }
+	  }
+	  else
+	  {
+		  mImpedanceList.clear();
+		  g_samplecount = 0;
+		  signal_stability = 0;
+	  }
 
-    admittance_real = impedance_real / (impedance_real * impedance_real + impedance_img * impedance_img);
-    admittance_img = (-impedance_img) / (impedance_real * impedance_real + impedance_img * impedance_img);
-    admittance_magnitude = sqrt(admittance_real * admittance_real + admittance_img * admittance_img);
-    admittance_phase = atan2(admittance_img, admittance_real);
-    admittance_phase = admittance_phase * (180 / 3.14); // in degrees
+	  admittance_real = impedance_real / (impedance_real * impedance_real + impedance_img * impedance_img);
+	  admittance_img = (-impedance_img) / (impedance_real * impedance_real + impedance_img * impedance_img);
+	  admittance_magnitude = sqrt(admittance_real * admittance_real + admittance_img * admittance_img);
+	  admittance_phase = atan2(admittance_img, admittance_real);
+	  admittance_phase = admittance_phase * (180 / 3.14); // in degrees
 
-    impedance_magnitude = sqrt(impedance_real * impedance_real + impedance_img * impedance_img);
-    impedance_phase = atan2(impedance_img, impedance_real);
-    impedance_phase = impedance_phase * (180 / 3.14); // in degrees
+	  impedance_magnitude = sqrt(impedance_real * impedance_real + impedance_img * impedance_img);
+	  impedance_phase = atan2(impedance_img, impedance_real);
+	  impedance_phase = impedance_phase * (180 / 3.14); // in degrees
 
-    data_samples.push_back({pkt.payload.bcm_data[i].timestamp / FIRMWARE_TS_PER_MS,
-                            (int32_t) impedance_real,
-                            (int32_t) impedance_img,
-                            is_finger_on_leads,
-                            signal_stability,
-                            impedance_magnitude,
-                            impedance_phase,
-                            admittance_magnitude,
-                            admittance_phase,
-                           });
+	  data_samples.push_back({ pkt.payload.bia_data[i].timestamp / FIRMWARE_TS_PER_MS,
+								pkt.payload.datatype,
+								static_cast<BIA_APP_INFO_BITSET_ENUM_t>(pkt.payload.bia_info),
+								pkt.payload.bia_data[i].real,
+								pkt.payload.bia_data[i].img,
+								(int32_t)impedance_real,
+								(int32_t)impedance_img,
+								signal_stability,
+								impedance_magnitude,
+								impedance_phase,
+								admittance_magnitude,
+								admittance_phase,
+								pkt.payload.bia_data[i].excitation_freq
+		  });
+
   }
 
 #if SDK_TIMEOUT == 1
@@ -1377,49 +1445,154 @@ inline void m2m2_data_stream<bcm_stream_callback>::dispatch(std::vector<uint8_t>
 }
 
 // #############################################################################
+// ## BIA ALGO STREAM CALLBACKS                                                    ##
+// #############################################################################
+
+
+/*!
+   \brief Dispatch a packet to an bcm_stream_callback.
+*/
+template<>
+inline void m2m2_data_stream<bia_algo_stream_callback>::dispatch(std::vector<uint8_t> bytes) {
+	if (!this->callback) {
+		std::cout << "ADI SDK:: Error! Undefined callback for stream: " << std::hex
+			<< (int)this->get_address() << std::endl;
+		std::cerr << "ADI SDK:: Error! Undefined callback for stream: " << std::hex
+			<< (int)this->get_address() << std::endl;
+		return;
+	}
+
+	m2m2_pkt<bcm_app_algo_out_stream_t> pkt;
+	std::vector<bia_app_algo_out_stream_cb_data_t> data_samples;
+	pkt.unpack(bytes);
+
+
+		data_samples.push_back({ pkt.payload.time_stamp / FIRMWARE_TS_PER_MS,
+								pkt.payload.ffm_estimated,
+								pkt.payload.bmi,
+								pkt.payload.fat_percent,
+			});
+
+#if SDK_TIMEOUT == 1
+	if (pkt.payload.sequence_num < 4800) {
+		this->callback->call(data_samples, pkt.payload.sequence_num);
+	}
+	else if (pkt.payload.sequence_num == 4800)
+	{
+		std::cout << "ADI SDK:: Error! Timered out callback for stream: " << std::hex << (int)this->get_address() << std::endl;
+	}
+#else
+	this->callback->call(data_samples, pkt.payload.sequence_num);
+#endif
+}
+
+
+// #############################################################################
+// ## AD7156 STREAM CALLBACKS                                                    ##
+// #############################################################################
+
+
+/*!
+   \brief Dispatch a packet to an ad7156_stream_callback.
+*/
+template<>
+inline void m2m2_data_stream<ad7156_stream_callback>::dispatch(std::vector<uint8_t> bytes) {
+	if (!this->callback) {
+		std::cout << "ADI SDK:: Error! Undefined callback for stream: " << std::hex
+			<< (int)this->get_address() << std::endl;
+		std::cerr << "ADI SDK:: Error! Undefined callback for stream: " << std::hex
+			<< (int)this->get_address() << std::endl;
+		return;
+	}
+
+	m2m2_pkt<m2m2_sensor_ad7156_data_t> pkt;
+	std::vector<sensor_ad7156_cb_data_t> data_samples;
+	pkt.unpack(bytes);
+
+
+	data_samples.push_back({ pkt.payload.timestamp / FIRMWARE_TS_PER_MS,
+							pkt.payload.ch1_cap,
+							pkt.payload.ch2_cap,
+		});
+
+#if SDK_TIMEOUT == 1
+	if (pkt.payload.sequence_num < 4800) {
+		this->callback->call(data_samples, pkt.payload.sequence_num);
+	}
+	else if (pkt.payload.sequence_num == 4800)
+	{
+		std::cout << "ADI SDK:: Error! Timered out callback for stream: " << std::hex << (int)this->get_address() << std::endl;
+	}
+#else
+	this->callback->call(data_samples, pkt.payload.sequence_num);
+#endif
+}
+
+
+
+
+// #############################################################################
 // ## HRV STREAM CALLBACKS                                                    ##
 // #############################################################################
 /*!
    \brief Dispatch a packet to an bcm_stream_callback.
 */
-//template<>
-//inline void m2m2_data_stream<hrv_stream_callback>::dispatch(std::vector<uint8_t> bytes) {
-//  if (!this->callback) {
-//    std::cout << "ADI SDK:: Error! Undefined callback for stream: " << std::hex
-//              << (int) this->get_address() << std::endl;
-//    std::cerr << "ADI SDK:: Error! Undefined callback for stream: " << std::hex
-//              << (int) this->get_address() << std::endl;
-//    return;
-//  }
-//  m2m2_pkt<ppg_app_hrv_info_t> pkt;
-//  std::vector<hrv_stream_cb_data_t> data_samples;
-//  pkt.unpack(bytes);
-//
-//  data_samples.push_back({pkt.payload.timestamp / FIRMWARE_TS_PER_MS,
-//                          pkt.payload.first_rr_interval,
-//                          pkt.payload.first_is_gap,
-//                         });
-//
-//  for (int i = 0;
-//       i < sizeof(ppg_app_hrv_info_t().hrv_data) / sizeof(ppg_app_hrv_info_t().hrv_data[0]); i++) {
-//    data_samples.push_back({pkt.payload.hrv_data[i].timestamp / FIRMWARE_TS_PER_MS,
-//                            pkt.payload.hrv_data[i].rr_interval,
-//                            pkt.payload.hrv_data[i].is_gap,
-//                           });
-//  }
-//
-//#if SDK_TIMEOUT == 1
-//  if (pkt.payload.sequence_num < 4800) {
-//            this->callback->call(data_samples, pkt.payload.sequence_num);
-//          }
-//          else if (pkt.payload.sequence_num == 4800)
-//          {
-//            std::cout << "ADI SDK:: Error! Timered out callback for stream: " << std::hex << (int)this->get_address() << std::endl;
-//          }
-//#else
-//  this->callback->call(data_samples, pkt.payload.sequence_num);
-//#endif
-//}
+template<>
+inline void m2m2_data_stream<hrv_stream_callback>::dispatch(std::vector<uint8_t> bytes) {
+  if (!this->callback) {
+    std::cout << "ADI SDK:: Error! Undefined callback for stream: " << std::hex
+              << (int) this->get_address() << std::endl;
+    std::cerr << "ADI SDK:: Error! Undefined callback for stream: " << std::hex
+              << (int) this->get_address() << std::endl;
+    return;
+  }
+  m2m2_pkt<ppg_app_hrv_info_t> pkt;
+  std::vector<hrv_stream_cb_data_t> data_samples;
+  pkt.unpack(bytes);
+
+  uint32_t current_timestamp= pkt.payload.timestamp;
+
+  data_samples.push_back({ current_timestamp / FIRMWARE_TS_PER_MS,
+                          pkt.payload.first_rr_interval,
+                          pkt.payload.first_is_gap,
+                          pkt.payload.first_rmssd
+      });
+ /* data_samples.push_back({pkt.payload.timestamp / FIRMWARE_TS_PER_MS,
+                          pkt.payload.first_rr_interval,
+                          pkt.payload.first_is_gap,
+						  pkt.payload.first_rmssd
+                         });*/
+
+  for (int i = 0;
+       i < sizeof(ppg_app_hrv_info_t().hrv_data) / sizeof(ppg_app_hrv_info_t().hrv_data[0]); i++) {
+      
+      current_timestamp += pkt.payload.hrv_data[i].timestamp;
+
+      data_samples.push_back({ current_timestamp/ FIRMWARE_TS_PER_MS,
+                           pkt.payload.hrv_data[i].rr_interval,
+                           pkt.payload.hrv_data[i].is_gap,
+                           pkt.payload.hrv_data[i].rmssd
+          });
+      
+     /* data_samples.push_back({pkt.payload.hrv_data[i].timestamp / FIRMWARE_TS_PER_MS,
+                            pkt.payload.hrv_data[i].rr_interval,
+                            pkt.payload.hrv_data[i].is_gap,
+							pkt.payload.hrv_data[i].rmssd
+                           });*/
+  }
+
+#if SDK_TIMEOUT == 1
+  if (pkt.payload.sequence_num < 4800) {
+            this->callback->call(data_samples, pkt.payload.sequence_num);
+          }
+          else if (pkt.payload.sequence_num == 4800)
+          {
+            std::cout << "ADI SDK:: Error! Timered out callback for stream: " << std::hex << (int)this->get_address() << std::endl;
+          }
+#else
+  this->callback->call(data_samples, pkt.payload.sequence_num);
+#endif
+}
 
 // #############################################################################
 // ## AGC STREAM CALLBACKS                                                    ##
@@ -1436,7 +1609,7 @@ inline void m2m2_data_stream<agc_stream_callback>::dispatch(std::vector<uint8_t>
               << (int) this->get_address() << std::endl;
     return;
   }
-  m2m2_pkt<ppg_app_agc_info_t> pkt;
+  m2m2_pkt<ppg_app_dynamic_agc_stream_t> pkt;
   std::vector<agc_stream_cb_data_t> data_samples;
   pkt.unpack(bytes);
 
@@ -1496,7 +1669,7 @@ inline void m2m2_data_stream<sqi_stream_callback>::dispatch(std::vector<uint8_t>
 	uint32_t current_timestamp = pkt.payload.nTimeStamp;
 
 	
-		data_samples.push_back({ pkt.payload.sqi, pkt.payload.nSQISlot, pkt.payload.nAlgoStatus ,current_timestamp / FIRMWARE_TS_PER_MS,
+		data_samples.push_back({ pkt.payload.sqi / 1.0, pkt.payload.nSQISlot, pkt.payload.nAlgoStatus ,current_timestamp / FIRMWARE_TS_PER_MS,
 								pkt.payload.nReserved });
 		current_timestamp += pkt.payload.nTimeStamp;
 	

@@ -5,6 +5,7 @@
 
 #include "common_application_interface.hpp"
 #include "common_sensor_interface.hpp"
+#include "dcb_interface.hpp"
 #include "m2m2_core.hpp"
 #include <stdint.h>
 
@@ -18,6 +19,7 @@
   You must add an equivalent compiler directive to the file generator!"
 #endif  // defined __CC_ARM || defined __IAR_SYSTEMS_ICC__ || __clang__ || defined _MSC_VER || defined __GNUC__
 #pragma pack(1)
+
 
 enum M2M2_PPG_APP_CMD_ENUM_t:uint8_t {
   _M2M2_PPG_APP_CMD_LOWEST = 64,
@@ -64,11 +66,11 @@ enum M2M2_SENSOR_PPG_SYNC_DATA_TYPES_ENUM_t:uint8_t {
 static_assert(sizeof(M2M2_SENSOR_PPG_SYNC_DATA_TYPES_ENUM_t) == 1, "Enum 'M2M2_SENSOR_PPG_SYNC_DATA_TYPES_ENUM_t' has an incorrect size!");
 
 enum M2M2_SENSOR_PPG_LCFG_ID_ENUM_t:uint8_t {
-  M2M2_SENSOR_PPG_LCFG_ID_ADPD107 = 107,
-  M2M2_SENSOR_PPG_LCFG_ID_ADPD185 = 185,
-  M2M2_SENSOR_PPG_LCFG_ID_ADPD108 = 108,
-  M2M2_SENSOR_PPG_LCFG_ID_ADPD188 = 188,
   M2M2_SENSOR_PPG_LCFG_ID_ADPD4000 = 40,
+  M2M2_SENSOR_PPG_LCFG_ID_ADPD107 = 107,
+  M2M2_SENSOR_PPG_LCFG_ID_ADPD108 = 108,
+  M2M2_SENSOR_PPG_LCFG_ID_ADPD185 = 185,
+  M2M2_SENSOR_PPG_LCFG_ID_ADPD188 = 188,
 };
 static_assert(sizeof(M2M2_SENSOR_PPG_LCFG_ID_ENUM_t) == 1, "Enum 'M2M2_SENSOR_PPG_LCFG_ID_ENUM_t' has an incorrect size!");
 
@@ -99,7 +101,8 @@ struct ppg_app_lcfg_op_hdr_t {
   uint8_t  command; 
   uint8_t  status; 
   uint8_t  num_ops; 
-  ppg_app_lcfg_op_t  ops[0];
+  ppg_app_lcfg_op_t  ops[1]; // NOTE: THIS FIELD IS INTENDED TO BE OF VARIABLE LENGTH! 
+        // NOTE: Use offsetof(ppg_app_lcfg_op_hdr_t, ops) instead of sizeof(ppg_app_lcfg_op_hdr_t)
 };
 
 struct ppg_app_hr_debug_stream_t {
@@ -139,7 +142,7 @@ struct ppg_app_set_lcfg_resp_t {
   uint8_t  status; 
 };
 
-struct ppg_app_agc_info_t {
+struct ppg_app_dynamic_agc_stream_t {
   uint8_t  command; 
   uint8_t  status; 
   uint16_t  sequence_num; 
@@ -152,6 +155,7 @@ struct hrv_data_set_t {
   uint16_t  timestamp; 
   int16_t  rr_interval; 
   uint16_t  is_gap; 
+  uint16_t  rmssd; 
 };
 
 struct ppg_app_hrv_info_t {
@@ -161,6 +165,7 @@ struct ppg_app_hrv_info_t {
   uint32_t  timestamp; 
   int16_t  first_rr_interval; 
   uint16_t  first_is_gap; 
+  uint16_t  first_rmssd; 
   hrv_data_set_t  hrv_data[3]; 
 };
 
@@ -168,7 +173,8 @@ struct m2m2_ppg_lcfg_data_t {
   uint8_t  command; 
   uint8_t  status; 
   uint8_t  size; 
-  int32_t  lcfgdata[MAXPPGDCBSIZE]; 
-} ;
+  int32_t  lcfgdata[56]; 
+};
+
 // Reset struct packing outside of this file
 #pragma pack()

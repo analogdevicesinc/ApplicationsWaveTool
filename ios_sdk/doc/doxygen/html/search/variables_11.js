@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x_1250',['x',['../structadxl__stream__cb__data__t.html#ae1c2d516777e6b42af0d281c9ecc7375',1,'adxl_stream_cb_data_t::x()'],['../structsyncppg__stream__cb__data__t.html#ae1c2d516777e6b42af0d281c9ecc7375',1,'syncppg_stream_cb_data_t::x()']]]
+  ['user_5fconfig_5fapp_1634',['user_config_app',['../classwatch.html#a4afbd822fc6e8a11b09334a11f4af0e4',1,'watch']]]
 ];

@@ -7,5 +7,6 @@ var structpm__sys__info__t =
     [ "hw_id", "structpm__sys__info__t.html#ac5c3fce1a3d390402845d9039b8281bb", null ],
     [ "mac_addr", "structpm__sys__info__t.html#a39159fdfe1f41449f40a705acf941e22", null ],
     [ "model_number", "structpm__sys__info__t.html#a71c2f2a510426cc3c46712b72bb8d0e7", null ],
+    [ "type", "structpm__sys__info__t.html#a45081b44014bf8ff38d93dbd00e053c0", null ],
     [ "version", "structpm__sys__info__t.html#ab6d7b6f8c2ceaba7acda80aaf05f4899", null ]
 ];

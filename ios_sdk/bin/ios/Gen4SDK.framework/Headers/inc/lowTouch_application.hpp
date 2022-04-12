@@ -23,8 +23,10 @@ public:
   std::vector<std::pair<uint8_t, uint16_t>> lcfg_read(std::vector<uint8_t> addresses);
   std::vector<std::pair<uint8_t, uint16_t>> lcfg_write(std::vector<std::pair<uint8_t, uint16_t>> addr_vals);
   
-  ret::sdk_status  write_dcb_config(std::vector<std::pair<uint16_t, uint16_t>> addr_vals);
+  ret::sdk_status  write_dcb_config(std::vector<std::pair<uint16_t, uint32_t>> addr_vals, uint16_t num_packets);
   std::vector<std::pair<uint16_t, uint16_t>> read_dcb_config(void);
   ret::sdk_status  dcb_delete_config(void);
+
+  uint16_t read_LT_CH2_cap(void);
 
 };

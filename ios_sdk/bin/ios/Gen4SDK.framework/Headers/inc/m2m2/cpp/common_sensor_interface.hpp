@@ -18,15 +18,16 @@
 #endif  // defined __CC_ARM || defined __IAR_SYSTEMS_ICC__ || __clang__ || defined _MSC_VER || defined __GNUC__
 #pragma pack(1)
 
+
 enum M2M2_SENSOR_COMMON_STATUS_ENUM_t:uint8_t {
-  __M2M2_SENSOR_COMMON_STATUS_LOWEST = 32,
+  _M2M2_SENSOR_COMMON_STATUS_ENUM_t__M2M2_SENSOR_COMMON_STATUS_LOWEST = 32,
   M2M2_SENSOR_COMMON_STATUS_RUNNING = 33,
-  __M2M2_SENSOR_COMMON_STATUS_HIGHEST = 64,
+  _M2M2_SENSOR_COMMON_STATUS_ENUM_t__M2M2_SENSOR_COMMON_STATUS_HIGHEST = 64,
 };
 static_assert(sizeof(M2M2_SENSOR_COMMON_STATUS_ENUM_t) == 1, "Enum 'M2M2_SENSOR_COMMON_STATUS_ENUM_t' has an incorrect size!");
 
 enum M2M2_SENSOR_COMMON_CMD_ENUM_t:uint8_t {
-  __M2M2_SENSOR_COMMON_CMD_LOWEST = 32,
+  _M2M2_SENSOR_COMMON_CMD_ENUM_t__M2M2_SENSOR_COMMON_CMD_LOWEST = 32,
   M2M2_SENSOR_COMMON_CMD_READ_REG_16_REQ = 33,
   M2M2_SENSOR_COMMON_CMD_READ_REG_16_RESP = 34,
   M2M2_SENSOR_COMMON_CMD_WRITE_REG_16_REQ = 35,
@@ -56,7 +57,8 @@ struct m2m2_sensor_common_reg_op_16_hdr_t {
   uint8_t  command; 
   uint8_t  status; 
   uint8_t  num_ops; 
-  m2m2_sensor_common_reg_op_16_t  ops[0]; 
+  m2m2_sensor_common_reg_op_16_t  ops[1]; // NOTE: THIS FIELD IS INTENDED TO BE OF VARIABLE LENGTH! 
+        // NOTE: Use offsetof(m2m2_sensor_common_reg_op_16_hdr_t, ops) instead of sizeof(m2m2_sensor_common_reg_op_16_hdr_t)
 };
 
 struct m2m2_sensor_common_reg_op_32_t {
@@ -68,7 +70,8 @@ struct m2m2_sensor_common_reg_op_32_hdr_t {
   uint8_t  command; 
   uint8_t  status; 
   uint8_t  num_ops; 
-  m2m2_sensor_common_reg_op_32_t  ops[0]; 
+  m2m2_sensor_common_reg_op_32_t  ops[1]; // NOTE: THIS FIELD IS INTENDED TO BE OF VARIABLE LENGTH! 
+        // NOTE: Use offsetof(m2m2_sensor_common_reg_op_32_hdr_t, ops) instead of sizeof(m2m2_sensor_common_reg_op_32_hdr_t)
 };
 
 struct m2m2_sensor_common_timestamp_t {

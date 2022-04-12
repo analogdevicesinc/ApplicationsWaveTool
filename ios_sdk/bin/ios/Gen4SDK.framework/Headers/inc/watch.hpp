@@ -50,13 +50,14 @@
 #include "pm_application.hpp"
 #include "fs_application.hpp"
 #include "pedometer_application.hpp"
-#include "bcm_application.hpp"
+#include "bia_application.hpp"
 #include "m2m2/cpp/m2m2_core.hpp"
 #include "adpd4000_application.hpp"
 #include "display_application.hpp"
 #include "sqi_application.hpp"
 #include "lowTouch_application.hpp"
 #include "ad7156_application.hpp"
+#include "user0_config_application.hpp";
 
 /*!
    \brief The top-level watch class that encapsulates all of the SDK applications and operations.
@@ -127,12 +128,14 @@ enum M2M2_LOW_TOUCH_STATUS_ENUM_t : uint8_t {
   pm_application pm_app;
   fs_application fs_app;
   pedometer_application ped_app;
-  bcm_application bcm_app;
+  bia_application bia_app;
   display_application display_app;
   sqi_application sqi_app;
   lowTouch_application lowTouch_app;
   ad7156_application ad7156_app;
+  user0_config_application user_config_app;
 
+  void setLowTouchStatus(bool status);
 
   ret::err_status start_syncppg(ppg_stream_callback &ppg_stream_cb, syncppg_stream_callback &sync_stream_cb);
 
@@ -167,6 +170,10 @@ enum M2M2_LOW_TOUCH_STATUS_ENUM_t : uint8_t {
   ret::err_status start_adpd4000_ir(adpd4000_stream_callback &stream_cb);
   ret::err_status stop_adpd4000_ir(void);
 
+  /* Multilple LED*/
+  ret::err_status start_adpd4000_g_r_ir_b(adpd4000_stream_callback& stream_cb);
+  ret::err_status stop_adpd4000_g_r_ir_b(void);
+
   ret::err_status start_ecg(ecg_stream_callback &stream_cb);
   ret::err_status stop_ecg(void);
 
@@ -176,13 +183,13 @@ enum M2M2_LOW_TOUCH_STATUS_ENUM_t : uint8_t {
   ret::err_status start_eda(eda_stream_callback &stream_cb);
   ret::err_status stop_eda(void);
 
-  ret::err_status start_bcm(bcm_stream_callback &stream_cb);
+  ret::err_status start_bia(bia_stream_callback &stream_cb);
 
-  ret::err_status stop_bcm(void);
+  ret::err_status stop_bia(void);
 
-  //ret::err_status start_hrv(hrv_stream_callback &stream_cb);
+  ret::err_status start_hrv(hrv_stream_callback &stream_cb);
 
-  //ret::err_status stop_hrv(void);
+  ret::err_status stop_hrv(void);
 
   ret::err_status start_pedometer(pedometer_stream_callback &stream_cb);
 
@@ -218,9 +225,9 @@ enum M2M2_LOW_TOUCH_STATUS_ENUM_t : uint8_t {
 
   ret::err_status stop_log_pedometer(void);
 
-  ret::err_status start_log_bcm(void);
+  ret::err_status start_log_bia(void);
 
-  ret::err_status stop_log_bcm(void);
+  ret::err_status stop_log_bia(void);
 
   //ret::err_status start_log_hrv(void);
 
@@ -241,7 +248,6 @@ enum M2M2_LOW_TOUCH_STATUS_ENUM_t : uint8_t {
 
   ret::err_status start_log_adpd4000_b(void);
   ret::err_status stop_log_adpd4000_b(void);
-
 
   uint8_t push_config_file(std::vector<uint8_t> buffer);
 

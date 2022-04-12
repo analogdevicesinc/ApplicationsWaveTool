@@ -26,30 +26,57 @@ var callback_8hpp =
     [ "fs_ls_callback", "classfs__ls__callback.html", "classfs__ls__callback" ],
     [ "pedometer_stream_cb_data_t", "structpedometer__stream__cb__data__t.html", "structpedometer__stream__cb__data__t" ],
     [ "pedometer_stream_callback", "classpedometer__stream__callback.html", "classpedometer__stream__callback" ],
-    [ "bcm_stream_cb_data_t", "structbcm__stream__cb__data__t.html", "structbcm__stream__cb__data__t" ],
-    [ "bcm_stream_callback", "classbcm__stream__callback.html", "classbcm__stream__callback" ],
+    [ "bia_stream_cb_data_t", "structbia__stream__cb__data__t.html", "structbia__stream__cb__data__t" ],
+    [ "bia_stream_callback", "classbia__stream__callback.html", "classbia__stream__callback" ],
+    [ "bia_app_algo_out_stream_cb_data_t", "structbia__app__algo__out__stream__cb__data__t.html", "structbia__app__algo__out__stream__cb__data__t" ],
+    [ "bia_algo_stream_callback", "classbia__algo__stream__callback.html", "classbia__algo__stream__callback" ],
+    [ "sensor_ad7156_cb_data_t", "structsensor__ad7156__cb__data__t.html", "structsensor__ad7156__cb__data__t" ],
+    [ "ad7156_stream_callback", "classad7156__stream__callback.html", "classad7156__stream__callback" ],
+    [ "hrv_stream_cb_data_t", "structhrv__stream__cb__data__t.html", "structhrv__stream__cb__data__t" ],
+    [ "hrv_stream_callback", "classhrv__stream__callback.html", "classhrv__stream__callback" ],
     [ "agc_stream_cb_data_t", "structagc__stream__cb__data__t.html", "structagc__stream__cb__data__t" ],
     [ "agc_stream_callback", "classagc__stream__callback.html", "classagc__stream__callback" ],
     [ "sqi_stream_cb_data_t", "structsqi__stream__cb__data__t.html", "structsqi__stream__cb__data__t" ],
     [ "sqi_stream_callback", "classsqi__stream__callback.html", "classsqi__stream__callback" ],
-    [ "ADDR_SENSOR_STREAM_ENUM_t", "callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfe", [
-      [ "ADPD_SENSOR_STREAM1", "callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfea81af51814221231ae30e29bc4cb52614", null ],
-      [ "ADPD_SENSOR_STREAM2", "callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfead45cc27d5d2e612726d05aaddc179f52", null ],
-      [ "ADPD_SENSOR_STREAM3", "callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfeada0319f006c302b53862814b2bf75ba0", null ],
-      [ "ADPD_SENSOR_STREAM4", "callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfea1d3d96c021e21d68ddbb53ce00ed50c2", null ],
-      [ "ADPD_SENSOR_STREAM5", "callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfeaf528f0b1b963fb952ca7e13b594d3532", null ],
-      [ "ADPD_SENSOR_STREAM6", "callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfeaf6aef8b370f1cb221a2a619debd5caf3", null ],
-      [ "ADPD_SENSOR_STREAM7", "callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfeab067bc33299dd87aad429f39967042bb", null ],
-      [ "ADPD_SENSOR_STREAM8", "callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfeaa4cb6c16fcd0edaaa0649dde93d2f70d", null ],
-      [ "ADPD_SENSOR_STREAM9", "callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfea078e5bce56ad4387f18efc8fa03cd50c", null ],
-      [ "ADPD_SENSOR_STREAM10", "callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfea405745ba6996ae9239e40138dd8bf8c6", null ],
-      [ "ADPD_SENSOR_STREAM11", "callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfea8efd6d7228ac57adfa3e93514f45d176", null ],
-      [ "ADPD_SENSOR_STREAM12", "callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfead77561b9eb1c173c4924bb0b7789bc39", null ],
-      [ "ADPD_SENSOR_INTERRUPT", "callback_8hpp.html#a7448ad5d529ea7599cb612e0ad5c8dfea3fde4690a0a3ab55dc97044407ba9f65", null ]
+    [ "ADDR_SENSOR_STREAM_ENUM_t", "callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebe", [
+      [ "ADPD_SENSOR_STREAM1", "callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebea81af51814221231ae30e29bc4cb52614", null ],
+      [ "ADPD_SENSOR_STREAM2", "callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebead45cc27d5d2e612726d05aaddc179f52", null ],
+      [ "ADPD_SENSOR_STREAM3", "callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebeada0319f006c302b53862814b2bf75ba0", null ],
+      [ "ADPD_SENSOR_STREAM4", "callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebea1d3d96c021e21d68ddbb53ce00ed50c2", null ],
+      [ "ADPD_SENSOR_STREAM5", "callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebeaf528f0b1b963fb952ca7e13b594d3532", null ],
+      [ "ADPD_SENSOR_STREAM6", "callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebeaf6aef8b370f1cb221a2a619debd5caf3", null ],
+      [ "ADPD_SENSOR_STREAM7", "callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebeab067bc33299dd87aad429f39967042bb", null ],
+      [ "ADPD_SENSOR_STREAM8", "callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebeaa4cb6c16fcd0edaaa0649dde93d2f70d", null ],
+      [ "ADPD_SENSOR_STREAM9", "callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebea078e5bce56ad4387f18efc8fa03cd50c", null ],
+      [ "ADPD_SENSOR_STREAM10", "callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebea405745ba6996ae9239e40138dd8bf8c6", null ],
+      [ "ADPD_SENSOR_STREAM11", "callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebea8efd6d7228ac57adfa3e93514f45d176", null ],
+      [ "ADPD_SENSOR_STREAM12", "callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebead77561b9eb1c173c4924bb0b7789bc39", null ],
+      [ "ADPD_SENSOR_INTERRUPT", "callback_8hpp.html#a0d24fdf7b687cc84075b02ace40c4ebea3fde4690a0a3ab55dc97044407ba9f65", null ]
+    ] ],
+    [ "BIA_APP_INFO_BITSET_ENUM_t", "callback_8hpp.html#a22977a758d67662a16296cc723a7f4f5", [
+      [ "BIA_APP_INFO_BITSET_LEADSOFF", "callback_8hpp.html#a22977a758d67662a16296cc723a7f4f5a2c3b83c9aa074f0148430ce32b703061", null ],
+      [ "SENSOR_BIA_APP_INFO_BITSET_LEADSON", "callback_8hpp.html#a22977a758d67662a16296cc723a7f4f5acb08fe3eb5af8280d0112b943ee3a67c", null ]
+    ] ],
+    [ "BIA_SWEEP_FREQ_INDEX_ENUM_t", "callback_8hpp.html#a26fbf38917a74c094480675ec929cd2c", [
+      [ "SENSOR_BIA_FREQ_1000HZ", "callback_8hpp.html#a26fbf38917a74c094480675ec929cd2caf7e82b661509a9ccf2f481b231eac435", null ],
+      [ "SENSOR_BIA_FREQ_3760HZ", "callback_8hpp.html#a26fbf38917a74c094480675ec929cd2ca4af9fa4c4ea0a00b3164ee32f5c2532d", null ],
+      [ "SENSOR_BIA_FREQ_14140HZ", "callback_8hpp.html#a26fbf38917a74c094480675ec929cd2ca32d746d479ae84ef0f36ce2fdd6a6327", null ],
+      [ "SENSOR_BIA_FREQ_53180HZ", "callback_8hpp.html#a26fbf38917a74c094480675ec929cd2ca8c73a0e77e3238682f051f9505291074", null ],
+      [ "SENSOR_BIA_FREQ_200KHZ", "callback_8hpp.html#a26fbf38917a74c094480675ec929cd2ca1db78d14b9ecf27d91d1385ce9ebf8ce", null ],
+      [ "SENSOR_BIA_FREQ_50KHZ", "callback_8hpp.html#a26fbf38917a74c094480675ec929cd2cac808359e504e20445a8c9c59e9878827", null ]
     ] ],
     [ "ecg_datatype_enum_t", "callback_8hpp.html#a529c1c3c55bcd7ed841848317c57a519", [
       [ "ecg_monitor", "callback_8hpp.html#a529c1c3c55bcd7ed841848317c57a519a6f4373176043c5cd9729da84c7e54ed2", null ],
       [ "ecg_sport", "callback_8hpp.html#a529c1c3c55bcd7ed841848317c57a519a2f286dd3e7b14cf6eae297ab3be3d2d7", null ]
+    ] ],
+    [ "PM_BOARD_TYPE", "callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cb", [
+      [ "PM_BOARD_TYPE_UNKNOWN", "callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cbac902711b5c13bf40b29977792d101a81", null ],
+      [ "PM_BOARD_TYPE_ADPD107_WATCH", "callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cba07d0afd29cc008406b356d44922f61b0", null ],
+      [ "PM_BOARD_TYPE_ADPD107_CHEST_STRAP", "callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cba10138c8606c854edf8b9ed6d1ea8341e", null ],
+      [ "PM_BOARD_TYPE_ADPD185_WATCH", "callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cba674b4a0da5fddf8b1d75a8a84029cfc3", null ],
+      [ "PM_BOARD_TYPE_ADPD188_WATCH", "callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cbaf04444d47faaf46ae06a1e2b49de645a", null ],
+      [ "PM_BOARD_TYPE_STUDYWATCH", "callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cbaba9ec3a6295fe3d8c06b7443d5b6ba5f", null ],
+      [ "PM_BOARD_TYPE_VSM_WATCH", "callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cba6ba6b45969be31072a3d16a55056af0e", null ]
     ] ],
     [ "PM_SYS_BAT_STATE_ENUM_t", "callback_8hpp.html#afe2848e5ca49ebd18ae38747c36f8830", [
       [ "SYS_BAT_STATE_NOT_AVAIL", "callback_8hpp.html#afe2848e5ca49ebd18ae38747c36f8830a22dd841584dd4180c26e7b1574630496", null ],

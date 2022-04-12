@@ -22,6 +22,8 @@
 #ifndef STATIC_ASSERT_PROJ
 #define STATIC_ASSERT_PROJ(COND, MSG) typedef char static_assertion_##MSG[(COND)?1:-1]
 #endif // STATIC_ASSERT_PROJ
+
+
 typedef enum M2M2_EDA_APP_CMD_ENUM_t {
   _M2M2_EDA_APP_CMD_LOWEST = 64,
   M2M2_EDA_APP_CMD_DYNAMIC_SCALE_REQ = 66,
@@ -34,6 +36,10 @@ typedef enum M2M2_EDA_APP_CMD_ENUM_t {
   M2M2_EDA_APP_CMD_REQ_DEBUG_INFO_RESP = 73,
   M2M2_EDA_APP_CMD_RTIA_CAL_REQ = 74,
   M2M2_EDA_APP_CMD_RTIA_CAL_RESP = 75,
+  M2M2_EDA_APP_CMD_BASELINE_IMP_SET_REQ = 76,
+  M2M2_EDA_APP_CMD_BASELINE_IMP_SET_RESP = 77,
+  M2M2_EDA_APP_CMD_BASELINE_IMP_RESET_REQ = 78,
+  M2M2_EDA_APP_CMD_BASELINE_IMP_RESET_RESP = 79,
 } M2M2_EDA_APP_CMD_ENUM_t;
 STATIC_ASSERT_PROJ(sizeof(M2M2_EDA_APP_CMD_ENUM_t) == 1, INCORRECT_SIZE_M2M2_EDA_APP_CMD_ENUM_t);
 
@@ -99,6 +105,16 @@ typedef struct _eda_app_set_dft_num_t {
   uint8_t  status; 
   uint8_t  dftnum; 
 } eda_app_set_dft_num_t;
+
+typedef struct _eda_app_set_baseline_imp_t {
+  uint8_t  command; 
+  uint8_t  status;
+  float    imp_real_dft16;
+  float    imp_img_dft16;
+  float    imp_real_dft8;
+  float    imp_img_dft8;
+  uint32_t resistor_baseline;
+} eda_app_set_baseline_imp_t;
 
 typedef struct _eda_app_dcb_lcfg_t {
   uint8_t  command; 

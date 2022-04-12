@@ -121,6 +121,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7a5c0603b58994cd760a77b6e957d52f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; uint16_t, uint16_t &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#a7a5c0603b58994cd760a77b6e957d52f">get_dcfg</a> ()</td></tr>
 <tr class="memdesc:a7a5c0603b58994cd760a77b6e957d52f"><td class="mdescLeft">&#160;</td><td class="mdescRight">get DCFG  <a href="classtemperature__application.html#a7a5c0603b58994cd760a77b6e957d52f">More...</a><br /></td></tr>
 <tr class="separator:a7a5c0603b58994cd760a77b6e957d52f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34a1dc9a6fb4e3362d9fc45e7eeca35b"><td class="memItemLeft" align="right" valign="top">ret::sdk_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#a34a1dc9a6fb4e3362d9fc45e7eeca35b">write_dcb_config</a> (std::vector&lt; std::pair&lt; uint16_t, uint32_t &gt;&gt; addr_vals, uint16_t num_packets)</td></tr>
+<tr class="separator:a34a1dc9a6fb4e3362d9fc45e7eeca35b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab61c15a9e7e9864db1d6d203c958f137"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; uint16_t, uint32_t &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#ab61c15a9e7e9864db1d6d203c958f137">read_dcb_config</a> (void)</td></tr>
+<tr class="separator:ab61c15a9e7e9864db1d6d203c958f137"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa977d308540ddbaa347cba8466b7dd73"><td class="memItemLeft" align="right" valign="top">ret::sdk_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#aa977d308540ddbaa347cba8466b7dd73">dcb_delete_config</a> (void)</td></tr>
+<tr class="separator:aa977d308540ddbaa347cba8466b7dd73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab6e5dc01a4c28bb191b0314540ea73f"><td class="memItemLeft" align="right" valign="top">ret::sdk_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#aab6e5dc01a4c28bb191b0314540ea73f">dcb_set_lcfg</a> (void)</td></tr>
+<tr class="separator:aab6e5dc01a4c28bb191b0314540ea73f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f2303b43c913d13ba22f7404a21c6ee"><td class="memItemLeft" align="right" valign="top">ret::sdk_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#a4f2303b43c913d13ba22f7404a21c6ee">write_lcfg</a> (std::vector&lt; std::pair&lt; uint16_t, uint32_t &gt;&gt; addr_vals, uint8_t field)</td></tr>
+<tr class="separator:a4f2303b43c913d13ba22f7404a21c6ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bc7a664c16f2341d65325d8ab1f89a5"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; uint16_t, uint32_t &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#a4bc7a664c16f2341d65325d8ab1f89a5">read_lcfg</a> (uint8_t field)</td></tr>
+<tr class="separator:a4bc7a664c16f2341d65325d8ab1f89a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classm2m2__application"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classm2m2__application')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classm2m2__application.html">m2m2_application</a></td></tr>
 <tr class="memitem:a3f97b2655c210138258aace2659fa91e inherit pub_methods_classm2m2__application"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm2m2__application.html">m2m2_application</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm2m2__application.html#a3f97b2655c210138258aace2659fa91e">operator=</a> (const <a class="el" href="classm2m2__application.html">m2m2_application</a> &amp;other)</td></tr>
 <tr class="separator:a3f97b2655c210138258aace2659fa91e inherit pub_methods_classm2m2__application"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,12 +154,39 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a40398c17641111b37457a59ae95b9e22 inherit pub_methods_classm2m2__application"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm2m2__application.html#a40398c17641111b37457a59ae95b9e22">GetTimeout</a> (void)</td></tr>
 <tr class="memdesc:a40398c17641111b37457a59ae95b9e22 inherit pub_methods_classm2m2__application"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get timeot for packet to be recived.  <a href="classm2m2__application.html#a40398c17641111b37457a59ae95b9e22">More...</a><br /></td></tr>
 <tr class="separator:a40398c17641111b37457a59ae95b9e22 inherit pub_methods_classm2m2__application"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61294a8ad342383ed8ce80214e608525 inherit pub_methods_classm2m2__application"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm2m2__application.html#a61294a8ad342383ed8ce80214e608525">clearPackets</a> (void)</td></tr>
+<tr class="separator:a61294a8ad342383ed8ce80214e608525 inherit pub_methods_classm2m2__application"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a9d305a05deb0ec2c712ee51b1fb36ceb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt; <a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#a9d305a05deb0ec2c712ee51b1fb36ceb">temperature_stream</a></td></tr>
 <tr class="memdesc:a9d305a05deb0ec2c712ee51b1fb36ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temperature data stream.  <a href="classtemperature__application.html#a9d305a05deb0ec2c712ee51b1fb36ceb">More...</a><br /></td></tr>
 <tr class="separator:a9d305a05deb0ec2c712ee51b1fb36ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82494f4de10aa1dc1a22770c6377cc46"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt; <a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#a82494f4de10aa1dc1a22770c6377cc46">temperature_stream1</a></td></tr>
+<tr class="memdesc:a82494f4de10aa1dc1a22770c6377cc46"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADPDCL data stream.  <a href="classtemperature__application.html#a82494f4de10aa1dc1a22770c6377cc46">More...</a><br /></td></tr>
+<tr class="separator:a82494f4de10aa1dc1a22770c6377cc46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab70cad55d7e43cfaef247e8bfb45865"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt; <a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#aab70cad55d7e43cfaef247e8bfb45865">temperature_stream2</a></td></tr>
+<tr class="separator:aab70cad55d7e43cfaef247e8bfb45865"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cb3a2671d753c6c1ab58534c4967462"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt; <a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#a4cb3a2671d753c6c1ab58534c4967462">temperature_stream3</a></td></tr>
+<tr class="separator:a4cb3a2671d753c6c1ab58534c4967462"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab8004403425d4f610ef58f47b32d1a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt; <a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#aab8004403425d4f610ef58f47b32d1a6">temperature_stream4</a></td></tr>
+<tr class="separator:aab8004403425d4f610ef58f47b32d1a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62484b0d6a0fadec739ff9ebcf8ec8db"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt; <a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#a62484b0d6a0fadec739ff9ebcf8ec8db">temperature_stream5</a></td></tr>
+<tr class="separator:a62484b0d6a0fadec739ff9ebcf8ec8db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6f9d2e31e1d79fcc54ea7e6c2b4124c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt; <a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#aa6f9d2e31e1d79fcc54ea7e6c2b4124c">temperature_stream6</a></td></tr>
+<tr class="separator:aa6f9d2e31e1d79fcc54ea7e6c2b4124c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af00e503eac1f582f5197989bdd26b35a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt; <a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#af00e503eac1f582f5197989bdd26b35a">temperature_stream7</a></td></tr>
+<tr class="separator:af00e503eac1f582f5197989bdd26b35a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad734cd5b49f1300c47ddf01c1c92a036"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt; <a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#ad734cd5b49f1300c47ddf01c1c92a036">temperature_stream8</a></td></tr>
+<tr class="separator:ad734cd5b49f1300c47ddf01c1c92a036"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95a519090b5317ad098f14a27f3c7720"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt; <a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#a95a519090b5317ad098f14a27f3c7720">temperature_stream9</a></td></tr>
+<tr class="separator:a95a519090b5317ad098f14a27f3c7720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf63b0b3656f240258faf6dfa2c28a8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt; <a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#abf63b0b3656f240258faf6dfa2c28a8c">temperature_stream10</a></td></tr>
+<tr class="separator:abf63b0b3656f240258faf6dfa2c28a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e0fee5a86470da03a986bf153209902"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt; <a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#a1e0fee5a86470da03a986bf153209902">temperature_stream11</a></td></tr>
+<tr class="separator:a1e0fee5a86470da03a986bf153209902"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7736f2076c198970d1efbad87afd5de7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt; <a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtemperature__application.html#a7736f2076c198970d1efbad87afd5de7">temperature_stream12</a></td></tr>
+<tr class="separator:a7736f2076c198970d1efbad87afd5de7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_classm2m2__application"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classm2m2__application')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classm2m2__application.html">m2m2_application</a></td></tr>
 <tr class="memitem:a9c987484fbde7e251bba452227cd59f6 inherit pub_attribs_classm2m2__application"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classm2m2__application.html#a9c987484fbde7e251bba452227cd59f6">Empty_packet</a> = { 0,0,0,0,0,0,0,0,0,1 }</td></tr>
 <tr class="separator:a9c987484fbde7e251bba452227cd59f6 inherit pub_attribs_classm2m2__application"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -171,7 +210,7 @@ Additional Inherited Members</h2></td></tr>
 , <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7ae6d7b6f5080b36defc106eff3e62f902">APP_COMMON_STATUS_SUBSCRIBER_REMOVED</a> = M2M2_APP_COMMON_STATUS_ENUM_t::M2M2_APP_COMMON_STATUS_SUBSCRIBER_REMOVED
 , <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7abaf3010e4c6fb2c07f45ac9eafed75af">APP_COMMON_STATUS_SUBSCRIBER_COUNT_DECREMENT</a> = M2M2_APP_COMMON_STATUS_ENUM_t::M2M2_APP_COMMON_STATUS_SUBSCRIBER_COUNT_DECREMENT
 , <br />
-&#160;&#160;<a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a7cdcc899b075a07d54e2ecdf5fcd321a">APP_COMMON_STATUS_HIGHEST</a> = M2M2_APP_COMMON_STATUS_ENUM_t::__M2M2_APP_COMMON_STATUS_HIGHEST
+&#160;&#160;<a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a7cdcc899b075a07d54e2ecdf5fcd321a">APP_COMMON_STATUS_HIGHEST</a> = M2M2_APP_COMMON_STATUS_ENUM_t::_M2M2_APP_COMMON_STATUS_ENUM_t__M2M2_APP_COMMON_STATUS_HIGHEST
 , <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a1e790bc6e3fd866d44a37153ae1e83c2">FILE_SYS_STATUS_ERROR</a> = M2M2_FILE_SYS_STATUS_ENUM_t::M2M2_FILE_SYS_STATUS_ERROR
 , <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a59af115c183283a134fcccc07f588977">FILE_SYS_ERR_INVALID</a> = M2M2_FILE_SYS_STATUS_ENUM_t::M2M2_FILE_SYS_ERR_INVALID
 , <a class="el" href="classm2m2__application.html#a331b5f9aa1f7471751592563b932e0e7a023ace4c4a6aa08582592604145405a1">FILE_SYS_ERR_CONFIG_FILE_POSITION</a> = M2M2_FILE_SYS_STATUS_ENUM_t::M2M2_FILE_SYS_ERR_CONFIG_FILE_POSITION
@@ -244,6 +283,42 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa977d308540ddbaa347cba8466b7dd73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa977d308540ddbaa347cba8466b7dd73">&#9670;&nbsp;</a></span>dcb_delete_config()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ret::sdk_status dcb_delete_config </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab6e5dc01a4c28bb191b0314540ea73f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab6e5dc01a4c28bb191b0314540ea73f">&#9670;&nbsp;</a></span>dcb_set_lcfg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ret::sdk_status dcb_set_lcfg </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a9ef02a41e248c3168e038b91d0f4e128"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9ef02a41e248c3168e038b91d0f4e128">&#9670;&nbsp;</a></span>get_address()</h2>
 
@@ -325,6 +400,98 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="ab61c15a9e7e9864db1d6d203c958f137"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab61c15a9e7e9864db1d6d203c958f137">&#9670;&nbsp;</a></span>read_dcb_config()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::pair&lt; uint16_t, uint32_t &gt; &gt; read_dcb_config </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4bc7a664c16f2341d65325d8ab1f89a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bc7a664c16f2341d65325d8ab1f89a5">&#9670;&nbsp;</a></span>read_lcfg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::pair&lt; uint16_t, uint32_t &gt; &gt; read_lcfg </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>field</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a34a1dc9a6fb4e3362d9fc45e7eeca35b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34a1dc9a6fb4e3362d9fc45e7eeca35b">&#9670;&nbsp;</a></span>write_dcb_config()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ret::sdk_status write_dcb_config </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::pair&lt; uint16_t, uint32_t &gt;&gt;&#160;</td>
+          <td class="paramname"><em>addr_vals</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>num_packets</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4f2303b43c913d13ba22f7404a21c6ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f2303b43c913d13ba22f7404a21c6ee">&#9670;&nbsp;</a></span>write_lcfg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ret::sdk_status write_lcfg </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::pair&lt; uint16_t, uint32_t &gt;&gt;&#160;</td>
+          <td class="paramname"><em>addr_vals</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>field</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a9d305a05deb0ec2c712ee51b1fb36ceb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9d305a05deb0ec2c712ee51b1fb36ceb">&#9670;&nbsp;</a></span>temperature_stream</h2>
@@ -339,6 +506,176 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Temperature data stream. </p>
+
+</div>
+</div>
+<a id="a82494f4de10aa1dc1a22770c6377cc46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82494f4de10aa1dc1a22770c6377cc46">&#9670;&nbsp;</a></span>temperature_stream1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt;<a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a>&gt; temperature_stream1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ADPDCL data stream. </p>
+
+</div>
+</div>
+<a id="abf63b0b3656f240258faf6dfa2c28a8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf63b0b3656f240258faf6dfa2c28a8c">&#9670;&nbsp;</a></span>temperature_stream10</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt;<a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a>&gt; temperature_stream10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e0fee5a86470da03a986bf153209902"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e0fee5a86470da03a986bf153209902">&#9670;&nbsp;</a></span>temperature_stream11</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt;<a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a>&gt; temperature_stream11</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7736f2076c198970d1efbad87afd5de7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7736f2076c198970d1efbad87afd5de7">&#9670;&nbsp;</a></span>temperature_stream12</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt;<a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a>&gt; temperature_stream12</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab70cad55d7e43cfaef247e8bfb45865"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab70cad55d7e43cfaef247e8bfb45865">&#9670;&nbsp;</a></span>temperature_stream2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt;<a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a>&gt; temperature_stream2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4cb3a2671d753c6c1ab58534c4967462"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cb3a2671d753c6c1ab58534c4967462">&#9670;&nbsp;</a></span>temperature_stream3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt;<a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a>&gt; temperature_stream3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab8004403425d4f610ef58f47b32d1a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab8004403425d4f610ef58f47b32d1a6">&#9670;&nbsp;</a></span>temperature_stream4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt;<a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a>&gt; temperature_stream4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a62484b0d6a0fadec739ff9ebcf8ec8db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62484b0d6a0fadec739ff9ebcf8ec8db">&#9670;&nbsp;</a></span>temperature_stream5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt;<a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a>&gt; temperature_stream5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa6f9d2e31e1d79fcc54ea7e6c2b4124c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6f9d2e31e1d79fcc54ea7e6c2b4124c">&#9670;&nbsp;</a></span>temperature_stream6</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt;<a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a>&gt; temperature_stream6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af00e503eac1f582f5197989bdd26b35a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af00e503eac1f582f5197989bdd26b35a">&#9670;&nbsp;</a></span>temperature_stream7</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt;<a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a>&gt; temperature_stream7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad734cd5b49f1300c47ddf01c1c92a036"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad734cd5b49f1300c47ddf01c1c92a036">&#9670;&nbsp;</a></span>temperature_stream8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt;<a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a>&gt; temperature_stream8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a95a519090b5317ad098f14a27f3c7720"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95a519090b5317ad098f14a27f3c7720">&#9670;&nbsp;</a></span>temperature_stream9</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classm2m2__data__stream.html">m2m2_data_stream</a>&lt;<a class="el" href="classtemperature__stream__callback.html">temperature_stream_callback</a>&gt; temperature_stream9</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

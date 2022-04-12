@@ -8,15 +8,18 @@
 
 /* Explicitly enforce struct packing so that the nested structs and unions are laid out
     as expected. */
-#if defined __CC_ARM || defined __IAR_SYSTEMS_ICC__ || __clang__ || defined _MSC_VER || defined __GNUC__ || defined __SES_ARM
+#if defined __CC_ARM || defined __IAR_SYSTEMS_ICC__ || __clang__ || defined _MSC_VER || defined __GNUC__
 // DELIBERATELY BLANK
 #else
 #error "WARNING! Your compiler might not support '#pragma pack(1)'! \
   You must add an equivalent compiler directive to the file generator!"
 #endif  // defined __CC_ARM || defined __IAR_SYSTEMS_ICC__ || __clang__ || defined _MSC_VER || defined __GNUC__
-#pragma pack(push,1)
+#pragma pack(1)
 
+#ifndef STATIC_ASSERT_PROJ
 #define STATIC_ASSERT_PROJ(COND, MSG) typedef char static_assertion_##MSG[(COND)?1:-1]
+#endif // STATIC_ASSERT_PROJ
+
 
 typedef enum M2M2_ADDR_ENUM_t {
   M2M2_ADDR_UNDEFINED = 0,
@@ -46,18 +49,18 @@ typedef enum M2M2_ADDR_ENUM_t {
   M2M2_ADDR_MED_PED = 49924,
   M2M2_ADDR_MED_SYNC_ADPD_ADXL = 49925,
   M2M2_ADDR_MED_TEMPERATURE = 49926,
-  M2M2_ADDR_MED_BCM = 49927,
+  M2M2_ADDR_MED_BIA = 49927,
   M2M2_ADDR_MED_PPG_STREAM = 50176,
   M2M2_ADDR_MED_ECG_STREAM = 50177,
   M2M2_ADDR_MED_EDA_STREAM = 50178,
   M2M2_ADDR_MED_PED_STREAM = 50180,
   M2M2_ADDR_MED_SYNC_ADPD_ADXL_STREAM = 50181,
   M2M2_ADDR_MED_TEMPERATURE_STREAM = 50182,
-  M2M2_ADDR_MED_BCM_STREAM = 50183,
+  M2M2_ADDR_MED_BIA_STREAM = 50183,
   M2M2_ADDR_SYS_PM = 50432,
   M2M2_ADDR_SYS_FS = 50433,
-  M2M2_ADDR_DISPLAY = 50435,
   M2M2_ADDR_SYS_LED_0 = 50434,
+  M2M2_ADDR_DISPLAY = 50435,
   M2M2_ADDR_SYS_WDT = 50576,
   M2M2_ADDR_SYS_PM_STREAM = 50688,
   M2M2_ADDR_SYS_FS_STREAM = 50689,
@@ -66,6 +69,7 @@ typedef enum M2M2_ADDR_ENUM_t {
   M2M2_ADDR_SYS_BATT_STREAM = 50833,
   M2M2_ADDR_SYS_DBG_STREAM = 50848,
   M2M2_ADDR_SYS_AGC_STREAM = 50864,
+  M2M2_ADDR_SYS_HRV_STREAM = 50880,
   M2M2_ADDR_APP_DROID = 50944,
   M2M2_ADDR_APP_IOS = 50945,
   M2M2_ADDR_APP_VS = 50946,
@@ -87,6 +91,13 @@ typedef enum M2M2_ADDR_ENUM_t {
   M2M2_ADDR_MED_SQI = 51212,
   M2M2_ADDR_MED_SQI_STREAM = 51213,
   M2M2_ADDR_BLE_SERVICES_SENSOR = 51214,
+  M2M2_ADDR_USER0_CONFIG_APP = 51215,
+  M2M2_ADDR_MED_MOTION_DETECT = 51216,
+  M2M2_ADDR_MED_MOTION_DETECT_STREAM = 51217,
+  M2M2_ADDR_MED_SWO2 = 51218,
+  M2M2_ADDR_MED_SWO2_STREAM = 51219,
+  M2M2_ADDR_BCM_ALGO_STREAM = 51220,
+  M2M2_ADDR_SENSOR_AD7156_STREAM = 51221,
   M2M2_ADDR_GLOBAL = 65535,
 } M2M2_ADDR_ENUM_t;
 STATIC_ASSERT_PROJ(sizeof(M2M2_ADDR_ENUM_t) == 2, INCORRECT_SIZE_M2M2_ADDR_ENUM_t);
@@ -102,12 +113,12 @@ STATIC_ASSERT_PROJ(sizeof(M2M2_STATUS_ENUM_t) == 1, INCORRECT_SIZE_M2M2_STATUS_E
 // @@  NOTE: THE FIELDS IN THIS STRUCTURE ARE BIG ENDIAN!  @@
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 typedef struct _m2m2_hdr_t {
-  M2M2_ADDR_ENUM_t  src;
-  M2M2_ADDR_ENUM_t  dest;
-  uint16_t  length;
-  uint16_t  checksum;
-  uint8_t  data[0];
+  M2M2_ADDR_ENUM_t  src; 
+  M2M2_ADDR_ENUM_t  dest; 
+  uint16_t  length; 
+  uint16_t  checksum; 
+  uint8_t  data[0]; 
 } m2m2_hdr_t;
 
 // Reset struct packing outside of this file
-#pragma pack(pop)
+#pragma pack()

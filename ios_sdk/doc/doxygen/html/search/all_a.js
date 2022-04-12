@@ -1,22 +1,6 @@
 var searchData=
 [
-  ['lcfg_5fread_347',['lcfg_read',['../classbcm__application.html#a3492d82da35a8ca0f7b3c40b93881083',1,'bcm_application::lcfg_read()'],['../classecg__application.html#ab7fa2504c63f42086ead2263081751ab',1,'ecg_application::lcfg_read()'],['../classeda__application.html#a3492d82da35a8ca0f7b3c40b93881083',1,'eda_application::lcfg_read()'],['../classlow_touch__application.html#ab7fa2504c63f42086ead2263081751ab',1,'lowTouch_application::lcfg_read()'],['../classppg__application.html#a3492d82da35a8ca0f7b3c40b93881083',1,'ppg_application::lcfg_read()']]],
-  ['lcfg_5fwrite_348',['lcfg_write',['../classbcm__application.html#a82c1db3a65bf15ee18fde3f40a6cd9c5',1,'bcm_application::lcfg_write()'],['../classecg__application.html#ab432d3578a0f1e93f47d95f115f2ca8d',1,'ecg_application::lcfg_write()'],['../classeda__application.html#a82c1db3a65bf15ee18fde3f40a6cd9c5',1,'eda_application::lcfg_write()'],['../classlow_touch__application.html#ab432d3578a0f1e93f47d95f115f2ca8d',1,'lowTouch_application::lcfg_write()'],['../classppg__application.html#a82c1db3a65bf15ee18fde3f40a6cd9c5',1,'ppg_application::lcfg_write()']]],
-  ['ldo_5fcontrol_349',['ldo_control',['../classpm__application.html#ab45a2bf23865ef14e651b3235500fc3e',1,'pm_application']]],
-  ['leadsoff_350',['leadsoff',['../structecg__stream__cb__data__t.html#aec421f7fc7479f74ea95fc41da254d16',1,'ecg_stream_cb_data_t']]],
-  ['led_5fch1_351',['led_ch1',['../structget__agc__info__t.html#a4eeb9625f0c75a849b4e9c03b68bfddd',1,'get_agc_info_t']]],
-  ['led_5fch2_352',['led_ch2',['../structget__agc__info__t.html#a812764fb8894ed9af24b0cc2029aa2e0',1,'get_agc_info_t']]],
-  ['led_5findex_353',['led_index',['../structget__agc__info__t.html#a9cbb69315dfc9294a8d3b39d6c5d131d',1,'get_agc_info_t']]],
-  ['length_5fstream_354',['length_Stream',['../structfs__stream__cb__data__t.html#aa846009220edcedb4ce2993e8df915c2',1,'fs_stream_cb_data_t']]],
-  ['level0_5fint_355',['level0_int',['../structadpd4000__optional__stream__cb__data__t.html#a730323aa6566e66657076025d719dba9',1,'adpd4000_optional_stream_cb_data_t']]],
-  ['level1_5fint_356',['level1_int',['../structadpd4000__optional__stream__cb__data__t.html#aae555decef6f0ed438e5613c9dd5f4a0',1,'adpd4000_optional_stream_cb_data_t']]],
-  ['lit_357',['lit',['../structadpd4000__stream__cb__data__t.html#a784a602a6c11cacd7c2804a389742739',1,'adpd4000_stream_cb_data_t']]],
-  ['load_5fcfg_358',['load_cfg',['../classad7156__application.html#a568a6fbe47f2235b1f579f3fc4a68879',1,'ad7156_application::load_cfg()'],['../classadpd4000__application.html#ab582d7cb0586b8bedbab4d2f170a305c',1,'adpd4000_application::load_cfg()']]],
-  ['load_5flcfg_359',['load_lcfg',['../classadxl__application.html#adcf8dc0f9d9043cb5b4e65e889c880a8',1,'adxl_application::load_lcfg()'],['../classppg__application.html#a585e88340765a9432a48fdd4126f06d9',1,'ppg_application::load_lcfg()']]],
-  ['loopback_5fthread_5ffn_360',['loopback_thread_fn',['../main_8cpp.html#a0d01e8f656688450117a88cd6b80c2d6',1,'main.cpp']]],
-  ['lowtouch_5fapp_361',['lowTouch_app',['../classwatch.html#a797b3c03c42a6ff38f55b7cc71d7fd20',1,'watch']]],
-  ['lowtouch_5fapplication_362',['lowTouch_application',['../classlow_touch__application.html',1,'lowTouch_application'],['../classlow_touch__application.html#ab209b1b2b54bb1edf0c06c604027db52',1,'lowTouch_application::lowTouch_application()']]],
-  ['lowtouch_5fapplication_2ecpp_363',['lowTouch_application.cpp',['../low_touch__application_8cpp.html',1,'']]],
-  ['lowtouch_5fapplication_2ehpp_364',['lowTouch_application.hpp',['../low_touch__application_8hpp.html',1,'']]],
-  ['lowtouch_5fstream_365',['lowTouch_stream',['../classlow_touch__application.html#ab94dbc8beac1be8a7e4fbf8328e4b64b',1,'lowTouch_application']]]
+  ['key_5fpress_5ftest_445',['key_press_test',['../classdisplay__application.html#aa76efecc1ccf6f943479d18e74f8f962',1,'display_application']]],
+  ['known_20limitations_446',['Known Limitations',['../md_build_doc_doxygen_known_issues.html',1,'']]],
+  ['known_5fissues_2emd_447',['known_issues.md',['../known__issues_8md.html',1,'']]]
 ];

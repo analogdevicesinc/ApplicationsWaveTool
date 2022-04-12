@@ -4,7 +4,8 @@ var classadpd4000__application =
       [ "ADPDCL_DEVICE_4000_G", "classadpd4000__application.html#a214b14b5cf5955d2b7303ad5ff400d93ad7927ffed84f89e2fd008360ba3c6897", null ],
       [ "ADPDCL_DEVICE_4000_R", "classadpd4000__application.html#a214b14b5cf5955d2b7303ad5ff400d93a389724ab89f9f826567ea70565c565dc", null ],
       [ "ADPDCL_DEVICE_4000_IR", "classadpd4000__application.html#a214b14b5cf5955d2b7303ad5ff400d93ab873dc389496e1d4c56027d1d3c678c7", null ],
-      [ "ADPDCL_DEVICE_4000_B", "classadpd4000__application.html#a214b14b5cf5955d2b7303ad5ff400d93a1bc36045264c4252f3cf971f6804d0a7", null ]
+      [ "ADPDCL_DEVICE_4000_B", "classadpd4000__application.html#a214b14b5cf5955d2b7303ad5ff400d93a1bc36045264c4252f3cf971f6804d0a7", null ],
+      [ "ADPDCL_DEVICE_4000_G_R_IR_B", "classadpd4000__application.html#a214b14b5cf5955d2b7303ad5ff400d93a66b525c58c08e2e962a3a3462f850693", null ]
     ] ],
     [ "adpd4000_application", "classadpd4000__application.html#a60934aa5de9a8d9cd9a3c40f629d2cfd", null ],
     [ "~adpd4000_application", "classadpd4000__application.html#a96fbdc77a6aa24a9c0837b34b95e1ad2", null ],
@@ -28,11 +29,13 @@ var classadpd4000__application =
     [ "read_ecg4k_lcfg", "classadpd4000__application.html#a416803d428d55f4c2aa3b19d3ab93e1a", null ],
     [ "register_read", "classadpd4000__application.html#a07a74c8c57a51689aebef642e189a746", null ],
     [ "register_write", "classadpd4000__application.html#a03101c6c0a7907d973ee9d411ebbf658", null ],
+    [ "saturation_check_enable", "classadpd4000__application.html#ad258c31d9ae703fdae1cd4b5e19c66e8", null ],
     [ "set_adpd4k_fs", "classadpd4000__application.html#ab28cd01a3f77682f6edbb1c6d299d9c4", null ],
     [ "set_pause", "classadpd4000__application.html#ad5cf329e0be126fb1134d886f7b32a2d", null ],
     [ "set_slot", "classadpd4000__application.html#a85311e07c49f3ae231af9dca2e94902a", null ],
     [ "set_slot_active", "classadpd4000__application.html#af269e7db40b2c962262f53029c6b8778", null ],
-    [ "write_dcb_config", "classadpd4000__application.html#acb1293519f424d8a88378bb26f15fde2", null ],
+    [ "set_UC_HR_Enable", "classadpd4000__application.html#a9faaadd01c43418136972741ff076a07", null ],
+    [ "write_dcb_config", "classadpd4000__application.html#a19c8ad5eda46e1343c73cc23f727e6d2", null ],
     [ "write_ecg4k_lcfg", "classadpd4000__application.html#a6a042e0df760603e14384e949a1b4b41", null ],
     [ "adpd4000_optional_stream", "classadpd4000__application.html#aea7b9e3cc8f2aa1f7bcdfd7e5fe0dbc4", null ],
     [ "adpd4000_stream1", "classadpd4000__application.html#a660636e5ac35bc04d27f9bda9e39b8f8", null ],
@@ -46,5 +49,6 @@ var classadpd4000__application =
     [ "adpd4000_stream6", "classadpd4000__application.html#a22b77e7b86c27bbae679f2796bd6260a", null ],
     [ "adpd4000_stream7", "classadpd4000__application.html#ab0d5dc73d83be450e9b8fdde11c30dd0", null ],
     [ "adpd4000_stream8", "classadpd4000__application.html#aa64821be0ece35e8c8bee9e70c437fa2", null ],
-    [ "adpd4000_stream9", "classadpd4000__application.html#a21cea7aca2d6d692e70e3ded4718244a", null ]
+    [ "adpd4000_stream9", "classadpd4000__application.html#a21cea7aca2d6d692e70e3ded4718244a", null ],
+    [ "static_agc_stream", "classadpd4000__application.html#afb897791f298c34bc26eb9660fe06acc", null ]
 ];

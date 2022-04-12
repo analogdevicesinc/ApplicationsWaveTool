@@ -19,8 +19,10 @@
 #endif  // defined __CC_ARM || defined __IAR_SYSTEMS_ICC__ || __clang__ || defined _MSC_VER || defined __GNUC__
 #pragma pack(1)
 
+#define PM_APPS_COUNT	21
+
 enum M2M2_PM_SYS_COMMAND_ENUM_t:uint8_t {
-  __M2M2_PM_SYS_COMMAND_LOWEST = 64,
+  _M2M2_PM_SYS_COMMAND_ENUM_t__M2M2_PM_SYS_COMMAND_LOWEST = 64,
   M2M2_PM_SYS_COMMAND_SET_DATE_TIME_REQ = 66,
   M2M2_PM_SYS_COMMAND_SET_DATE_TIME_RESP = 67,
   M2M2_PM_SYS_COMMAND_GET_BAT_INFO_REQ = 68,
@@ -112,11 +114,28 @@ enum M2M2_PM_SYS_COMMAND_ENUM_t:uint8_t {
   M2M2_PM_SYS_GET_HIBERNATE_MODE_STATUS_RESP = 155,
   M2M2_PM_SYS_SET_HIBERNATE_MODE_STATUS_REQ = 156,
   M2M2_PM_SYS_SET_HIBERNATE_MODE_STATUS_RESP = 157,
+  M2M2_PM_SYS_BATTERY_LEVEL_ALERT = 158,
+  M2M2_PM_SYS_GET_PO_MEMORY_UTILIZATION_REQ = 159,
+  M2M2_PM_SYS_GET_PO_MEMORY_UTILIZATION_RESP = 160,
+  M2M2_PM_SYS_CLEAR_PO_MEMORY_UTILIZATION_REQ = 161,
+  M2M2_PM_SYS_CLEAR_PO_MEMORY_UTILIZATION_RESP = 162,
+  M2M2_PM_SYS_WRITE_UICR_CUST_REG_REQ = 163,
+  M2M2_PM_SYS_WRITE_UICR_CUST_REG_RESP = 164,
+  M2M2_PM_SYS_READ_UICR_CUST_REG_REQ = 165,
+  M2M2_PM_SYS_READ_UICR_CUST_REG_RESP = 166,
+  M2M2_SENSOR_COMMON_CMD_SYNC_TIMER_START_STOP_REQ = 167,
+  M2M2_SENSOR_COMMON_CMD_SYNC_TIMER_START_STOP_RESP = 168,
+  M2M2_SENSOR_COMMON_CMD_SYNC_TIMER_ENABLE_REQ = 169,
+  M2M2_SENSOR_COMMON_CMD_SYNC_TIMER_ENABLE_RESP = 170,
+  M2M2_PM_SYS_SET_TOP_TOUCH_CONTROL_REQ = 171,
+  M2M2_PM_SYS_SET_TOP_TOUCH_CONTROL_RESP = 172,
+  M2M2_PM_SYS_GET_TOP_TOUCH_CONTROL_REQ = 173,
+  M2M2_PM_SYS_GET_TOP_TOUCH_CONTROL_RESP = 174,
 };
 static_assert(sizeof(M2M2_PM_SYS_COMMAND_ENUM_t) == 1, "Enum 'M2M2_PM_SYS_COMMAND_ENUM_t' has an incorrect size!");
 
 enum M2M2_PM_SYS_STATUS_ENUM_t:uint8_t {
-  __M2M2_PM_SYS_STATUS_LOWEST = 64,
+  _M2M2_PM_SYS_STATUS_ENUM_t__M2M2_PM_SYS_STATUS_LOWEST = 64,
   M2M2_PM_SYS_STATUS_OK = 65,
   M2M2_PM_SYS_STATUS_ERR_ARGS = 66,
   M2M2_PM_SYS_STATUS_LOW_TOUCH_LOGGING_ALREADY_STARTED = 67,
@@ -138,7 +157,8 @@ enum M2M2_PM_SYS_STATUS_ENUM_t:uint8_t {
   M2M2_PM_SYS_STATUS_DCB_CONFIG_LOG_DISABLED = 83,
   M2M2_PM_SYS_STATUS_BATTERY_LEVEL_LOW = 84,
   M2M2_PM_SYS_STATUS_BATTERY_LEVEL_CRITICAL = 85,
-  M2M2_PM_SYS_BATTERY_LEVEL_ALERT = 86,
+  M2M2_PM_SYS_STATUS_BATTERY_LEVEL_FULL = 86,
+  M2M2_PM_SYS_STATUS_TOP_TOUCH_CONTROL_FAILED = 87,
   M2M2_PM_SYS_STATUS_ERR_NOT_CHKD = 255,
 };
 static_assert(sizeof(M2M2_PM_SYS_STATUS_ENUM_t) == 1, "Enum 'M2M2_PM_SYS_STATUS_ENUM_t' has an incorrect size!");
@@ -175,7 +195,6 @@ static_assert(sizeof(M2M2_PM_SYS_USB_PWR_ACTION_ENUM_t) == 1, "Enum 'M2M2_PM_SYS
 
 enum M2M2_PM_SYS_PWR_STATE_ENUM_t:uint8_t {
   M2M2_PM_SYS_PWR_STATE_ACTIVE = 0,
-  //M2M2_PM_SYS_PWR_STATE_FLEXI = 1,
   M2M2_PM_SYS_PWR_STATE_HIBERNATE = 2,
   M2M2_PM_SYS_PWR_STATE_SHUTDOWN = 3,
 };
@@ -202,28 +221,77 @@ enum M2M2_PM_SYS_BOOST_ENUM_t:uint8_t {
 };
 static_assert(sizeof(M2M2_PM_SYS_BOOST_ENUM_t) == 1, "Enum 'M2M2_PM_SYS_BOOST_ENUM_t' has an incorrect size!");
 
+enum M2M2_PM_SYS_DG2502_SELECT_ENUM_t:uint8_t {
+  M2M2_PM_SYS_DG2502_8233_SW = 0,
+  M2M2_PM_SYS_DG2502_5940_SW = 1,
+  M2M2_PM_SYS_DG2502_4K_SW = 2,
+};
+static_assert(sizeof(M2M2_PM_SYS_DG2502_SELECT_ENUM_t) == 1, "Enum 'M2M2_PM_SYS_DG2502_SELECT_ENUM_t' has an incorrect size!");
+
+enum M2M2_PM_SYS_DG2502_EN_ENUM_t:uint8_t {
+  M2M2_PM_SYS_DG2502_DISABLE = 0,
+  M2M2_PM_SYS_DG2502_ENABLE = 1,
+};
+static_assert(sizeof(M2M2_PM_SYS_DG2502_EN_ENUM_t) == 1, "Enum 'M2M2_PM_SYS_DG2502_EN_ENUM_t' has an incorrect size!");
+
+enum M2M2_PM_SYS_CHIP_ID_ENUM_t:uint8_t {
+  M2M2_PM_SYS_ADXL362 = 1,
+  M2M2_PM_SYS_ADPD4K = 2,
+  M2M2_PM_SYS_ADP5360 = 3,
+  M2M2_PM_SYS_AD5940 = 4,
+  M2M2_PM_SYS_NAND_FLASH = 5,
+  M2M2_PM_SYS_AD7156 = 6,
+};
+static_assert(sizeof(M2M2_PM_SYS_CHIP_ID_ENUM_t) == 1, "Enum 'M2M2_PM_SYS_CHIP_ID_ENUM_t' has an incorrect size!");
+
 enum ADI_PM_BOARD_TYPE_t:uint8_t {
   ADI_PM_BOARD_TYPE_UNKNOWN = 0,
   ADI_PM_BOARD_TYPE_ADPD107_WATCH = 1,
   ADI_PM_BOARD_TYPE_ADPD107_CHEST_STRAP = 2,
   ADI_PM_BOARD_TYPE_ADPD185_WATCH = 3,
   ADI_PM_BOARD_TYPE_ADPD188_WATCH = 4,
+  ADI_PM_BOARD_TYPE_STUDYWATCH = 5,
+  ADI_PM_BOARD_TYPE_VSM_WATCH = 6,
 };
 static_assert(sizeof(ADI_PM_BOARD_TYPE_t) == 1, "Enum 'ADI_PM_BOARD_TYPE_t' has an incorrect size!");
+
+enum M2M2_UICR_CUST_DATA_LEN_ENUM_t:uint8_t {
+  MANUFACTURER_NAME_LEN = 3,
+  HARDWARE_REVISION_LEN = 6,
+  MANUFACTURING_DATE_LEN = 10,
+  SERIAL_NUMBER_LEN = 12,
+  MODEL_NUMBER_LEN = 15,
+};
+static_assert(sizeof(M2M2_UICR_CUST_DATA_LEN_ENUM_t) == 1, "Enum 'M2M2_UICR_CUST_DATA_LEN_ENUM_t' has an incorrect size!");
+
+enum UICR_CUST_REG_ACCESS_STATUS_ENUM_t:uint8_t {
+  UICR_CUST_REG_ACCESS_STATUS_OK = 0,
+  UICR_CUST_REG_ACCESS_STATUS_ERROR = 1,
+  UICR_CUST_REG_ACCESS_STATUS_ERROR_NULL_PTR = 2,
+  UICR_CUST_REG_ACCESS_STATUS_ERROR_LOGGING_IN_PROGRESS = 3,
+  UICR_CUST_REG_ACCESS_STATUS_ERROR_LOW_BATT = 4,
+  UICR_CUST_REG_ACCESS_STATUS_ERROR_ALREADY_WRITTEN = 5,
+  UICR_CUST_REG_ACCESS_STATUS_ERROR_NOTHING_WRITTEN = 6,
+  UICR_CUST_REG_ACCESS_STATUS_ERROR_ARGS = 7,
+  UICR_CUST_REG_ACCESS_STATUS_ERROR_CRC_MISMATCH = 8,
+  _UICR_CUST_REG_ACCESS_STATUS_ENUM_t__UICR_CUST_REG_ACCESS_STATUS_STATUS_HIGHEST = 9,
+};
+static_assert(sizeof(UICR_CUST_REG_ACCESS_STATUS_ENUM_t) == 1, "Enum 'UICR_CUST_REG_ACCESS_STATUS_ENUM_t' has an incorrect size!");
 
 struct m2m2_pm_sys_cmd_t {
   uint8_t  command; 
   uint8_t  status; 
 };
 
-struct m2m2_file_reset_cmd_t{
+struct m2m2_file_reset_cmd_t {
   uint8_t  command; 
-  uint8_t  status;
+  uint8_t  status; 
 };
+
 struct m2m2_pm_sys_pwr_state_t {
   uint8_t  command; 
   uint8_t  status; 
-  M2M2_PM_SYS_PWR_STATE_ENUM_t  state; 
+  uint8_t  state; 
 };
 
 struct m2m2_pm_sys_info_t {
@@ -252,6 +320,14 @@ struct m2m2_pm_sys_date_time_req_t {
   uint32_t  TZ_sec; 
 };
 
+struct m2m2_manufacture_date_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint16_t  year; 
+  uint8_t  month; 
+  uint8_t  day; 
+};
+
 struct m2m2_pm_sys_bat_info_resp_t {
   uint8_t  command; 
   uint8_t  status; 
@@ -259,7 +335,6 @@ struct m2m2_pm_sys_bat_info_resp_t {
   M2M2_PM_SYS_BAT_STATE_ENUM_t  bat_chrg_stat; 
   uint8_t  bat_lvl; 
   uint16_t  bat_mv; 
-  //uint16_t  bat_temp; 
 };
 
 struct m2m2_pm_sys_bat_thr_req_t {
@@ -315,65 +390,43 @@ struct m2m2_pm_sys_eeprom_cmd_t {
   uint8_t  byte_stream[16]; 
 };
 
-enum M2M2_PM_SYS_DG2502_EN_ENUM_t:uint8_t {
-  M2M2_PM_SYS_DG2502_ENABLE = 1,
-  M2M2_PM_SYS_DG2502_DISABLE = 0,
-};
-static_assert(sizeof(M2M2_PM_SYS_DG2502_EN_ENUM_t) == 1, "Enum 'M2M2_PM_SYS_DG2502_EN_ENUM_t' has an incorrect size!");
-
-enum M2M2_PM_SYS_DG2502_SELECT_ENUM_t:uint8_t {
-  M2M2_PM_SYS_DG2502_8233_SW = 0,
-  M2M2_PM_SYS_DG2502_5940_SW = 1,
-  M2M2_PM_SYS_DG2502_4K_SW = 2,
-} ;
-static_assert(sizeof(M2M2_PM_SYS_DG2502_SELECT_ENUM_t) == 1, "Enum 'M2M2_PM_SYS_DG2502_SELECT_ENUM_t' has an incorrect size!");
-
 struct m2m2_pm_sys_dg2502_sw_ctrl_cmd_t {
-  uint8_t  command;
-  uint8_t  status;
-  M2M2_PM_SYS_DG2502_SELECT_ENUM_t  sw_name;
-  M2M2_PM_SYS_DG2502_EN_ENUM_t  sw_enable;
-} ;
+  uint8_t  command; 
+  uint8_t  status; 
+  M2M2_PM_SYS_DG2502_SELECT_ENUM_t  sw_name; 
+  M2M2_PM_SYS_DG2502_EN_ENUM_t  sw_enable; 
+};
 
 struct m2m2_pm_sys_ldo_ctrl_cmd_t {
-  uint8_t  command;
-  uint8_t  status;
-  uint8_t  ldo_num;
-  uint8_t  ldo_enable;
-} ;
-
-enum M2M2_PM_SYS_CHIP_ID_ENUM_t:uint8_t {
-  M2M2_PM_SYS_ADXL362 = 1,
-  M2M2_PM_SYS_ADPD4K = 2,
-  M2M2_PM_SYS_ADP5360 = 3,
-  M2M2_PM_SYS_AD5940 = 4,
-  M2M2_PM_SYS_NAND_FLASH = 5,
-  M2M2_PM_SYS_AD7156 = 6,
-  //M2M2_PM_SYS_LCD_DISPLAY = 3,
-  //M2M2_PM_SYS_AD8233 = 3,
+  uint8_t  command; 
+  uint8_t  status; 
+  uint8_t  ldo_num; 
+  uint8_t  ldo_enable; 
 };
-static_assert(sizeof(M2M2_PM_SYS_CHIP_ID_ENUM_t) == 1, "Enum 'M2M2_PM_SYS_CHIP_ID_ENUM_t' has an incorrect size!");
 
 struct m2m2_pm_sys_chip_id_cmd_t {
-  uint8_t  command;
-  uint8_t  status;
-  M2M2_PM_SYS_CHIP_ID_ENUM_t  chip_name;
-  uint16_t chip_id;
-} ;
+  uint8_t  command; 
+  uint8_t  status; 
+  M2M2_PM_SYS_CHIP_ID_ENUM_t  chip_name; 
+  uint16_t  chip_id; 
+};
 
 struct m2m2_pm_sys_cap_sense_test_cmd_t {
-  uint8_t  command;
-  uint8_t  status;
-} ;
+  uint8_t  command; 
+  uint8_t  status; 
+  uint8_t  enable; 
+};
 
 struct m2m2_pm_sys_cap_sense_test_data_t {
-  uint8_t  command;
-  uint8_t  touch_position;//
-  uint8_t  touch_value;
-} ;
+  uint8_t  command; 
+  uint8_t  status; 
+  uint8_t  touch_position; 
+  uint8_t  touch_value; 
+};
+
 struct m2m2_pm_sys_enter_bloader_cmd_t {
-  uint8_t  command;
-  uint8_t  status;
+  uint8_t  command; 
+  uint8_t  status; 
 };
 
 struct m2m2_pm_sys_sensor_app_status {
@@ -381,55 +434,93 @@ struct m2m2_pm_sys_sensor_app_status {
   M2M2_ADDR_ENUM_t  sensor_stream; 
   uint8_t  num_subscribers; 
   uint8_t  num_start_reqs; 
-  FILE_SYS_STREAM_SUBS_STATE_ENUM_t  fs_sub_stat; //1-> subscribed to FS, 0-> unsubscribed to FS 
+  uint16_t  fs_sub_stat; 
 };
 
 struct m2m2_pm_sys_sensor_apps_info_req_t {
   uint8_t  command; 
   uint8_t  status; 
   uint16_t  num_sensor_apps; 
-  m2m2_pm_sys_sensor_app_status  app_info[10]; 
-} ;
+  m2m2_pm_sys_sensor_app_status  app_info[21]; 
+};
 
 struct m2m2_pm_force_stream_stop_cmd_t {
-  uint8_t  command;
-  uint8_t  status;
-} ;
-
-struct m2m2_get_apps_running_stat_req_cmd_t{
-  uint8_t  command;
-  uint8_t  status;
+  uint8_t  command; 
+  uint8_t  status; 
 };
 
-struct m2m2_get_apps_running_stat_resp_cmd_t{
-  uint8_t  command;
-  uint8_t  status;
-  uint32_t ad5940_isr_cnt;
-  uint32_t adpd4000_isr_cnt;
-  uint32_t adxl_isr_cnt;
+struct m2m2_get_apps_running_stat_req_cmd_t {
+  uint8_t  command; 
+  uint8_t  status; 
 };
 
-struct m2m2_ble_max_tx_pkt_comb_cnt_resp_cmd_t{
-  uint8_t  command;
-  uint8_t  status;
-  uint8_t max_tx_pkt_comb_cnt;
+struct m2m2_get_apps_running_stat_resp_cmd_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint32_t  ad5940_isr_cnt; 
+  uint32_t  adpd4000_isr_cnt; 
+  uint32_t  adxl_isr_cnt; 
 };
 
-struct m2m2_manufacture_date_t{
-uint8_t command;
-uint8_t status;
-uint16_t year;
-uint8_t month;
-uint8_t day;
+struct m2m2_ble_max_tx_pkt_comb_cnt_resp_cmd_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint8_t  max_tx_pkt_comb_cnt; 
 };
 
-struct m2m2_hibernate_mode_status_resp_cmd_t{
-uint8_t command;
-uint8_t status;
-uint8_t hib_mode_status;
+struct m2m2_hibernate_mode_status_resp_cmd_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint8_t  hib_mode_status; 
 };
 
+struct m2m2_get_po_memory_utilization_cmd_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint16_t  min_num_free_blks_type2; 
+  uint16_t  min_num_free_blks_type4; 
+  uint16_t  min_num_free_blks_type5; 
+  uint32_t  block_2_allocated; 
+  uint32_t  block_4_allocated; 
+  uint32_t  block_5_allocated; 
+  uint32_t  block_2_freed; 
+  uint32_t  block_4_freed; 
+  uint32_t  block_5_freed; 
+};
 
+struct m2m2_clear_po_memory_utilization_cmd_t {
+  uint8_t  command; 
+  uint8_t  status; 
+};
+
+struct m2m2_uicr_cust_reg_data_t {
+  uint32_t  manu_name; 
+  uint32_t  model_num0; 
+  uint32_t  model_num1; 
+  uint32_t  model_num2; 
+  uint32_t  model_num3; 
+  uint32_t  hw_rev0; 
+  uint32_t  hw_rev1; 
+  uint32_t  serial_num0; 
+  uint32_t  serial_num1; 
+  uint32_t  serial_num2; 
+  uint32_t  manu_date0; 
+  uint32_t  manu_date1; 
+  uint32_t  manu_date2; 
+  uint32_t  crc_8; 
+};
+
+struct m2m2_uicr_cust_reg_data_cmd_t {
+  uint8_t  command; 
+  UICR_CUST_REG_ACCESS_STATUS_ENUM_t  status; 
+  m2m2_uicr_cust_reg_data_t  uicr_cust_data; 
+};
+
+struct m2m2_pm_top_touch_control_t {
+  uint8_t  command; 
+  uint8_t  status; 
+  uint8_t  state; 
+};
 
 // Reset struct packing outside of this file
 #pragma pack()

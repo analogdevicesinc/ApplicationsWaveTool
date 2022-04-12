@@ -76,7 +76,7 @@ public:
 		ADPDCL_DEVICE_4000_R = M2M2_SENSOR_ADPD_DEVICE_ID_ENUM_t::M2M2_SENSOR_ADPD4000_DEVICE_4000_R,
 		ADPDCL_DEVICE_4000_IR = M2M2_SENSOR_ADPD_DEVICE_ID_ENUM_t::M2M2_SENSOR_ADPD4000_DEVICE_4000_IR,
 		ADPDCL_DEVICE_4000_B = M2M2_SENSOR_ADPD_DEVICE_ID_ENUM_t::M2M2_SENSOR_ADPD4000_DEVICE_4000_B,
-
+		ADPDCL_DEVICE_4000_G_R_IR_B = M2M2_SENSOR_ADPD_DEVICE_ID_ENUM_t::M2M2_SENSOR_ADPD4000_DEVICE_4000_G_R_IR_B,
 	};
 	adpd4000_application(watch *sdk=NULL);
   ~adpd4000_application(void);
@@ -94,6 +94,9 @@ public:
   m2m2_data_stream<adpd4000_stream_callback> adpd4000_stream11;
   m2m2_data_stream<adpd4000_stream_callback> adpd4000_stream12;
 	m2m2_data_stream<adpd4000_stream_callback> adpd4000_optional_stream;
+
+  m2m2_data_stream<agc_stream_callback> static_agc_stream;
+
 
   std::string get_name(void);
   M2M2_ADDR_ENUM_t get_address(void);
@@ -125,9 +128,12 @@ public:
   std::vector<std::pair<uint8_t, uint16_t>> read_ecg4k_lcfg(std::vector<uint8_t> addresses);
   std::vector<std::pair<uint16_t, uint16_t>> create_adpd4k_dcfg(std::vector<std::pair<uint16_t, uint16_t>> addr_vals);
 
-  ret::sdk_status write_dcb_config(std::vector<std::pair<uint16_t, uint16_t>> addr_vals);
+  ret::sdk_status write_dcb_config(std::vector<std::pair<uint16_t, uint16_t>> addr_vals, uint16_t num_packets);
 
   std::vector<std::pair<uint16_t, uint16_t>> read_dcb_config(void);
   ret::sdk_status  dcb_delete_config(void);
 
+  ret::sdk_status set_UC_HR_Enable(uint8_t control, uint16_t slotNum);
+
+  ret::sdk_status saturation_check_enable(uint16_t slotSaturationBitValues);
 };

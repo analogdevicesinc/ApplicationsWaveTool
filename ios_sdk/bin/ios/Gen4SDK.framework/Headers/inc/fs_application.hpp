@@ -57,10 +57,14 @@ public:
 		EDA_Stream,
 		TEMPERATURE_Stream,
 		PEDOMETER_Stream,
-		BCM_Stream,
+		BIA_Stream,
+		BIA_ALGO_Stream,
 		HRV_Stream,
 		BATTERY_Stream,
-		AGC_Stream,
+		STATIC_AGC_Stream,
+		DYNAMIC_AGC_Stream,
+		SQI_Stream,
+		AD7156_Stream,
 		ADPD1_STREAM,
 		ADPD2_STREAM,
 		ADPD3_STREAM,
@@ -74,6 +78,18 @@ public:
 		ADPD11_STREAM,
 		ADPD12_STREAM,
 		ADPD_OPTIONAL_STREAM,
+		TEMP1_STREAM,
+		TEMP2_STREAM,
+		TEMP3_STREAM,
+		TEMP4_STREAM,
+		TEMP5_STREAM,
+		TEMP6_STREAM,
+		TEMP7_STREAM,
+		TEMP8_STREAM,
+		TEMP9_STREAM,
+		TEMP10_STREAM,
+		TEMP11_STREAM,
+		TEMP12_STREAM,
 
 	};
   enum FS_SYS_FILE_TYPE_ENUM_t : uint8_t {
@@ -101,10 +117,51 @@ public:
 	FILE_SYS_STATUS_LOGGING_IN_PROGRESS = M2M2_FILE_SYS_STATUS_ENUM_t::M2M2_FILE_SYS_STATUS_LOGGING_IN_PROGRESS,
 	FILE_SYS_STATUS_LOGGING_ERROR = M2M2_FILE_SYS_STATUS_ENUM_t::M2M2_FILE_SYS_STATUS_LOGGING_ERROR,
 	FILE_SYS_STATUS_LOGGING_NOT_STARTED = M2M2_FILE_SYS_STATUS_ENUM_t::M2M2_FILE_SYS_STATUS_LOGGING_NOT_STARTED,
+	FILE_SYS_ERR_LOWEST = M2M2_FILE_SYS_STATUS_ENUM_t::_M2M2_FILE_SYS_STATUS_ENUM_t__M2M2_FILE_SYS_ERR_LOWEST,
+	FILE_SYS_ERR_BATTERY_LOW = M2M2_FILE_SYS_STATUS_ENUM_t::M2M2_FILE_SYS_ERR_BATTERY_LOW,
+	FILE_SYS_ERR_POWER_STATE_SHUTDOWN = M2M2_FILE_SYS_STATUS_ENUM_t::M2M2_FILE_SYS_ERR_POWER_STATE_SHUTDOWN,
+	FILE_SYS_STATUS_BLOCKS_WRITE_ERROR = M2M2_FILE_SYS_STATUS_ENUM_t::M2M2_FILE_SYS_STATUS_BLOCKS_WRITE_ERROR,
+	FILE_SYS_NO_FILE_TO_APPEND = M2M2_FILE_SYS_STATUS_ENUM_t::M2M2_FILE_SYS_NO_FILE_TO_APPEND,
   };
+
+  enum FILE_PAGE_CHUNK_RETRANSMIT_TYPE_ENUM {
+	  FILE_SYS_PAGE_CHUNK_CRC_ERROR = FILE_PAGE_CHUNK_RETRANSMIT_TYPE_ENUM_t::M2M2_FILE_SYS_PAGE_CHUNK_CRC_ERROR,
+	  FILE_SYS_PAGE_CHUNK_LOST = FILE_PAGE_CHUNK_RETRANSMIT_TYPE_ENUM_t::M2M2_FILE_SYS_PAGE_CHUNK_LOST,
+  };
+
   struct file_name {
     uint8_t namefile;
   };
+
+
+  struct file_sys_format_debug_info_resp_t {
+	  uint8_t  erase_failed_due_bad_block_check;
+	  uint8_t  wrap_around_cond;
+	  uint8_t  nothing_is_written_to_erase_error;
+	  uint8_t  mem_full_in_partial_erase;
+	  uint8_t  toc_mem_erased_flag;
+	  uint8_t  succesfull_erase_flag;
+	  uint16_t  num_blocks_erased_in_mem_full_partial_erase;
+	  uint16_t  num_blocks_erased_in_partial_erase_1;
+	  uint16_t  num_blocks_erased_in_partial_erase_2;
+	  uint16_t  num_times_format_failed_due_bad_blocks_1;
+	  uint16_t  num_times_format_failed_due_bad_blocks_2;
+	  uint32_t  format_src_blk_ind;
+	  uint32_t  format_dest_blk_ind_1;
+	  uint32_t  format_dest_blk_ind_2;
+  };
+
+  struct file_sys_page_read_test_resp_pkt_t {
+	  uint32_t  page_num;
+	  uint8_t  ecc_zone_status;
+	  uint32_t  next_page;
+	  uint8_t  occupied;
+	  uint16_t  num_bytes_written;
+	  uint8_t  data_region_status;
+	  std::vector<uint8_t>  sample_data;
+	  uint8_t  num_bytes;
+  };
+
     
   fs_application(watch *sdk=NULL);
   ~fs_application(void);
@@ -120,7 +177,7 @@ public:
   void fs_get(std::string filename,
               fs_stream_callback &cb);
 
-  void fs_get_stream_chunk(uint8_t roll_over, uint16_t chunk_num, std::string filename, fs_stream_callback &cb);
+  ret::sdk_status fs_get_stream_chunk(FILE_PAGE_CHUNK_RETRANSMIT_TYPE_ENUM type, uint8_t roll_over, uint16_t chunk_num, uint16_t pagenum, std::string filename, fs_stream_cb_data_t  *pstreamData);
   void fs_debug_info(ADDR_ENUM_STREAM stream,
                      uint32_t& packets_received,
                      uint32_t& packets_missed);
@@ -134,10 +191,10 @@ public:
   
   uint8_t delete_config_file(void);
   uint8_t fs_config_log(bool enable);
-  uint8_t fs_config_write(std::vector<uint8_t> buffer);
+  uint8_t fs_config_write(std::vector<uint8_t> buffer, bool isEOF);
 
-	ret::sdk_status fs_logStart(void);
-	ret::sdk_status fs_logStop(void);
+  fs_application::FILE_SYS_STATUS_ENUM fs_logStart(void);
+  fs_application::FILE_SYS_STATUS_ENUM fs_logStop(void);
   uint8_t fs_mount(void);
 
   void fs_refhr(uint16_t refhr, sys_date_time_t *time_info);
@@ -145,6 +202,12 @@ public:
   uint32_t fs_get_number_of_bad_blocks(void);
 
   uint8_t fs_abort(void);
+  ret::sdk_status fs_blockErase(uint16_t blockNo);
+  ret::sdk_status fs_getFormatInfo(file_sys_format_debug_info_resp_t *debugInfo);
+  fs_application::FILE_SYS_STATUS_ENUM fs_appendFileReq(void);
+  ret::sdk_status fs_fileReadTest(uint32_t  start_page_ind, uint32_t  end_page_ind, file_sys_page_read_test_resp_pkt_t *readInfo);
+  ret::sdk_status fs_writeRandomDataToBlk(std::vector<uint32_t> data);
+  fs_application::FILE_SYS_STATUS_ENUM fs_pattern_write(uint32_t file_size, uint8_t scale_type, uint16_t scale_factor, uint16_t base, uint16_t num_files);
 
 private:
 	M2M2_ADDR_ENUM_t getAddrStream(ADDR_ENUM_STREAM stream);

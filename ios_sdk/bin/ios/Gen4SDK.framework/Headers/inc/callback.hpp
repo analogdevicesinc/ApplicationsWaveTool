@@ -42,6 +42,7 @@
 #include <sstream>
 #include "m2m2/cpp/system_interface.hpp"
 #include "m2m2/cpp/sensor_adpd_application_interface.hpp"
+#include "m2m2/cpp/bia_application_interface.hpp"
 #include"sys_alert_enum.hpp"
 // #############################################################################
 // ## WATCH CALLBACKS                                                         ##
@@ -91,6 +92,8 @@ public:
 */
 struct eda_stream_cb_data_t {
   double timestamp;  //!< System timestamp in milliseconds
+  double real;
+  double img;
   double admittance_real;
   double admittance_img;
   double impedance_real;
@@ -147,6 +150,7 @@ public:
    \brief A callback struct to be used with the temperature data stream.
 */
 struct temperature_stream_cb_data_t {
+  uint16_t tempSource;
   double timestamp;    //!< System timestamp in milliseconds
   double temp_skin;    //!< Skin temperature in degrees Celcius
   double temp_ambient; //!< Ambient temperature in degrees Celcius
@@ -229,6 +233,7 @@ struct ppg_stream_cb_data_t {
   float confidence;   //!< Heart rate confidence level
   uint16_t hr_type;      //!< Internal HR type
   uint16_t rr_interval;  //!< R-R peak interval
+  std::vector<uint16_t> debugInfo;
 };
 
 /*!
@@ -271,7 +276,7 @@ public:
 \brief A callback struct to be used with the ADPDCL data stream.
 */
 
-enum ADDR_SENSOR_STREAM_ENUM_t :uint16_t {
+enum ADDR_SENSOR_STREAM_ENUM_t :uint8_t {
 	ADPD_SENSOR_STREAM1 = 1,
 	ADPD_SENSOR_STREAM2,
 	ADPD_SENSOR_STREAM3,
@@ -295,6 +300,7 @@ struct adpd4000_stream_cb_data_t{
 	uint8_t  impulse;
 	uint8_t  lit;
 	uint8_t  channel_num;
+	uint8_t  sample_num;
 	double  timestamp;
 	std::vector<uint32_t>  adpddata_d;
 	std::vector<uint32_t>  adpddata_s;
@@ -329,6 +335,16 @@ public:
 /*!
  \brief A callback struct to be used with the battery stream.
  */
+
+enum PM_BOARD_TYPE :uint8_t {
+	PM_BOARD_TYPE_UNKNOWN = ADI_PM_BOARD_TYPE_t::ADI_PM_BOARD_TYPE_UNKNOWN,
+	PM_BOARD_TYPE_ADPD107_WATCH = ADI_PM_BOARD_TYPE_t::ADI_PM_BOARD_TYPE_ADPD107_WATCH,
+	PM_BOARD_TYPE_ADPD107_CHEST_STRAP = ADI_PM_BOARD_TYPE_t::ADI_PM_BOARD_TYPE_ADPD107_CHEST_STRAP,
+	PM_BOARD_TYPE_ADPD185_WATCH = ADI_PM_BOARD_TYPE_t::ADI_PM_BOARD_TYPE_ADPD185_WATCH,
+	PM_BOARD_TYPE_ADPD188_WATCH = ADI_PM_BOARD_TYPE_t::ADI_PM_BOARD_TYPE_ADPD188_WATCH,
+	PM_BOARD_TYPE_STUDYWATCH = ADI_PM_BOARD_TYPE_t::ADI_PM_BOARD_TYPE_STUDYWATCH,
+	PM_BOARD_TYPE_VSM_WATCH = ADI_PM_BOARD_TYPE_t::ADI_PM_BOARD_TYPE_VSM_WATCH, /* VSM_MB_SB */
+};
 
 enum PM_SYS_BAT_STATE_ENUM_t : uint8_t {
   SYS_BAT_STATE_NOT_AVAIL = M2M2_PM_SYS_BAT_STATE_ENUM_t::M2M2_PM_SYS_BAT_STATE_NOT_AVAIL,
@@ -378,8 +394,12 @@ public:
  */
 struct fs_stream_cb_data_t {
     uint8_t  status;
-    uint16_t  length_Stream;
-    std::vector<uint8_t> byte_Stream;
+	uint8_t  page_chunk_number;
+	uint16_t  page_number;
+	uint16_t  page_chunk_size;
+    std::vector<uint8_t> page_chunk_bytes;
+	std::vector<uint8_t> rawData;
+	uint16_t rawDataLength;
     uint16_t  crc16;
 };
 /*!
@@ -430,29 +450,83 @@ public:
 };
 
 // #############################################################################
-// ## BCM STREAM CALLBACKS                                                    ##
+// ## BIA STREAM CALLBACKS                                                    ##
 // #############################################################################
 /*!
- \brief A callback struct to be used with the BCM data stream.
+ \brief A callback struct to be used with the BIA data stream.
  */
 
-struct bcm_stream_cb_data_t {
-  double timestamp;
-  int32_t impedance_real;
-  int32_t impedance_img;
-  uint8_t is_finger_on_leads;
-  uint8_t signal_stability;
-  double impedance_magnitude;
-  double impedance_phase;
-  double admittance_magnitude;
-  double admittance_phase;
+
+enum BIA_APP_INFO_BITSET_ENUM_t :uint8_t {
+	BIA_APP_INFO_BITSET_LEADSOFF = M2M2_SENSOR_BIA_APP_INFO_BITSET_ENUM_t::M2M2_SENSOR_BIA_APP_INFO_BITSET_LEADSOFF,
+	SENSOR_BIA_APP_INFO_BITSET_LEADSON = M2M2_SENSOR_BIA_APP_INFO_BITSET_ENUM_t::M2M2_SENSOR_BIA_APP_INFO_BITSET_LEADSON,
 };
 
-class bcm_stream_callback {
-public:
-  virtual ~bcm_stream_callback(void);
+enum BIA_SWEEP_FREQ_INDEX_ENUM_t :uint8_t {
+	SENSOR_BIA_FREQ_1000HZ = M2M2_SENSOR_BIA_SWEEP_FREQ_INDEX_ENUM_t::M2M2_SENSOR_BIA_FREQ_1000HZ,
+	SENSOR_BIA_FREQ_3760HZ = M2M2_SENSOR_BIA_SWEEP_FREQ_INDEX_ENUM_t::M2M2_SENSOR_BIA_FREQ_3760HZ,
+	SENSOR_BIA_FREQ_14140HZ = M2M2_SENSOR_BIA_SWEEP_FREQ_INDEX_ENUM_t::M2M2_SENSOR_BIA_FREQ_14140HZ,
+	SENSOR_BIA_FREQ_53180HZ = M2M2_SENSOR_BIA_SWEEP_FREQ_INDEX_ENUM_t::M2M2_SENSOR_BIA_FREQ_53180HZ,
+	SENSOR_BIA_FREQ_200KHZ = M2M2_SENSOR_BIA_SWEEP_FREQ_INDEX_ENUM_t::M2M2_SENSOR_BIA_FREQ_200KHZ,
+	SENSOR_BIA_FREQ_50KHZ = M2M2_SENSOR_BIA_SWEEP_FREQ_INDEX_ENUM_t::M2M2_SENSOR_BIA_FREQ_50KHZ,
+};
 
-  virtual void call(std::vector<bcm_stream_cb_data_t>, uint16_t sequence_num);
+struct bia_stream_cb_data_t {
+	double  timestamp;
+	uint8_t  datatype;
+	BIA_APP_INFO_BITSET_ENUM_t  bia_info;
+	int32_t  real;
+	int32_t  img;
+	int32_t impedance_real;
+	int32_t impedance_img;
+	uint8_t signal_stability;
+	double impedance_magnitude;
+	double impedance_phase;
+	double admittance_magnitude;
+	double admittance_phase;
+	uint32_t  freq_index;
+};
+
+class bia_stream_callback {
+public:
+  virtual ~bia_stream_callback(void);
+
+  virtual void call(std::vector<bia_stream_cb_data_t>, uint16_t sequence_num);
+};
+// #############################################################################
+// ## BIA ALGO STREAM CALLBACKS                                               ##
+// #############################################################################
+
+
+struct bia_app_algo_out_stream_cb_data_t {
+	double time_stamp;
+	float  ffm_estimated;
+	float  bmi;
+	float  fat_percent;
+};
+
+
+class bia_algo_stream_callback {
+public:
+	virtual ~bia_algo_stream_callback(void);
+
+	virtual void call(std::vector<bia_app_algo_out_stream_cb_data_t>, uint16_t sequence_num);
+};
+
+// #############################################################################
+// ## AD7156 STREAM CALLBACKS                                               ##
+// #############################################################################
+struct sensor_ad7156_cb_data_t {
+	double  timestamp;
+	uint16_t  ch1_cap;
+	uint16_t  ch2_cap;
+};
+
+class ad7156_stream_callback {
+public:
+	virtual ~ad7156_stream_callback(void);
+
+	virtual void call(std::vector<sensor_ad7156_cb_data_t>, uint16_t sequence_num);
 };
 
 // #############################################################################
@@ -461,19 +535,20 @@ public:
 /*!
  \brief A callback struct to be used with the HRV data stream.
  */
-//
-//struct hrv_stream_cb_data_t {
-//  double timestamp;
-//  int16_t rr_interval;
-//  uint16_t is_gap;
-//};
-//
-//class hrv_stream_callback {
-//public:
-//  virtual ~hrv_stream_callback(void);
-//
-//  virtual void call(std::vector<hrv_stream_cb_data_t>, uint16_t sequence_num);
-//};
+
+struct hrv_stream_cb_data_t {
+  double timestamp;
+  int16_t rr_interval;
+  uint16_t is_gap;
+  uint16_t rmssd;
+};
+
+class hrv_stream_callback {
+public:
+  virtual ~hrv_stream_callback(void);
+
+  virtual void call(std::vector<hrv_stream_cb_data_t>, uint16_t sequence_num);
+};
 
 // #############################################################################
 // ## AGC STREAM CALLBACKS                                                    ##
@@ -518,7 +593,7 @@ public:
 
 
 struct sqi_stream_cb_data_t {
-	float     sqi;
+	double  sqi;
 	uint16_t  nSQISlot;
 	uint16_t  nAlgoStatus;
 	double  nTimeStamp;

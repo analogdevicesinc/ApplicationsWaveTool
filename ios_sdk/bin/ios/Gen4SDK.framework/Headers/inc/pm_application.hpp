@@ -62,6 +62,7 @@ struct pm_sys_info_t {
   uint16_t bom_id;
   uint8_t batch_id;
   uint32_t date;
+  PM_BOARD_TYPE type;
 };
 
 struct eeprom_info_t {
@@ -72,6 +73,23 @@ struct eeprom_info_t {
 	uint32_t date;
 	uint32_t additional_detail;
 
+};
+
+struct uicr_cust_reg_data_t {
+	uint32_t  manu_name;
+	uint32_t  model_num0;
+	uint32_t  model_num1;
+	uint32_t  model_num2;
+	uint32_t  model_num3;
+	uint32_t  hw_rev0;
+	uint32_t  hw_rev1;
+	uint32_t  serial_num0;
+	uint32_t  serial_num1;
+	uint32_t  serial_num2;
+	uint32_t  manu_date0;
+	uint32_t  manu_date1;
+	uint32_t  manu_date2;
+	uint32_t  crc_8;
 };
 
 class pm_application : public m2m2_application {
@@ -101,6 +119,20 @@ public:
 	  //M2M2_PM_SYS_LCD_DISPLAY = 3,
 	  //M2M2_PM_SYS_AD8233 = 3,
   };
+
+  enum PM_SYS_UICR_CUST_REG_ACCESS_STATUS_ENUM_t :uint8_t {
+	  UICR_CUST_REG_ACCESS_STATUS_OK = UICR_CUST_REG_ACCESS_STATUS_ENUM_t::UICR_CUST_REG_ACCESS_STATUS_OK,
+	  UICR_CUST_REG_ACCESS_STATUS_ERROR = UICR_CUST_REG_ACCESS_STATUS_ENUM_t::UICR_CUST_REG_ACCESS_STATUS_ERROR,
+	  UICR_CUST_REG_ACCESS_STATUS_ERROR_NULL_PTR = UICR_CUST_REG_ACCESS_STATUS_ENUM_t::UICR_CUST_REG_ACCESS_STATUS_ERROR_NULL_PTR,
+	  UICR_CUST_REG_ACCESS_STATUS_ERROR_LOGGING_IN_PROGRESS = UICR_CUST_REG_ACCESS_STATUS_ENUM_t::UICR_CUST_REG_ACCESS_STATUS_ERROR_LOGGING_IN_PROGRESS,
+	  UICR_CUST_REG_ACCESS_STATUS_ERROR_LOW_BATT = UICR_CUST_REG_ACCESS_STATUS_ENUM_t::UICR_CUST_REG_ACCESS_STATUS_ERROR_LOW_BATT,
+	  UICR_CUST_REG_ACCESS_STATUS_ERROR_ALREADY_WRITTEN = UICR_CUST_REG_ACCESS_STATUS_ENUM_t::UICR_CUST_REG_ACCESS_STATUS_ERROR_ALREADY_WRITTEN,
+	  UICR_CUST_REG_ACCESS_STATUS_ERROR_NOTHING_WRITTEN = UICR_CUST_REG_ACCESS_STATUS_ENUM_t::UICR_CUST_REG_ACCESS_STATUS_ERROR_NOTHING_WRITTEN,
+	  UICR_CUST_REG_ACCESS_STATUS_ERROR_ARGS = UICR_CUST_REG_ACCESS_STATUS_ENUM_t::UICR_CUST_REG_ACCESS_STATUS_ERROR_ARGS,
+	  UICR_CUST_REG_ACCESS_STATUS_ERROR_CRC_MISMATCH = UICR_CUST_REG_ACCESS_STATUS_ENUM_t::UICR_CUST_REG_ACCESS_STATUS_ERROR_CRC_MISMATCH,
+	  _UICR_CUST_REG_ACCESS_STATUS_ENUM_t__UICR_CUST_REG_ACCESS_STATUS_STATUS_HIGHEST = UICR_CUST_REG_ACCESS_STATUS_ENUM_t::_UICR_CUST_REG_ACCESS_STATUS_ENUM_t__UICR_CUST_REG_ACCESS_STATUS_STATUS_HIGHEST,
+  };
+
   pm_application(watch *sdk = NULL);
   ~pm_application(void);
   m2m2_data_stream<battery_stream_callback> battery_stream;
@@ -146,8 +178,27 @@ public:
   bool getHibernateModeStatus(void);
   ret::sdk_status setHibernateModeStatus(bool value);
 
+  ret::sdk_status getHealthStatus(uint32_t *ad5940_isr_cnt, uint32_t *adpd4000_isr_cnt, uint32_t *adxl_isr_cnt);
+
   std::vector<std::pair<uint16_t, uint16_t>> register_read(std::vector<uint16_t> addresses);
   std::vector<std::pair<uint16_t, uint16_t>> register_write(std::vector<std::pair<uint16_t, uint16_t>> addr_vals);
   
+  ret::sdk_status stop_ForceStream(void);
+
+  ret::sdk_status setManufactureDate(uint16_t year, uint8_t month, uint8_t day);
+  ret::sdk_status getManufactureDate(uint16_t *year, uint8_t *month, uint8_t *day);
+
+  ret::sdk_status  dcb_delete_config(void);
+  ret::sdk_status write_dcb_config(std::vector<std::pair<uint16_t, uint16_t>> addr_vals);
+  std::vector<std::pair<uint16_t, uint16_t>> read_dcb_config(void);
+  ret::sdk_status  activate_touch_sensor(void);
+  ret::sdk_status  deactivate_touch_sensor(void);
  // void pm_application::write_EEPROM(int bytestream);
+
+  PM_SYS_UICR_CUST_REG_ACCESS_STATUS_ENUM_t readUICRCustReg(uicr_cust_reg_data_t* uicr_reg_info);
+  PM_SYS_UICR_CUST_REG_ACCESS_STATUS_ENUM_t writeUICRCustReg(uicr_cust_reg_data_t* uicr_reg_info);
+
+  ret::sdk_status enable_sync_timer(bool timer_enable);
+  ret::sdk_status start_sync_timer(bool start_status);
+
 };

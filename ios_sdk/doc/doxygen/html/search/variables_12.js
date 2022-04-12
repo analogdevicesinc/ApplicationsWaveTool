@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['y_1251',['y',['../structadxl__stream__cb__data__t.html#af77b1a54442f2443cf64a4766f916bcd',1,'adxl_stream_cb_data_t::y()'],['../structsyncppg__stream__cb__data__t.html#af77b1a54442f2443cf64a4766f916bcd',1,'syncppg_stream_cb_data_t::y()']]],
-  ['year_1252',['year',['../structsys__date__time__t.html#a57ca98d8f6d4baf0fe41c583c7dcb0d5',1,'sys_date_time_t']]]
+  ['valid_5frecords_1635',['valid_records',['../structbia__application_1_1fds__status__info__resp.html#a69dec334e72694fa9781ca40dbae4398',1,'bia_application::fds_status_info_resp']]],
+  ['vendstr_1636',['vendstr',['../structcommon__app__version__t.html#ab4641fef96fd480667a4fa69ba5759a6',1,'common_app_version_t']]],
+  ['version_1637',['version',['../structpm__sys__info__t.html#ab6d7b6f8c2ceaba7acda80aaf05f4899',1,'pm_sys_info_t']]],
+  ['verstr_1638',['verstr',['../structcommon__app__version__t.html#a92d6ba64d4db92cbe6115e3ff20988cd',1,'common_app_version_t']]]
 ];

@@ -6,10 +6,11 @@ from common_sensor_interface_def import *
 
 from m2m2_core_def import *
 
+
 class M2M2_PED_APP_CMD_ENUM_t(c_ubyte):
     _M2M2_PED_APP_CMD_LOWEST = 0x5A
-    M2M2_PED_APP_CMD_GET_ALGO_VENDOR_VERSION_REQ = 0x5B
-    M2M2_PED_APP_CMD_GET_ALGO_VENDOR_VERSION_RESP = 0x5C
+    M2M2_PED_APP_CMD_GET_ALGO_VENDOR_VERSION_REQ = 0x5C
+    M2M2_PED_APP_CMD_GET_ALGO_VENDOR_VERSION_RESP = 0x5D
 
 class ped_app_lcfg_op_t(Structure):
     _pack_ = 1

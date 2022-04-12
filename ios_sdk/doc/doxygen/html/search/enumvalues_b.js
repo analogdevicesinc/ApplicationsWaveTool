@@ -1,4 +1,29 @@
 var searchData=
 [
-  ['temperature_5fstream_1389',['TEMPERATURE_Stream',['../classfs__application.html#a59aa9d425a0fc3b50b6d30eb8922271fad098d02bce86042c293ea6ad3f69f243',1,'fs_application']]]
+  ['pedometer_5fstream_1783',['PEDOMETER_Stream',['../classfs__application.html#a59aa9d425a0fc3b50b6d30eb8922271fa1215218ca537ad6ca203b3bdf77611db',1,'fs_application']]],
+  ['pm_5fboard_5ftype_5fadpd107_5fchest_5fstrap_1784',['PM_BOARD_TYPE_ADPD107_CHEST_STRAP',['../callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cba10138c8606c854edf8b9ed6d1ea8341e',1,'callback.hpp']]],
+  ['pm_5fboard_5ftype_5fadpd107_5fwatch_1785',['PM_BOARD_TYPE_ADPD107_WATCH',['../callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cba07d0afd29cc008406b356d44922f61b0',1,'callback.hpp']]],
+  ['pm_5fboard_5ftype_5fadpd185_5fwatch_1786',['PM_BOARD_TYPE_ADPD185_WATCH',['../callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cba674b4a0da5fddf8b1d75a8a84029cfc3',1,'callback.hpp']]],
+  ['pm_5fboard_5ftype_5fadpd188_5fwatch_1787',['PM_BOARD_TYPE_ADPD188_WATCH',['../callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cbaf04444d47faaf46ae06a1e2b49de645a',1,'callback.hpp']]],
+  ['pm_5fboard_5ftype_5fstudywatch_1788',['PM_BOARD_TYPE_STUDYWATCH',['../callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cbaba9ec3a6295fe3d8c06b7443d5b6ba5f',1,'callback.hpp']]],
+  ['pm_5fboard_5ftype_5funknown_1789',['PM_BOARD_TYPE_UNKNOWN',['../callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cbac902711b5c13bf40b29977792d101a81',1,'callback.hpp']]],
+  ['pm_5fboard_5ftype_5fvsm_5fwatch_1790',['PM_BOARD_TYPE_VSM_WATCH',['../callback_8hpp.html#a1a877c6b11b98ef3b44e2ce4490f20cba6ba6b45969be31072a3d16a55056af0e',1,'callback.hpp']]],
+  ['pm_5fsys_5fdg2502_5f4k_5fsw_1791',['PM_SYS_DG2502_4K_SW',['../classpm__application.html#a3f792437299ce5d98694ce0c39513a3aa43b24305f115cadd1778a2dc9625dded',1,'pm_application']]],
+  ['pm_5fsys_5fdg2502_5f5940_5fsw_1792',['PM_SYS_DG2502_5940_SW',['../classpm__application.html#a3f792437299ce5d98694ce0c39513a3aaaa5985044013335c98b565c794b06d8b',1,'pm_application']]],
+  ['pm_5fsys_5fdg2502_5f8233_5fsw_1793',['PM_SYS_DG2502_8233_SW',['../classpm__application.html#a3f792437299ce5d98694ce0c39513a3aafd96b0b4cd2a05a83d44ade917f288da',1,'pm_application']]],
+  ['pm_5fsys_5fmcu_5finvalid_1794',['PM_SYS_MCU_INVALID',['../classpm__application.html#acd364effcd1c7ec84def97594e52594aabce620b5eaef2a0f46c45eb0ee0ba03c',1,'pm_application']]],
+  ['pm_5fsys_5fmcu_5fm3_1795',['PM_SYS_MCU_M3',['../classpm__application.html#acd364effcd1c7ec84def97594e52594aabd019deae12a3f3203986e248b48ae78',1,'pm_application']]],
+  ['pm_5fsys_5fmcu_5fm4_1796',['PM_SYS_MCU_M4',['../classpm__application.html#acd364effcd1c7ec84def97594e52594aa13c7f2d2f25d0f916af52717b0489c79',1,'pm_application']]],
+  ['pm_5fsys_5fstatus_5fenable_5fuser_5fconfig_5flog_5ffailed_1797',['PM_SYS_STATUS_ENABLE_USER_CONFIG_LOG_FAILED',['../classwatch.html#a5248fa5e9ae54d027bf84ec17c1f2981ad346c55f872859d9744f8528c8d00de9',1,'watch']]],
+  ['pm_5fsys_5fstatus_5ferror_1798',['PM_SYS_STATUS_ERROR',['../classwatch.html#a5248fa5e9ae54d027bf84ec17c1f2981a36f03efbcbd36037cb8fde5f51289a3f',1,'watch']]],
+  ['pm_5fsys_5fstatus_5fok_1799',['PM_SYS_STATUS_OK',['../classwatch.html#a5248fa5e9ae54d027bf84ec17c1f2981ae9f06fb78abee20c2e77ed18fd103865',1,'watch']]],
+  ['pm_5fsys_5fstatus_5fuser_5fconfig_5flog_5fenabled_1800',['PM_SYS_STATUS_USER_CONFIG_LOG_ENABLED',['../classwatch.html#a5248fa5e9ae54d027bf84ec17c1f2981aa4a1642b4e57ea7eac2ca24f7c44be91',1,'watch']]],
+  ['ppg_5flcfg_5fid_5fadpd107_1801',['PPG_LCFG_ID_ADPD107',['../classppg__application.html#af8aa1c29686aa53355a1545aa2639d40a5d40bed0da1e84310cc892146821d971',1,'ppg_application']]],
+  ['ppg_5flcfg_5fid_5fadpd108_1802',['PPG_LCFG_ID_ADPD108',['../classppg__application.html#af8aa1c29686aa53355a1545aa2639d40ab4bb92aa518b63d4b07a21c0089f425f',1,'ppg_application']]],
+  ['ppg_5flcfg_5fid_5fadpd185_1803',['PPG_LCFG_ID_ADPD185',['../classppg__application.html#af8aa1c29686aa53355a1545aa2639d40a0cfdaa325a4b8dde4371694858695f7c',1,'ppg_application']]],
+  ['ppg_5flcfg_5fid_5fadpd188_1804',['PPG_LCFG_ID_ADPD188',['../classppg__application.html#af8aa1c29686aa53355a1545aa2639d40a5cc217c76f98c62fe3c48d4db757831a',1,'ppg_application']]],
+  ['ppg_5flcfg_5fid_5fadpd4000_1805',['PPG_LCFG_ID_ADPD4000',['../classppg__application.html#af8aa1c29686aa53355a1545aa2639d40a0e63feb1a0f0ff8a857a635e1b6b61cf',1,'ppg_application']]],
+  ['ppg_5fstream_1806',['PPG_Stream',['../classfs__application.html#a59aa9d425a0fc3b50b6d30eb8922271fa93a4df4e121f161c10dd01c99bfa1e8d',1,'fs_application']]],
+  ['python_5fble_1807',['python_ble',['../classwatch.html#ad65979d086bf027f02ab2406846b031ba8bf7c6ee742ad73cc5537bae381872c2',1,'watch']]],
+  ['python_5fusb_1808',['python_usb',['../classwatch.html#ad65979d086bf027f02ab2406846b031ba1d13ef23926519d76f4db5a2603cc880',1,'watch']]]
 ];
